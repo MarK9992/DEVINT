@@ -1,1 +1,8 @@
+*.txt
 *.class
+*.idea
+*.iml
+out
+ressources
+bin
+doc
