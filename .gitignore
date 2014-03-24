@@ -2,7 +2,9 @@
 *.class
 *.idea
 *.iml
-out
-ressources
-bin
-doc
+out/
+bin/
+doc/
+AtelierCleUSB/
+ressources/
+VocalyzeSIVOX/
