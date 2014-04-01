@@ -18,9 +18,9 @@ public class LessSimpleTest extends BasicGame {
 
     @Override
     public void init(GameContainer container) throws SlickException {
-        this.hh = new Image("ressources/pic/HH.jpg");
-        this.mine = new Image("ressources/pic/mine.jpg");
-        this.good = new Sound("ressources/sound/good.wav");
+        this.hh = new Image("../ressources/pic/HH.jpg");
+        this.mine = new Image("../ressources/pic/mine.jpg");
+        this.good = new Sound("../ressources/sound/good.wav");
         this.step = 0;
     }
 

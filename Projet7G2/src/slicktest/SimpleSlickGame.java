@@ -32,7 +32,7 @@ public class SimpleSlickGame extends BasicGame
         try
         {
             AppGameContainer appgc;
-            appgc = new AppGameContainer(new SimpleSlickGame("Simple Slick Game"));
+            appgc = new AppGameContainer(new SimpleSlickGame("Simple Slick main.Game"));
             appgc.setDisplayMode(640, 480, false);
             appgc.start();
         }
