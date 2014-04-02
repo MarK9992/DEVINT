@@ -8,6 +8,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import util.Preferences;
 
 import java.awt.Font;
 
@@ -82,9 +83,9 @@ public class MainMenuState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException {
-        g.setBackground(Color.white);
+        g.setBackground(Preferences.getBackgroundColor());
         drawButtons(g);
-        g.setColor(Color.darkGray);
+        g.setColor(Preferences.getUtilityColor());
         g.setLineWidth(5);
         g.drawLine(KEYSCHEMEXRIGHT, UPSCHEMEYBOT, KEYSCHEMEXRIGHT, PLAYBUTTONY + 20);
         g.fill(upArrow);
@@ -99,7 +100,7 @@ public class MainMenuState extends BasicGameState {
         for(int i = 0; i < 3; i++) {
             drawButtonCase(i, g);
         }
-        g.setColor(Color.white);
+        g.setColor(Preferences.getTextColor());
         g.setFont(FONT);
         g.drawString(PLAY, PLAYX, PLAYY);
         g.drawString(OPTIONS, OPTIONSX, OPTIONSY);
@@ -108,9 +109,9 @@ public class MainMenuState extends BasicGameState {
 
     private void drawButtonCase(int button, Graphics g) {
         if(currentButton == button) {
-            g.setColor(Color.blue);
+            g.setColor(Preferences.getHighlightColor());
         }
-        else g.setColor(Color.black);
+        else g.setColor(Preferences.getItemColor());
         switch (button) {
             case 0:
                 g.fillRect(BUTTONX, PLAYBUTTONY, BUTTONWIDTH, BUTTONHEIGHT);
@@ -137,6 +138,7 @@ public class MainMenuState extends BasicGameState {
             case Input.KEY_UP: onUp(); break;
             case Input.KEY_DOWN: onDown(); break;
             case Input.KEY_ESCAPE: onEscape(); break;
+            case Input.KEY_F1: onF1(); break;
             default:
         }
     }
@@ -175,5 +177,9 @@ public class MainMenuState extends BasicGameState {
         } catch (SlickException e) {
             e.printStackTrace();
         }
+    }
+
+    private void onF1() {
+        Preferences.changeColors();
     }
 }
