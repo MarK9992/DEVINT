@@ -5,6 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import states.LoginState;
+import states.MainMenuState;
 
 /**
  * Created by Marc KARASSEV on 25/03/14.
@@ -16,8 +17,9 @@ public class Game extends StateBasedGame {
     public static final int FRAMEHEIGHT = 600;
     public static final int TARGETFRAMERATE = 60;
 
-    private LoginState login;
     private AppGameContainer container;
+    private LoginState login;
+    private MainMenuState menu;
 
     public Game() {
         super("Retrouve ton chemin !");
@@ -29,8 +31,10 @@ public class Game extends StateBasedGame {
             container = (AppGameContainer) gameContainer;
         }
         login = new LoginState();
+        menu = new MainMenuState();
         container.setShowFPS(false);
         addState(login);
+        addState(menu);
     }
 
     public static void main(String[] args) {
