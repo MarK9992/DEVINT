@@ -5,7 +5,6 @@ import org.newdawn.slick.Graphics;
 import util.Position;
 import util.Preferences;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 /**

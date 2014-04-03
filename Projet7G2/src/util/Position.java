@@ -2,6 +2,7 @@ package util;
 
 /**
  * Created by Marc KARASSEV on 24/03/14.
+ *
  * @author Marc KARASSEV
  */
 public class Position {
@@ -24,5 +25,13 @@ public class Position {
 
     public int getY() {
         return y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }

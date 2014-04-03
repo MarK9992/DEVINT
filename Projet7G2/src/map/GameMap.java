@@ -1,6 +1,8 @@
 package map;
 
 import javax.swing.*;
+
+import main.Game;
 import objects.Hero;
 
 /**
@@ -15,7 +17,7 @@ public class GameMap {
     public GameMap() {
         map = null;
         division = new MapDivision();
-        hero = null;
+        hero = new Hero((Game.FRAMEWIDTH - 50) / 2, (Game.FRAMEHEIGHT - 50) / 2, 50, 50);
     }
 
     public JPanel moveHero() {
@@ -25,5 +27,9 @@ public class GameMap {
 
     public MapDivision getDivision() {
         return division;
+    }
+
+    public Hero getHero() {
+        return hero;
     }
 }

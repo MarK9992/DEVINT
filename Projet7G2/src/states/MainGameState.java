@@ -42,6 +42,7 @@ public class MainGameState extends BasicGameState {
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException {
         map.getDivision().render(g);
+        map.getHero().draw(g);
     }
 
     @Override
@@ -58,6 +59,18 @@ public class MainGameState extends BasicGameState {
             case Input.KEY_F1:
                 onF1();
                 break;
+            case Input.KEY_UP:
+                onUp();
+                break;
+            case Input.KEY_LEFT:
+                onLeft();
+                break;
+            case Input.KEY_RIGHT:
+                onRight();
+                break;
+            case Input.KEY_DOWN:
+                onDown();
+                break;
             default:
         }
     }
@@ -73,5 +86,21 @@ public class MainGameState extends BasicGameState {
 
     private void onF1() {
         Preferences.changeColors();
+    }
+
+    private void onUp() {
+        map.getHero().moveUp();
+    }
+
+    private void onLeft() {
+        map.getHero().moveLeft();
+    }
+
+    private void onRight() {
+        map.getHero().moveRight();
+    }
+
+    private void onDown() {
+        map.getHero().moveDown();
     }
 }
