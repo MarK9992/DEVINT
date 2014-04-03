@@ -2,6 +2,7 @@ package states;
 
 import main.Game;
 import org.newdawn.slick.*;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.state.BasicGameState;
@@ -71,14 +72,12 @@ public class MainMenuState extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-        if(gameContainer instanceof AppGameContainer) {
+        if (gameContainer instanceof AppGameContainer) {
             container = (AppGameContainer) gameContainer;
-        }
-        else throw new SlickException("init containter");
-        if(stateBasedGame instanceof Game) {
+        } else throw new SlickException("init containter");
+        if (stateBasedGame instanceof Game) {
             game = (Game) stateBasedGame;
-        }
-        else throw new SlickException("init game");
+        } else throw new SlickException("init game");
     }
 
     @Override
@@ -97,7 +96,7 @@ public class MainMenuState extends BasicGameState {
     }
 
     private void drawButtons(Graphics g) {
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             drawButtonCase(i, g);
         }
         g.setColor(Preferences.getTextColor());
@@ -108,10 +107,9 @@ public class MainMenuState extends BasicGameState {
     }
 
     private void drawButtonCase(int button, Graphics g) {
-        if(currentButton == button) {
+        if (currentButton == button) {
             g.setColor(Preferences.getHighlightColor());
-        }
-        else g.setColor(Preferences.getItemColor());
+        } else g.setColor(Preferences.getItemColor());
         switch (button) {
             case 0:
                 g.fillRect(BUTTONX, PLAYBUTTONY, BUTTONWIDTH, BUTTONHEIGHT);
@@ -122,7 +120,8 @@ public class MainMenuState extends BasicGameState {
             case 2:
                 g.fillRect(BUTTONX, QUITBUTTONY, BUTTONWIDTH, BUTTONHEIGHT);
                 break;
-            default: System.err.println("bouton incorrect");
+            default:
+                System.err.println("bouton incorrect");
         }
     }
 
@@ -134,39 +133,85 @@ public class MainMenuState extends BasicGameState {
     @Override
     public void keyPressed(int key, char c) {
         switch (key) {
-            case Input.KEY_ENTER: onEnter(); break;
-            case Input.KEY_UP: onUp(); break;
-            case Input.KEY_DOWN: onDown(); break;
-            case Input.KEY_ESCAPE: onEscape(); break;
-            case Input.KEY_F1: onF1(); break;
+            case Input.KEY_ENTER:
+                onEnter();
+                break;
+            case Input.KEY_UP:
+                onUp();
+                break;
+            case Input.KEY_DOWN:
+                onDown();
+                break;
+            case Input.KEY_ESCAPE:
+                onEscape();
+                break;
+            case Input.KEY_F1:
+                onF1();
+                break;
             default:
         }
     }
 
     private void onEnter() {
-        try {
-            leave(container, game);
-            System.exit(0);
-        } catch (SlickException e) {
-            e.printStackTrace();
+        switch (currentButton) {
+            case 0:
+                try {
+                    leave(container, game);
+                    game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                } catch (SlickException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 1:
+                try {
+                    leave(container, game);
+                    System.exit(0);
+                } catch (SlickException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 2:
+                try {
+                    leave(container, game);
+                    System.exit(0);
+                } catch (SlickException e) {
+                    e.printStackTrace();
+                }
+                break;
+            default:
+                System.err.println("bouton incorrect");
         }
     }
 
     private void onUp() {
         switch (currentButton) {
-            case 0: currentButton = 2; break;
-            case 1: currentButton = 0; break;
-            case 2: currentButton = 1; break;
-            default: System.err.println("bouton incorrect");
+            case 0:
+                currentButton = 2;
+                break;
+            case 1:
+                currentButton = 0;
+                break;
+            case 2:
+                currentButton = 1;
+                break;
+            default:
+                System.err.println("bouton incorrect");
         }
     }
 
     private void onDown() {
         switch (currentButton) {
-            case 0: currentButton = 1; break;
-            case 1: currentButton = 2; break;
-            case 2: currentButton = 0; break;
-            default: System.err.println("bouton incorrect");
+            case 0:
+                currentButton = 1;
+                break;
+            case 1:
+                currentButton = 2;
+                break;
+            case 2:
+                currentButton = 0;
+                break;
+            default:
+                System.err.println("bouton incorrect");
         }
     }
 

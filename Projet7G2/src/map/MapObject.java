@@ -1,12 +1,14 @@
 package map;
 
 import objects.GameObject;
+import org.newdawn.slick.Graphics;
 import util.Position;
 
 import javax.swing.*;
 
 /**
  * Created by Marc KARASSEV on 24/03/14.
+ *
  * @author Marc KARASSEV
  */
 public class MapObject {
@@ -17,7 +19,7 @@ public class MapObject {
         //TODO
     }
 
-    public void draw(JPanel panel) {
-        //TODO
+    public void draw(Graphics g) {
+
     }
 }

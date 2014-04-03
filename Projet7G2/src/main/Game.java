@@ -3,8 +3,10 @@ package main;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 import states.LoginState;
+import states.MainGameState;
 import states.MainMenuState;
 
 /**
@@ -20,6 +22,7 @@ public class Game extends StateBasedGame {
     private AppGameContainer container;
     private LoginState login;
     private MainMenuState menu;
+    private MainGameState game;
 
     public Game() {
         super("Retrouve ton chemin !");
@@ -32,9 +35,11 @@ public class Game extends StateBasedGame {
         }
         login = new LoginState();
         menu = new MainMenuState();
+        game = new MainGameState();
         container.setShowFPS(false);
         addState(login);
         addState(menu);
+        addState(game);
     }
 
     public static void main(String[] args) {

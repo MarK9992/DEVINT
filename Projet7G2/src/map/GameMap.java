@@ -9,15 +9,21 @@ import objects.Hero;
  */
 public class GameMap {
     private MapDivision[][] map;
-    private MapDivision currentLocation;
+    private MapDivision division;
     private Hero hero;
 
     public GameMap() {
-        //TODO
+        map = null;
+        division = new MapDivision();
+        hero = null;
     }
 
     public JPanel moveHero() {
         //TODO
         return null;
+    }
+
+    public MapDivision getDivision() {
+        return division;
     }
 }
