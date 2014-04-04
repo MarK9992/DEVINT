@@ -17,7 +17,32 @@ public class MapDivision {
     private boolean[][] accessMap;
 
     public MapDivision() {
-        //TODO
+        accessMap = new boolean[16][12];
+        for(int i = 0; i < 16; i++) {
+            for(int j = 0; j < 12; j++) {
+                accessMap[i][j] = true;
+            }
+        }
+        for (int i = 0; i < 8; i++) {
+            for(int j = 0; j < 2; j++) {
+                accessMap[i][j] = false;
+            }
+        }
+        for (int i = 11; i < 16; i++) {
+            for(int j = 0; j < 2; j++) {
+                accessMap[i][j] = false;
+            }
+        }
+        for (int i = 0; i < 4; i++) {
+            for(int j = 5; j < 12; j++) {
+                accessMap[i][j] = false;
+            }
+        }
+        for (int i = 11; i < 16; i++) {
+            for(int j = 9; j < 12; j++) {
+                accessMap[i][j] = false;
+            }
+        }
     }
 
     public void render(Graphics g) {
@@ -33,6 +58,11 @@ public class MapDivision {
     }
 
     public boolean isTileAccessible(Position p) {
-        return accessMap[p.getX()][p.getY()];
+        int x = p.getX(), y = p.getY();
+
+        if (x < 0 || y < 0 || x > 15 || y > 15) {
+            return false;
+        }
+        return accessMap[x][y];
     }
 }

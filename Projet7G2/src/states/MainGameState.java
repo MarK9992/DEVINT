@@ -41,13 +41,23 @@ public class MainGameState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException {
-        map.getDivision().render(g);
-        map.getHero().draw(g);
+        map.renderDivision(g);
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-
+        if(container.getInput().isKeyDown(Input.KEY_LEFT)) {
+            onLeft();
+        }
+        if(container.getInput().isKeyDown(Input.KEY_UP)) {
+            onUp();
+        }
+        if(container.getInput().isKeyDown(Input.KEY_RIGHT)) {
+            onRight();
+        }
+        if(container.getInput().isKeyDown(Input.KEY_DOWN)) {
+            onDown();
+        }
     }
 
     @Override
@@ -59,7 +69,7 @@ public class MainGameState extends BasicGameState {
             case Input.KEY_F1:
                 onF1();
                 break;
-            case Input.KEY_UP:
+            /*case Input.KEY_UP:
                 onUp();
                 break;
             case Input.KEY_LEFT:
@@ -70,7 +80,7 @@ public class MainGameState extends BasicGameState {
                 break;
             case Input.KEY_DOWN:
                 onDown();
-                break;
+                break;*/
             default:
         }
     }
@@ -89,18 +99,18 @@ public class MainGameState extends BasicGameState {
     }
 
     private void onUp() {
-        map.getHero().moveUp();
+        map.moveHeroUp();
     }
 
     private void onLeft() {
-        map.getHero().moveLeft();
+        map.moveHeroLeft();
     }
 
     private void onRight() {
-        map.getHero().moveRight();
+        map.moveHeroRight();
     }
 
     private void onDown() {
-        map.getHero().moveDown();
+        map.moveHeroDown();
     }
 }

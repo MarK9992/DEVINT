@@ -30,19 +30,15 @@ public class Hero {
         g.fillRect(position.getX(), position.getY(), width, height);
     }
 
-    public void moveUp() {
-        position.setY(position.getY() - 5);
+    public void moveV(int y) {
+        position.setY(position.getY() + y);
     }
 
-    public void moveLeft() {
-        position.setX(position.getX() - 5);
+    public void moveH(int x) {
+        position.setX(position.getX() + x);
     }
 
-    public void moveRight() {
-        position.setX(position.getX() + 5);
-    }
-
-    public void moveDown() {
-        position.setY(position.getY() + 5);
+    public Position getPosition() {
+        return position;
     }
 }
