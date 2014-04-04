@@ -12,13 +12,16 @@ import java.util.ArrayList;
  * @author Marc KARASSEV
  */
 public class MapDivision {
+    private static final int XTILEMAX = 16;
+    private static final int YTILEMAX = 12;
+
     private ArrayList<MapObject> objects;
     private boolean[][] accessMap;
 
     public MapDivision() {
-        accessMap = new boolean[16][12];
-        for(int i = 0; i < 16; i++) {
-            for(int j = 0; j < 12; j++) {
+        accessMap = new boolean[XTILEMAX][YTILEMAX];
+        for(int i = 0; i < XTILEMAX; i++) {
+            for(int j = 0; j < YTILEMAX; j++) {
                 accessMap[i][j] = true;
             }
         }
@@ -27,18 +30,18 @@ public class MapDivision {
                 accessMap[i][j] = false;
             }
         }
-        for (int i = 11; i < 16; i++) {
+        for (int i = 11; i < XTILEMAX; i++) {
             for(int j = 0; j < 2; j++) {
                 accessMap[i][j] = false;
             }
         }
         for (int i = 0; i < 4; i++) {
-            for(int j = 5; j < 12; j++) {
+            for(int j = 5; j < YTILEMAX; j++) {
                 accessMap[i][j] = false;
             }
         }
-        for (int i = 11; i < 16; i++) {
-            for(int j = 9; j < 12; j++) {
+        for (int i = 11; i < XTILEMAX; i++) {
+            for(int j = 9; j < YTILEMAX; j++) {
                 accessMap[i][j] = false;
             }
         }
@@ -57,7 +60,7 @@ public class MapDivision {
     }
 
     public boolean isTileAccessible(int x, int y) {
-        if (x < 0 || y < 0 || x > 15 || y > 15) {
+        if (x < 0 || y < 0 || x > XTILEMAX-1 || y > YTILEMAX-1) {
             return false;
         }
         return accessMap[x][y];

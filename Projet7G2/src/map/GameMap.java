@@ -28,10 +28,9 @@ public class GameMap {
     }
 
     public void moveHeroUp() {
-        int[] t = positionToTile(hero.getX(), hero.getY() - 1);
         int speed= -DEFAULTSPEED;
 
-        while(!division.isTileAccessible(t[0], t[1]) && speed != 0) {
+        while(!division.isTileAccessible(toTile(hero.getX()), toTile(hero.getY() + speed)) && speed != 0) {
             speed++;
         }
         if(speed != 0) {
@@ -43,10 +42,12 @@ public class GameMap {
     }
 
     public void moveHeroLeft() {
-        int[] t = positionToTile(hero.getX() - 5, hero.getY());
         int speed = -DEFAULTSPEED;
 
-        if(division.isTileAccessible(t[0], t[1])) {
+        while(!division.isTileAccessible(toTile((hero.getX() + speed)), toTile(hero.getY())) && speed != 0) {
+            speed++;
+        }
+        if(speed != 0) {
             hero.moveH(speed);
         }
         else {
@@ -55,10 +56,12 @@ public class GameMap {
     }
 
     public void moveHeroRight() {
-        int[] t = positionToTile(hero.getX() + 5, hero.getY());
         int speed = DEFAULTSPEED;
 
-        if(division.isTileAccessible(t[0], t[1])) {
+        while(!division.isTileAccessible(toTile((hero.getX() + speed)), toTile(hero.getY())) && speed != 0) {
+            speed--;
+        }
+        if(speed != 0) {
             hero.moveH(speed);
         }
         else {
@@ -67,10 +70,12 @@ public class GameMap {
     }
 
     public void moveHeroDown() {
-        int[] t = positionToTile(hero.getX(), hero.getY() + 5);
         int speed = DEFAULTSPEED;
 
-        if(division.isTileAccessible(t[0], t[1])) {
+        while(!division.isTileAccessible(toTile(hero.getX()), toTile(hero.getY() + speed)) && speed != 0) {
+            speed++;
+        }
+        if(speed != 0) {
             hero.moveV(speed);
         }
         else {
@@ -78,8 +83,7 @@ public class GameMap {
         }
     }
 
-    private int[] positionToTile(int x, int y) {
-        int[] t = {x/50, y/50};
-        return t;
+    private int toTile(int x) {
+        return x / Game.TILE;
     }
 }
