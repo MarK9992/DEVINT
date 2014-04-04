@@ -165,7 +165,7 @@ public class MainMenuState extends BasicGameState {
             case 1:
                 try {
                     leave(container, game);
-                    System.exit(0);
+                    game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 } catch (SlickException e) {
                     e.printStackTrace();
                 }
@@ -189,7 +189,7 @@ public class MainMenuState extends BasicGameState {
                 currentButton = 2;
                 break;
             case 1:
-                currentButton = 0;
+               currentButton = 0;
                 break;
             case 2:
                 currentButton = 1;
