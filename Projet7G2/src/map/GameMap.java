@@ -73,7 +73,7 @@ public class GameMap {
         int speed = DEFAULTSPEED;
 
         while(!division.isTileAccessible(toTile(hero.getX()), toTile(hero.getY() + speed)) && speed != 0) {
-            speed++;
+            speed--;
         }
         if(speed != 0) {
             hero.moveV(speed);
