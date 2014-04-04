@@ -6,6 +6,8 @@ import map.GameMap;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 import util.Preferences;
 
 /**
@@ -69,6 +71,9 @@ public class MainGameState extends BasicGameState {
             case Input.KEY_F1:
                 onF1();
                 break;
+            case Input.KEY_ESCAPE:
+                onEscape();
+                break;
             /*case Input.KEY_UP:
                 onUp();
                 break;
@@ -82,6 +87,15 @@ public class MainGameState extends BasicGameState {
                 onDown();
                 break;*/
             default:
+        }
+    }
+
+    private void onEscape() {
+        try {
+            leave(container, game);
+            game.enterState(4, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));;
+        } catch (SlickException e) {
+            e.printStackTrace();
         }
     }
 
