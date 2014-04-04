@@ -1,7 +1,6 @@
 package objects;
 
 import org.newdawn.slick.Graphics;
-import util.Position;
 import util.Preferences;
 
 /**
@@ -11,7 +10,8 @@ import util.Preferences;
  */
 public class Hero {
 
-    private Position position;
+    private int x;
+    private int y;
     private int width;
     private int height;
 
@@ -20,25 +20,30 @@ public class Hero {
     }
 
     public Hero(int x, int y, int width, int height) {
-        position = new Position(x, y);
+        this.x = x;
+        this.y = y;
         this.width = width;
         this.height = height;
     }
 
     public void draw(Graphics g) {
         g.setColor(Preferences.getHighlightColor());
-        g.fillRect(position.getX(), position.getY(), width, height);
+        g.fillRect(x, y, width, height);
     }
 
     public void moveV(int y) {
-        position.setY(position.getY() + y);
+        this.y += y;
     }
 
     public void moveH(int x) {
-        position.setX(position.getX() + x);
+        this.x += x;
     }
 
-    public Position getPosition() {
-        return position;
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

@@ -2,7 +2,6 @@ package map;
 
 import main.Game;
 import org.newdawn.slick.Graphics;
-import util.Position;
 import util.Preferences;
 
 import java.util.ArrayList;
@@ -57,9 +56,7 @@ public class MapDivision {
         g.fillRect(3 * Game.FRAMEWIDTH / 4, 5 * Game.FRAMEHEIGHT / 6, Game.FRAMEWIDTH, Game.FRAMEHEIGHT);
     }
 
-    public boolean isTileAccessible(Position p) {
-        int x = p.getX(), y = p.getY();
-
+    public boolean isTileAccessible(int x, int y) {
         if (x < 0 || y < 0 || x > 15 || y > 15) {
             return false;
         }

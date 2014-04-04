@@ -2,9 +2,6 @@ package map;
 
 import objects.GameObject;
 import org.newdawn.slick.Graphics;
-import util.Position;
-
-import javax.swing.*;
 
 /**
  * Created by Marc KARASSEV on 24/03/14.
@@ -13,7 +10,8 @@ import javax.swing.*;
  */
 public class MapObject {
     private GameObject object;
-    private Position position;
+    private int x;
+    private int y;
 
     public MapObject() {
         //TODO

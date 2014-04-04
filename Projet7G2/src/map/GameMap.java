@@ -1,11 +1,8 @@
 package map;
 
-import javax.swing.*;
-
 import main.Game;
 import objects.Hero;
 import org.newdawn.slick.Graphics;
-import util.Position;
 
 /**
  * Created by Marc KARASSEV on 24/03/14.
@@ -31,10 +28,10 @@ public class GameMap {
     }
 
     public void moveHeroUp() {
-        int[] t = positionToTile(hero.getPosition().getX(), hero.getPosition().getY() - 1);
+        int[] t = positionToTile(hero.getX(), hero.getY() - 1);
         int speed= -DEFAULTSPEED;
 
-        while(!division.isTileAccessible(new Position(t[0], t[1])) && speed != 0) {
+        while(!division.isTileAccessible(t[0], t[1]) && speed != 0) {
             speed++;
         }
         if(speed != 0) {
@@ -46,10 +43,10 @@ public class GameMap {
     }
 
     public void moveHeroLeft() {
-        int[] t = positionToTile(hero.getPosition().getX() - 5, hero.getPosition().getY());
+        int[] t = positionToTile(hero.getX() - 5, hero.getY());
         int speed = -DEFAULTSPEED;
 
-        if(division.isTileAccessible(new Position(t[0], t[1]))) {
+        if(division.isTileAccessible(t[0], t[1])) {
             hero.moveH(speed);
         }
         else {
@@ -58,10 +55,10 @@ public class GameMap {
     }
 
     public void moveHeroRight() {
-        int[] t = positionToTile(hero.getPosition().getX() + 5, hero.getPosition().getY());
+        int[] t = positionToTile(hero.getX() + 5, hero.getY());
         int speed = DEFAULTSPEED;
 
-        if(division.isTileAccessible(new Position(t[0], t[1]))) {
+        if(division.isTileAccessible(t[0], t[1])) {
             hero.moveH(speed);
         }
         else {
@@ -70,10 +67,10 @@ public class GameMap {
     }
 
     public void moveHeroDown() {
-        int[] t = positionToTile(hero.getPosition().getX(), hero.getPosition().getY() + 5);
+        int[] t = positionToTile(hero.getX(), hero.getY() + 5);
         int speed = DEFAULTSPEED;
 
-        if(division.isTileAccessible(new Position(t[0], t[1]))) {
+        if(division.isTileAccessible(t[0], t[1])) {
             hero.moveV(speed);
         }
         else {
