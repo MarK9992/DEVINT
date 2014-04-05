@@ -30,7 +30,9 @@ public class GameMap {
     public void moveHeroUp() {
         int speed= -DEFAULTSPEED;
 
-        while(!division.isTileAccessible(toTile(hero.getX()), toTile(hero.getY() + speed)) && speed != 0) {
+        while((!division.isTileAccessible(Game.toTile(hero.getX()), Game.toTile(hero.getY() + speed))
+                || !division.isTileAccessible(Game.toTile(hero.getX() + hero.getWidth()), Game.toTile(hero.getY() + speed)))
+                && speed != 0) {
             speed++;
         }
         if(speed != 0) {
@@ -44,7 +46,9 @@ public class GameMap {
     public void moveHeroLeft() {
         int speed = -DEFAULTSPEED;
 
-        while(!division.isTileAccessible(toTile((hero.getX() + speed)), toTile(hero.getY())) && speed != 0) {
+        while((!division.isTileAccessible(Game.toTile((hero.getX() + speed)), Game.toTile(hero.getY()))
+                || !division.isTileAccessible(Game.toTile(hero.getX() + speed), Game.toTile(hero.getY() + hero.getHeight())))
+                && speed != 0) {
             speed++;
         }
         if(speed != 0) {
@@ -58,7 +62,9 @@ public class GameMap {
     public void moveHeroRight() {
         int speed = DEFAULTSPEED;
 
-        while(!division.isTileAccessible(toTile((hero.getX() + speed)), toTile(hero.getY())) && speed != 0) {
+        while((!division.isTileAccessible(Game.toTile((hero.getX() + hero.getWidth() + speed)), Game.toTile(hero.getY()))
+                || !division.isTileAccessible(Game.toTile(hero.getX() + hero.getWidth() + speed), Game.toTile(hero.getY() + hero.getHeight())))
+                && speed != 0) {
             speed--;
         }
         if(speed != 0) {
@@ -72,7 +78,9 @@ public class GameMap {
     public void moveHeroDown() {
         int speed = DEFAULTSPEED;
 
-        while(!division.isTileAccessible(toTile(hero.getX()), toTile(hero.getY() + speed)) && speed != 0) {
+        while((!division.isTileAccessible(Game.toTile(hero.getX()), Game.toTile(hero.getY() + hero.getHeight() + speed))
+                || !division.isTileAccessible(Game.toTile(hero.getX() + hero.getWidth()), Game.toTile(hero.getY() + hero.getHeight() + speed)))
+                && speed != 0) {
             speed--;
         }
         if(speed != 0) {
@@ -81,9 +89,5 @@ public class GameMap {
         else {
             System.err.println("tuile non accessible");
         }
-    }
-
-    private int toTile(int x) {
-        return x / Game.TILE;
     }
 }

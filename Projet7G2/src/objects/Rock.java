@@ -10,17 +10,12 @@ import util.Preferences;
  */
 public class Rock extends GameObject {
 
-    private int width;
-    private int height;
-
     public Rock() {
-        this(0, 0, 1, 1);
+        this(0, 0, 1, 1, ObjectType.ROCK);
     }
 
-    public Rock(int x, int y, int w, int h) {
-        super(x, y);
-        width = w;
-        height = h;
+    public Rock(int x, int y, int width, int height, ObjectType t) {
+        super(x, y, width, height, t);
     }
 
     @Override

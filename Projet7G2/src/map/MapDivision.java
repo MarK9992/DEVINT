@@ -2,6 +2,7 @@ package map;
 
 import main.Game;
 import objects.GameObject;
+import objects.ObjectType;
 import objects.Rock;
 import org.newdawn.slick.Graphics;
 import util.Preferences;
@@ -20,36 +21,11 @@ public class MapDivision {
 
     public MapDivision() {
         objects = new ArrayList<GameObject>();
-        accessMap = new boolean[Game.XTILEMAX][Game.YTILEMAX];
-        for(int i = 0; i < Game.XTILEMAX; i++) {
-            for(int j = 0; j < Game.YTILEMAX; j++) {
-                accessMap[i][j] = true;
-            }
-        }
-        objects.add(new Rock(0, 0, 8 * Game.TILE, 2 * Game.TILE));
-        for (int i = 0; i < 8; i++) {
-            for(int j = 0; j < 2; j++) {
-                accessMap[i][j] = false;
-            }
-        }
-        objects.add(new Rock(12 * Game.TILE, 0, Game.FRAMEWIDTH, 2 * Game.TILE));
-        for (int i = 11; i < Game.XTILEMAX; i++) {
-            for(int j = 0; j < 2; j++) {
-                accessMap[i][j] = false;
-            }
-        }
-        objects.add(new Rock(0, 6 * Game.TILE, 4 * Game.TILE, Game.FRAMEHEIGHT));
-        for (int i = 0; i < 4; i++) {
-            for(int j = 5; j < Game.YTILEMAX; j++) {
-                accessMap[i][j] = false;
-            }
-        }
-        objects.add(new Rock(12 * Game.TILE, 10 * Game.TILE, Game.FRAMEWIDTH, Game.FRAMEHEIGHT));
-        for (int i = 11; i < Game.XTILEMAX; i++) {
-            for(int j = 9; j < Game.YTILEMAX; j++) {
-                accessMap[i][j] = false;
-            }
-        }
+        initAccessMap();
+        addObject(new Rock(0, 0, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
+        addObject(new Rock(12 * Game.TILE, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
+        addObject(new Rock(0, 6 * Game.TILE, 4 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
+        addObject(new Rock(12 * Game.TILE, 10 * Game.TILE, Game.FRAMEWIDTH, Game.FRAMEHEIGHT, ObjectType.ROCK));
     }
 
     public void render(Graphics g) {
@@ -64,5 +40,28 @@ public class MapDivision {
             return false;
         }
         return accessMap[x][y];
+    }
+
+    public void addObject(GameObject obj) {
+        objects.add(obj);
+        updateAccessMap(obj);
+    }
+
+    private void initAccessMap() {
+        accessMap = new boolean[Game.XTILEMAX][Game.YTILEMAX];
+        for(int i = 0; i < Game.XTILEMAX; i++) {
+            for(int j = 0; j < Game.YTILEMAX; j++) {
+                accessMap[i][j] = true;
+            }
+        }
+    }
+
+    private void updateAccessMap(GameObject obj) {
+        System.out.println(Game.toTile(obj.getX()) + " " + Game.toTile(obj.getWidth()) + " " + Game.toTile(obj.getY()) + " " + Game.toTile(obj.getHeight()));
+        for (int i = Game.toTile(obj.getX()); i < Game.toTile(obj.getWidth()); i++) {
+            for(int j = Game.toTile(obj.getY()); j < Game.toTile(obj.getHeight()); j++) {
+                accessMap[i][j] = false;
+            }
+        }
     }
 }

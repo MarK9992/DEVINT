@@ -31,6 +31,10 @@ public class Game extends StateBasedGame {
         super("Retrouve ton chemin !");
     }
 
+    public static int toTile(int x) {
+        return x / TILE;
+    }
+
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
         if (gameContainer instanceof AppGameContainer) {
