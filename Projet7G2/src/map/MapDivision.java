@@ -22,10 +22,6 @@ public class MapDivision {
     public MapDivision() {
         objects = new ArrayList<GameObject>();
         initAccessMap();
-        addObject(new Rock(0, 0, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        addObject(new Rock(12 * Game.TILE, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
-        addObject(new Rock(0, 6 * Game.TILE, 4 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
-        addObject(new Rock(12 * Game.TILE, 10 * Game.TILE, Game.FRAMEWIDTH, Game.FRAMEHEIGHT, ObjectType.ROCK));
     }
 
     public void render(Graphics g) {
@@ -57,7 +53,6 @@ public class MapDivision {
     }
 
     private void updateAccessMap(GameObject obj) {
-        System.out.println(Game.toTile(obj.getX()) + " " + Game.toTile(obj.getWidth()) + " " + Game.toTile(obj.getY()) + " " + Game.toTile(obj.getHeight()));
         for (int i = Game.toTile(obj.getX()); i < Game.toTile(obj.getWidth()); i++) {
             for(int j = Game.toTile(obj.getY()); j < Game.toTile(obj.getHeight()); j++) {
                 accessMap[i][j] = false;

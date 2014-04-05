@@ -3,7 +3,6 @@ package main;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 import states.*;
 
@@ -32,6 +31,9 @@ public class Game extends StateBasedGame {
     }
 
     public static int toTile(int x) {
+        if (x < 0) {
+            return -1;
+        }
         return x / TILE;
     }
 
