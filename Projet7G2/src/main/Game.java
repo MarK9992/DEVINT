@@ -16,6 +16,8 @@ public class Game extends StateBasedGame {
     public static final int FRAMEWIDTH = 800;
     public static final int FRAMEHEIGHT = 600;
     public static final int TILE = 50;
+    public static final int XTILEMAX = 16;
+    public static final int YTILEMAX = 12;
     public static final int TARGETFRAMERATE = 60;
 
     private AppGameContainer container;

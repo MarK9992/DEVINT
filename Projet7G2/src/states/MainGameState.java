@@ -51,13 +51,13 @@ public class MainGameState extends BasicGameState {
         if(container.getInput().isKeyDown(Input.KEY_LEFT)) {
             onLeft();
         }
-        if(container.getInput().isKeyDown(Input.KEY_UP)) {
+        else if(container.getInput().isKeyDown(Input.KEY_UP)) {
             onUp();
         }
-        if(container.getInput().isKeyDown(Input.KEY_RIGHT)) {
+        else if(container.getInput().isKeyDown(Input.KEY_RIGHT)) {
             onRight();
         }
-        if(container.getInput().isKeyDown(Input.KEY_DOWN)) {
+        else if(container.getInput().isKeyDown(Input.KEY_DOWN)) {
             onDown();
         }
     }
@@ -74,18 +74,6 @@ public class MainGameState extends BasicGameState {
             case Input.KEY_ESCAPE:
                 onEscape();
                 break;
-            /*case Input.KEY_UP:
-                onUp();
-                break;
-            case Input.KEY_LEFT:
-                onLeft();
-                break;
-            case Input.KEY_RIGHT:
-                onRight();
-                break;
-            case Input.KEY_DOWN:
-                onDown();
-                break;*/
             default:
         }
     }
