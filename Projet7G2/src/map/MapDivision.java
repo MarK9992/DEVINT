@@ -53,8 +53,9 @@ public class MapDivision {
     }
 
     private void updateAccessMap(GameObject obj) {
-        for (int i = Game.toTile(obj.getX()); i < Game.toTile(obj.getWidth()); i++) {
-            for(int j = Game.toTile(obj.getY()); j < Game.toTile(obj.getHeight()); j++) {
+        System.out.println(Game.toTile(obj.getX()) + " " + Game.toTile(obj.getY()) + " " + Game.toTile(obj.getX() + obj.getWidth()) + " " + Game.toTile(obj.getY() + obj.getHeight()));
+        for (int i = Game.toTile(obj.getX()); i < Game.toTile(obj.getX() + obj.getWidth()); i++) {
+            for(int j = Game.toTile(obj.getY()); j < Game.toTile(obj.getY() + obj.getHeight()); j++) {
                 accessMap[i][j] = false;
             }
         }

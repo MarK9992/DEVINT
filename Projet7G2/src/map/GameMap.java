@@ -33,15 +33,15 @@ public class GameMap {
 
         div = new MapDivision();
         div.addObject(new Rock(0, 0, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 6 * Game.TILE, 4 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 10 * Game.TILE, Game.FRAMEWIDTH, Game.FRAMEHEIGHT, ObjectType.ROCK));
+        div.addObject(new Rock(12 * Game.TILE, 0, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(0, 6 * Game.TILE, 4 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(12 * Game.TILE, 10 * Game.TILE, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
         map[2][1] = div;
 
         div = new MapDivision();
         div.addObject(new Rock(0, 0, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 6 * Game.TILE, 8 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 0, Game.FRAMEWIDTH, Game.FRAMEHEIGHT, ObjectType.ROCK));
+        div.addObject(new Rock(0, 6 * Game.TILE, 8 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(12 * Game.TILE, 0, 4 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
         map[1][1] = div;
 
         div = new MapDivision();
