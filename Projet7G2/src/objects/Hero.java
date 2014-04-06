@@ -39,6 +39,22 @@ public class Hero {
         this.x += x;
     }
 
+    public int getUpLeftCornerX() { return x; }
+
+    public int getUpRightCornerX() { return x + width; }
+
+    public int getDownLeftCornerX() { return  x; }
+
+    public int getDownRightCornerX() { return x + width; }
+
+    public int getUpLeftCornerY() { return y; }
+
+    public int getUpRightCornerY() { return y; }
+
+    public int getDownLeftCornerY() { return  y + height; }
+
+    public int getDownRightCornerY() { return y + height; }
+
     public int getX() {
         return x;
     }

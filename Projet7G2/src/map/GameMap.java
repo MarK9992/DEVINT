@@ -130,23 +130,23 @@ public class GameMap {
     }
 
     private boolean isUpTileAccessible(int offset) {
-        return !division.isTileAccessible(Game.toTile(hero.getX()), Game.toTile(hero.getY() + offset))
-                || !division.isTileAccessible(Game.toTile(hero.getX() + hero.getWidth() - 1), Game.toTile(hero.getY() + offset));
+        return !division.isTileAccessible(Game.toTile(hero.getUpLeftCornerX()), Game.toTile(hero.getUpLeftCornerY() + offset))
+                || !division.isTileAccessible(Game.toTile(hero.getUpRightCornerX()), Game.toTile(hero.getUpRightCornerY() + offset));
     }
 
     private boolean isLeftTileAccessible(int offset) {
-        return !division.isTileAccessible(Game.toTile(hero.getX()), Game.toTile(hero.getY() + hero.getHeight() + offset))
-                || !division.isTileAccessible(Game.toTile(hero.getX() + hero.getWidth()), Game.toTile(hero.getY() + hero.getHeight() + offset));
+        return !division.isTileAccessible(Game.toTile(hero.getUpLeftCornerX() + offset), Game.toTile(hero.getUpLeftCornerY()))
+                || !division.isTileAccessible(Game.toTile(hero.getDownLeftCornerX() + offset), Game.toTile(hero.getDownLeftCornerY()));
     }
 
     private boolean isRightTileAccessible(int offset) {
-        return !division.isTileAccessible(Game.toTile((hero.getX() + hero.getWidth() + offset)), Game.toTile(hero.getY()))
-                || !division.isTileAccessible(Game.toTile(hero.getX() + hero.getWidth() + offset), Game.toTile(hero.getY() + hero.getHeight()));
+        return !division.isTileAccessible(Game.toTile((hero.getUpRightCornerX() + offset)), Game.toTile(hero.getUpRightCornerY()))
+                || !division.isTileAccessible(Game.toTile(hero.getDownRightCornerX() + offset), Game.toTile(hero.getDownRightCornerY()));
     }
 
     private boolean isDownTileAccessible(int offset) {
-        return !division.isTileAccessible(Game.toTile((hero.getX() + offset)), Game.toTile(hero.getY()))
-                || !division.isTileAccessible(Game.toTile(hero.getX() + offset), Game.toTile(hero.getY() + hero.getHeight()));
+        return !division.isTileAccessible(Game.toTile((hero.getDownLeftCornerX())), Game.toTile(hero.getDownLeftCornerY() + offset))
+                || !division.isTileAccessible(Game.toTile(hero.getDownRightCornerX()), Game.toTile(hero.getDownRightCornerY() + offset));
     }
 
     private void switchDivisionUp() {
