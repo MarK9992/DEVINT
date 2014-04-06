@@ -64,7 +64,7 @@ public class GameMap {
     public void moveHeroUp() {
         int speed = -DEFAULTSPEED;
 
-        if (Game.toTile(hero.getY() + speed) == -1) {
+        if (Game.toTile(hero.getUpLeftCornerY() + speed) == -1) {
             switchDivisionUp();
         } else {
             while (isUpTileAccessible(speed) && speed != 0) {
@@ -81,7 +81,7 @@ public class GameMap {
     public void moveHeroLeft() {
         int speed = -DEFAULTSPEED;
 
-        if (Game.toTile(hero.getX() + speed) == -1) {
+        if (Game.toTile(hero.getUpLeftCornerX() + speed) == -1) {
             switchDivisionLeft();
         } else {
             while (isLeftTileAccessible(speed) && speed != 0) {
@@ -98,7 +98,7 @@ public class GameMap {
     public void moveHeroRight() {
         int speed = DEFAULTSPEED;
 
-        if (Game.toTile(hero.getX() + hero.getWidth() + speed) == -1) {
+        if (Game.toTile(hero.getUpRightCornerX() + speed) == Game.XTILEMAX) {
             switchDivisionRight();
         } else {
             while (isRightTileAccessible(speed) && speed != 0) {
@@ -115,7 +115,7 @@ public class GameMap {
     public void moveHeroDown() {
         int speed = DEFAULTSPEED;
 
-        if (Game.toTile(hero.getY() + hero.getHeight() + speed) == Game.YTILEMAX) {
+        if (Game.toTile(hero.getDownLeftCornerX() + speed) == Game.YTILEMAX) {
             switchDivisionDown();
         } else {
             while (isDownTileAccessible(speed) && speed != 0) {
