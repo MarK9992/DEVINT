@@ -44,6 +44,13 @@ public class GameMap {
         div.addObject(new Rock(12 * Game.TILE, 0, Game.FRAMEWIDTH, Game.FRAMEHEIGHT, ObjectType.ROCK));
         map[1][1] = div;
 
+        div = new MapDivision();
+        div.addObject(new Rock(0, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(0, 2 * Game.TILE, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(0, 8 * Game.TILE, 8 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(12 * Game.TILE, 6 * Game.TILE, 4 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
+        map[0][1] = div;
+
         mapi = 2;
         mapj = 1;
         division = map[mapi][mapj];
@@ -55,19 +62,17 @@ public class GameMap {
     }
 
     public void moveHeroUp() {
-        int speed= -DEFAULTSPEED;
+        int speed = -DEFAULTSPEED;
 
-        if(Game.toTile(hero.getY() + speed) == -1) {
+        if (Game.toTile(hero.getY() + speed) == -1) {
             switchDivisionUp();
-        }
-        else {
-            while(isUpTileAccessible(speed) && speed != 0) {
+        } else {
+            while (isUpTileAccessible(speed) && speed != 0) {
                 speed++;
             }
-            if(speed != 0) {
+            if (speed != 0) {
                 hero.moveV(speed);
-            }
-            else {
+            } else {
                 System.err.println("tuile non accessible");
             }
         }
@@ -76,17 +81,15 @@ public class GameMap {
     public void moveHeroLeft() {
         int speed = -DEFAULTSPEED;
 
-        if(Game.toTile(hero.getX() + speed) == -1) {
+        if (Game.toTile(hero.getX() + speed) == -1) {
             switchDivisionLeft();
-        }
-        else {
-            while(isLeftTileAccessible(speed) && speed != 0) {
+        } else {
+            while (isLeftTileAccessible(speed) && speed != 0) {
                 speed++;
             }
-            if(speed != 0) {
+            if (speed != 0) {
                 hero.moveH(speed);
-            }
-            else {
+            } else {
                 System.err.println("tuile non accessible");
             }
         }
@@ -95,17 +98,15 @@ public class GameMap {
     public void moveHeroRight() {
         int speed = DEFAULTSPEED;
 
-        if(Game.toTile(hero.getX() + hero.getWidth() + speed) == -1) {
+        if (Game.toTile(hero.getX() + hero.getWidth() + speed) == -1) {
             switchDivisionRight();
-        }
-        else {
-            while(isRightTileAccessible(speed) && speed != 0) {
+        } else {
+            while (isRightTileAccessible(speed) && speed != 0) {
                 speed--;
             }
-            if(speed != 0) {
+            if (speed != 0) {
                 hero.moveH(speed);
-            }
-            else {
+            } else {
                 System.err.println("tuile non accessible");
             }
         }
@@ -114,17 +115,15 @@ public class GameMap {
     public void moveHeroDown() {
         int speed = DEFAULTSPEED;
 
-        if(Game.toTile(hero.getY() + hero.getHeight() + speed) == Game.YTILEMAX) {
+        if (Game.toTile(hero.getY() + hero.getHeight() + speed) == Game.YTILEMAX) {
             switchDivisionDown();
-        }
-        else {
-            while(isDownTileAccessible(speed) && speed != 0) {
+        } else {
+            while (isDownTileAccessible(speed) && speed != 0) {
                 speed--;
             }
-            if(speed != 0) {
+            if (speed != 0) {
                 hero.moveV(speed);
-            }
-            else {
+            } else {
                 System.err.println("tuile non accessible");
             }
         }
@@ -132,7 +131,7 @@ public class GameMap {
 
     private boolean isUpTileAccessible(int offset) {
         return !division.isTileAccessible(Game.toTile(hero.getX()), Game.toTile(hero.getY() + offset))
-            || !division.isTileAccessible(Game.toTile(hero.getX() + hero.getWidth() - 1), Game.toTile(hero.getY() + offset));
+                || !division.isTileAccessible(Game.toTile(hero.getX() + hero.getWidth() - 1), Game.toTile(hero.getY() + offset));
     }
 
     private boolean isLeftTileAccessible(int offset) {
