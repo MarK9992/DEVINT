@@ -152,12 +152,7 @@ public class OptionMenuState extends BasicGameState {
     private void onEnter() {
         switch (currentButton) {
             case 0:
-                try {
-                    leave(container, game);
-                    game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-                } catch (SlickException e) {
-                    e.printStackTrace();
-                }
+                Preferences.changeColors();
                 break;
             case 1:
                 try {
