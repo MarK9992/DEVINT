@@ -163,7 +163,7 @@ public class GameMap {
     public void moveHeroDown() {
         int speed = DEFAULTSPEED;
 
-        if (Game.toTile(hero.getDownLeftCornerX() + speed) == Game.YTILEMAX) {
+        if (Game.toTile(hero.getDownLeftCornerY() + speed) == Game.YTILEMAX) {
             switchDivisionDown();
         } else {
             while (isDownTileAccessible(speed) && speed != 0) {
