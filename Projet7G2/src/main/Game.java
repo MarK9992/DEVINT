@@ -48,7 +48,7 @@ public class Game extends StateBasedGame {
         options = new OptionMenuState();
         pause = new PauseMenuState();
         container.setShowFPS(false);
-        addState(login);
+        //addState(login);
         addState(menu);
         addState(game);
         addState(options);

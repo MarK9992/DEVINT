@@ -126,6 +126,12 @@ public class PauseMenuState extends BasicGameState{
     }
 
     @Override
+    public void enter(GameContainer container, StateBasedGame game) {
+        currentButton = 0;
+        Preferences.getVoice().playShortText("Choisissez ce que vous voulez faire. Retour au jeu.");
+    }
+
+    @Override
     public void keyPressed(int key, char c) {
         switch (key) {
             case Input.KEY_ENTER:
@@ -143,6 +149,9 @@ public class PauseMenuState extends BasicGameState{
             case Input.KEY_F1:
                 onF1();
                 break;
+            case Input.KEY_F2:
+                onF2();
+                break;
             default:
         }
     }
@@ -152,7 +161,7 @@ public class PauseMenuState extends BasicGameState{
             case 0:
                 try {
                     leave(container, game);
-                    game.enterState(3, new FadeOutTransition(org.newdawn.slick.Color.black), new FadeInTransition(org.newdawn.slick.Color.black));
+                    game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 } catch (SlickException e) {
                     e.printStackTrace();
                 }
@@ -160,7 +169,7 @@ public class PauseMenuState extends BasicGameState{
             case 1:
                 try {
                     leave(container, game);
-                    game.enterState(2, new FadeOutTransition(org.newdawn.slick.Color.black), new FadeInTransition(org.newdawn.slick.Color.black));
+                    game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 } catch (SlickException e) {
                     e.printStackTrace();
                 }
@@ -182,12 +191,15 @@ public class PauseMenuState extends BasicGameState{
         switch (currentButton) {
             case 0:
                 currentButton = 2;
+                Preferences.getVoice().playShortText("Menu principal.");
                 break;
             case 1:
                 currentButton = 0;
+                Preferences.getVoice().playShortText("Retour au jeu.");
                 break;
             case 2:
                 currentButton = 1;
+                Preferences.getVoice().playShortText("Options.");
                 break;
             default:
                 System.err.println("bouton incorrect");
@@ -198,12 +210,15 @@ public class PauseMenuState extends BasicGameState{
         switch (currentButton) {
             case 0:
                 currentButton = 1;
+                Preferences.getVoice().playShortText("Options.");
                 break;
             case 1:
                 currentButton = 2;
+                Preferences.getVoice().playShortText("Menu principal.");
                 break;
             case 2:
                 currentButton = 0;
+                Preferences.getVoice().playShortText("Retour au jeu.");
                 break;
             default:
                 System.err.println("bouton incorrect");
@@ -221,5 +236,9 @@ public class PauseMenuState extends BasicGameState{
 
     private void onF1() {
         Preferences.changeColors();
+    }
+
+    private void onF2() {
+        Preferences.changeVoice();
     }
 }

@@ -27,7 +27,7 @@ public class OptionMenuState extends BasicGameState {
 
     private static final int ID = 2;
     private static final String CHANGE_COLORS = "CHOISIR COULEURS";
-    private static final String CHANGE_HERO = "CHOISIR HERO";
+    private static final String CHANGE_HERO = "CHOISIR VOIX";
     private static final String QUIT = "RETOUR";
     private static final TrueTypeFont FONT = new TrueTypeFont(new Font("Arial", Font.BOLD, 55), true);
     private static final int CHANGE_COLORS_X = (Game.FRAMEWIDTH - FONT.getWidth(CHANGE_COLORS)) / 2;
@@ -145,8 +145,17 @@ public class OptionMenuState extends BasicGameState {
             case Input.KEY_F1:
                 onF1();
                 break;
+            case Input.KEY_F2:
+                onF2();
+                break;
             default:
         }
+    }
+
+    @Override
+    public void enter(GameContainer container, StateBasedGame game) {
+        currentButton = 0;
+        Preferences.getVoice().playShortText("Choisissez l'option que vous voulez modifier. Choisir couleurs.");
     }
 
     private void onEnter() {
@@ -155,12 +164,7 @@ public class OptionMenuState extends BasicGameState {
                 Preferences.changeColors();
                 break;
             case 1:
-                try {
-                    leave(container, game);
-                    game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-                } catch (SlickException e) {
-                    e.printStackTrace();
-                }
+                Preferences.changeVoice();
                 break;
             case 2:
                 try {
@@ -179,12 +183,15 @@ public class OptionMenuState extends BasicGameState {
         switch (currentButton) {
             case 0:
                 currentButton = 2;
+                Preferences.getVoice().playShortText("Retour.");
                 break;
             case 1:
                 currentButton = 0;
+                Preferences.getVoice().playShortText("Choisir couleurs.");
                 break;
             case 2:
                 currentButton = 1;
+                Preferences.getVoice().playShortText("Choisir voix.");
                 break;
             default:
                 System.err.println("bouton incorrect");
@@ -195,12 +202,15 @@ public class OptionMenuState extends BasicGameState {
         switch (currentButton) {
             case 0:
                 currentButton = 1;
+                Preferences.getVoice().playShortText("Choisir voix.");
                 break;
             case 1:
                 currentButton = 2;
+                Preferences.getVoice().playShortText("Retour.");
                 break;
             case 2:
                 currentButton = 0;
+                Preferences.getVoice().playShortText("Choisir couleurs.");
                 break;
             default:
                 System.err.println("bouton incorrect");
@@ -220,4 +230,7 @@ public class OptionMenuState extends BasicGameState {
         Preferences.changeColors();
     }
 
+    private void onF2() {
+        Preferences.changeVoice();
+    }
 }

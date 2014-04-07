@@ -99,7 +99,7 @@ public class LoginState extends BasicGameState {
             case Input.KEY_ENTER: onEnter(); break;
             case Input.KEY_ESCAPE: onEscape(); break;
             case Input.KEY_F1: onF1(); break;
-            case Input.KEY_F3: onF2(); break;
+            case Input.KEY_F2: onF2(); break;
             default:
         }
     }

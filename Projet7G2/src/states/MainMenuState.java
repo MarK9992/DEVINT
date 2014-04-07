@@ -96,7 +96,13 @@ public class MainMenuState extends BasicGameState {
     }
 
     @Override
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+
+    }
+
+    @Override
     public void enter(GameContainer container, StateBasedGame game) {
+        currentButton = 0;
         Preferences.getVoice().playShortText("Choisissez ce que vous voulez faire. Jouer.");
     }
 
@@ -128,11 +134,6 @@ public class MainMenuState extends BasicGameState {
             default:
                 System.err.println("bouton incorrect");
         }
-    }
-
-    @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-
     }
 
     @Override
