@@ -21,9 +21,11 @@ public class MainGameState extends BasicGameState {
     private main.Game game;
 
     private GameMap map;
+    private String instruction;
 
     public MainGameState() {
         map = new GameMap();
+        instruction = "Utilisez les flèches pour vous déplacer.";
     }
 
     @Override
@@ -63,6 +65,11 @@ public class MainGameState extends BasicGameState {
     }
 
     @Override
+    public void enter(GameContainer container, StateBasedGame game) {
+        Preferences.getVoice().playShortText(instruction);
+    }
+
+    @Override
     public void keyPressed(int key, char c) {
         switch (key) {
             case Input.KEY_ENTER:
@@ -70,6 +77,12 @@ public class MainGameState extends BasicGameState {
                 break;
             case Input.KEY_F1:
                 onF1();
+                break;
+            case Input.KEY_F2:
+                onF2();
+                break;
+            case Input.KEY_F3:
+                onF3();
                 break;
             case Input.KEY_ESCAPE:
                 onEscape();
@@ -98,6 +111,14 @@ public class MainGameState extends BasicGameState {
 
     private void onF1() {
         Preferences.changeColors();
+    }
+
+    private void onF2() {
+        Preferences.changeVoice();
+    }
+
+    private void onF3() {
+        Preferences.getVoice().playShortText(instruction);
     }
 
     private void onUp() {

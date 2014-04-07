@@ -95,6 +95,11 @@ public class MainMenuState extends BasicGameState {
         g.fill(downArrow);
     }
 
+    @Override
+    public void enter(GameContainer container, StateBasedGame game) {
+        Preferences.getVoice().playShortText("Choisissez ce que vous voulez faire. Jouer.");
+    }
+
     private void drawButtons(Graphics g) {
         for (int i = 0; i < 3; i++) {
             drawButtonCase(i, g);
@@ -148,6 +153,9 @@ public class MainMenuState extends BasicGameState {
             case Input.KEY_F1:
                 onF1();
                 break;
+            case Input.KEY_F2:
+                onF2();
+                break;
             default:
         }
     }
@@ -155,6 +163,7 @@ public class MainMenuState extends BasicGameState {
     private void onEnter() {
         switch (currentButton) {
             case 0:
+                Preferences.getVoice().playShortText("Jouer.");
                 try {
                     leave(container, game);
                     game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
@@ -163,6 +172,7 @@ public class MainMenuState extends BasicGameState {
                 }
                 break;
             case 1:
+                Preferences.getVoice().playShortText("Options.");
                 try {
                     leave(container, game);
                     game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
@@ -171,6 +181,7 @@ public class MainMenuState extends BasicGameState {
                 }
                 break;
             case 2:
+                Preferences.getVoice().playShortText("Quitter.");
                 try {
                     leave(container, game);
                     System.exit(0);
@@ -187,12 +198,15 @@ public class MainMenuState extends BasicGameState {
         switch (currentButton) {
             case 0:
                 currentButton = 2;
+                Preferences.getVoice().playShortText("Quitter.");
                 break;
             case 1:
-               currentButton = 0;
+                currentButton = 0;
+                Preferences.getVoice().playShortText("Jouer.");
                 break;
             case 2:
                 currentButton = 1;
+                Preferences.getVoice().playShortText("Options.");
                 break;
             default:
                 System.err.println("bouton incorrect");
@@ -203,12 +217,15 @@ public class MainMenuState extends BasicGameState {
         switch (currentButton) {
             case 0:
                 currentButton = 1;
+                Preferences.getVoice().playShortText("Options.");
                 break;
             case 1:
                 currentButton = 2;
+                Preferences.getVoice().playShortText("Quitter.");
                 break;
             case 2:
                 currentButton = 0;
+                Preferences.getVoice().playShortText("Jouer.");
                 break;
             default:
                 System.err.println("bouton incorrect");
@@ -216,6 +233,7 @@ public class MainMenuState extends BasicGameState {
     }
 
     private void onEscape() {
+        Preferences.getVoice().playShortText("Quitter.");
         try {
             leave(container, game);
             game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
@@ -226,5 +244,9 @@ public class MainMenuState extends BasicGameState {
 
     private void onF1() {
         Preferences.changeColors();
+    }
+
+    private void onF2() {
+        Preferences.changeVoice();
     }
 }

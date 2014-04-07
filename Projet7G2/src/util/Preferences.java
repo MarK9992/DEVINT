@@ -12,8 +12,8 @@ public class Preferences {
 
     private static Preferences instance = new Preferences();
 
-    private int currentVoice;
-    private SIVOXDevint voice;
+    private static int currentVoice;
+    private static SIVOXDevint voice;
 
     private static int currentSetOfColor;
     private static Color backgroundColor;
@@ -23,8 +23,8 @@ public class Preferences {
     private static Color utilityColor;
 
     private Preferences() {
-        currentVoice = -1;
-        voice = null;
+        currentVoice = 1;
+        voice = new SIVOXDevint(currentVoice);
 
         currentSetOfColor = 0;
         backgroundColor = Color.lightGray;
@@ -51,8 +51,7 @@ public class Preferences {
             highlightColor = Color.black;
             textColor = Color.darkGray;
             utilityColor = Color.lightGray;
-        }
-        else {
+        } else {
             // je de couleurs de base
             currentSetOfColor = 0;
             backgroundColor = Color.lightGray;
@@ -61,10 +60,17 @@ public class Preferences {
             itemColor = Color.black;
             utilityColor = Color.darkGray;
         }
+        voice.playShortText("Couleurs mises à jour.");
     }
 
-    public void changeVoice() {
-        //TODO
+    public static void changeVoice() {
+        if(currentVoice == 7)
+            currentVoice = 0;
+        else
+            currentVoice++;
+        voice.setVoix(currentVoice);
+
+        voice.playShortText("Voix changée.");
     }
 
     public static Color getBackgroundColor() {
@@ -85,5 +91,9 @@ public class Preferences {
 
     public static Color getUtilityColor() {
         return utilityColor;
+    }
+
+    public static SIVOXDevint getVoice() {
+        return voice;
     }
 }

@@ -5,6 +5,9 @@ import objects.Hero;
 import objects.ObjectType;
 import objects.Rock;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
+import util.Preferences;
 
 /**
  * Created by Marc KARASSEV on 24/03/14.
@@ -29,11 +32,7 @@ public class GameMap {
         map = new MapDivision[MAPWIDTH][MAPHEIGHT];
         hero = new Hero((Game.FRAMEWIDTH - 50) / 2, (Game.FRAMEHEIGHT - 50) / 2, 50, 50);
 
-
-
-
         // Création dégueulasse des divisions
-
 
         div=new MapDivision();
         div.addObject(new Rock(0, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
@@ -156,6 +155,7 @@ public class GameMap {
         mapi = 2;
         mapj = 1;
         division = map[mapi][mapj];
+        sound = null;
     }
 
     public void renderDivision(Graphics g) {
@@ -175,7 +175,7 @@ public class GameMap {
             if (speed != 0) {
                 hero.moveV(speed);
             } else {
-                System.err.println("tuile non accessible");
+                playBump();
             }
         }
     }
@@ -192,7 +192,7 @@ public class GameMap {
             if (speed != 0) {
                 hero.moveH(speed);
             } else {
-                System.err.println("tuile non accessible");
+                playBump();
             }
         }
     }
@@ -209,7 +209,7 @@ public class GameMap {
             if (speed != 0) {
                 hero.moveH(speed);
             } else {
-                System.err.println("tuile non accessible");
+                playBump();
             }
         }
     }
@@ -226,7 +226,7 @@ public class GameMap {
             if (speed != 0) {
                 hero.moveV(speed);
             } else {
-                System.err.println("tuile non accessible");
+                playBump();
             }
         }
     }
@@ -252,26 +252,39 @@ public class GameMap {
     }
 
     private void switchDivisionUp() {
+        Preferences.getVoice().playWav("../ressources/sound/cw_sound17.wav");
         mapi--;
         division = map[mapi][mapj];
         hero.setY(Game.FRAMEHEIGHT - hero.getHeight());
     }
 
     private void switchDivisionLeft() {
+        Preferences.getVoice().playWav("../ressources/sound/cw_sound17.wav");
         mapj--;
         division = map[mapi][mapj];
         hero.setX(Game.FRAMEWIDTH - hero.getWidth());
     }
 
     private void switchDivisionRight() {
+        Preferences.getVoice().playWav("../ressources/sound/cw_sound17.wav");
         mapj++;
         division = map[mapi][mapj];
         hero.setX(0);
     }
 
     private void switchDivisionDown() {
+        Preferences.getVoice().playWav("../ressources/sound/cw_sound17.wav");
         mapi++;
         division = map[mapi][mapj];
         hero.setY(0);
+    }
+
+    private void playBump() {
+        try {
+            Sound sound = new Sound("../ressources/sound/smb_bump.wav");
+            sound.play();
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
     }
 }

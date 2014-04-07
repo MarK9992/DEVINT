@@ -46,7 +46,6 @@ public class LoginState extends BasicGameState {
         float[] arrowPoints = {KEYSCHEMEXLEFT, KEYSCHEMEYBOT - 10, KEYSCHEMEXLEFT, KEYSCHEMEYBOT + 10,
                 KEYSCHEMEXLEFT - 20, KEYSCHEMEYBOT};
         enterArrow = new Polygon(arrowPoints);
-
     }
 
     @Override
@@ -90,16 +89,23 @@ public class LoginState extends BasicGameState {
     }
 
     @Override
+    public void enter(GameContainer container, StateBasedGame game) {
+        Preferences.getVoice().playShortText("Veuillez sélectionner votre profil de joueur. Nouveau.");
+    }
+
+    @Override
     public void keyPressed(int key, char c) {
         switch (key) {
             case Input.KEY_ENTER: onEnter(); break;
             case Input.KEY_ESCAPE: onEscape(); break;
             case Input.KEY_F1: onF1(); break;
+            case Input.KEY_F3: onF2(); break;
             default:
         }
     }
 
     private void onEnter() {
+        Preferences.getVoice().playShortText("Nouveau.");
         try {
             leave(container, game);
             game.enterState(1, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
@@ -109,6 +115,7 @@ public class LoginState extends BasicGameState {
     }
 
     private void onEscape() {
+        Preferences.getVoice().playShortText("Quitter.");
         try {
             leave(container, game);
             System.exit(0);
@@ -119,5 +126,9 @@ public class LoginState extends BasicGameState {
 
     private void onF1() {
         Preferences.changeColors();
+    }
+
+    private void onF2() {
+        Preferences.changeVoice();
     }
 }
