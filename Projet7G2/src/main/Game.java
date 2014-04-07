@@ -55,6 +55,11 @@ public class Game extends StateBasedGame {
         addState(pause);
     }
 
+    public void reinitGame() {
+        game = new MainGameState();
+        addState(game);
+    }
+
     public static void main(String[] args) {
         try {
             AppGameContainer container = new AppGameContainer(new Game());
