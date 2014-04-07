@@ -1,6 +1,8 @@
 package objects;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import util.Preferences;
 
 /**
@@ -14,6 +16,7 @@ public class Hero {
     private int y;
     private int width;
     private int height;
+    private Sound moveSound;
 
     public Hero() {
         this(0, 0, 1, 1);
@@ -24,6 +27,11 @@ public class Hero {
         this.y = y;
         this.width = width;
         this.height = height;
+        try {
+            moveSound = new Sound("../ressources/sound/pacman_chomp.wav");
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
     }
 
     public void draw(Graphics g) {
@@ -33,10 +41,12 @@ public class Hero {
 
     public void moveV(int y) {
         this.y += y;
+        playMove();
     }
 
     public void moveH(int x) {
         this.x += x;
+        playMove();
     }
 
     public int getUpLeftCornerX() { return x; }
@@ -78,5 +88,11 @@ public class Hero {
     public int getHeight() {
         return height;
 
+    }
+
+    private void playMove() {
+        if(!moveSound.playing()) {
+            moveSound.play();
+        }
     }
 }

@@ -84,6 +84,9 @@ public class MainGameState extends BasicGameState {
             case Input.KEY_F3:
                 onF3();
                 break;
+            case Input.KEY_F4:
+                onF4();
+                break;
             case Input.KEY_ESCAPE:
                 onEscape();
                 break;
@@ -119,6 +122,10 @@ public class MainGameState extends BasicGameState {
 
     private void onF3() {
         Preferences.getVoice().playShortText(instruction);
+    }
+
+    private void onF4() {
+        Preferences.getVoice().playShortText(map.getInstruction());
     }
 
     private void onUp() {

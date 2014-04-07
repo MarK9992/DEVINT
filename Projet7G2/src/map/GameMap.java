@@ -25,6 +25,8 @@ public class GameMap {
     private int mapi;
     private int mapj;
     private Hero hero;
+    private Sound bumpSound;
+    private String instruction;
 
     public GameMap() {
         MapDivision div;
@@ -34,12 +36,12 @@ public class GameMap {
 
         // Création dégueulasse des divisions
 
-        div=new MapDivision();
+        div = new MapDivision();
         div.addObject(new Rock(0, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12* Game.TILE, 2 * Game.TILE, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12* Game.TILE, 8 * Game.TILE, 4 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0,2*Game.TILE,2*Game.TILE,10*Game.TILE,ObjectType.ROCK));
-        div.addObject(new Rock(2*Game.TILE,10*Game.TILE,6*Game.TILE,2*Game.TILE,ObjectType.ROCK));
+        div.addObject(new Rock(12 * Game.TILE, 2 * Game.TILE, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(12 * Game.TILE, 8 * Game.TILE, 4 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(0, 2 * Game.TILE, 2 * Game.TILE, 10 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(2 * Game.TILE, 10 * Game.TILE, 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
         map[0][0] = div;
 
 
@@ -54,24 +56,24 @@ public class GameMap {
         div = new MapDivision();
         div.addObject(new Rock(0, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(0, 6 * Game.TILE, 6 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(10*Game.TILE, 8 * Game.TILE, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(10 * Game.TILE, 8 * Game.TILE, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
         map[0][2] = div;
 
 
         div = new MapDivision();
         div.addObject(new Rock(0, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(0, 8 * Game.TILE, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(14 * Game.TILE, 0 , 2 * Game.TILE, 12 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(14 * Game.TILE, 0, 2 * Game.TILE, 12 * Game.TILE, ObjectType.ROCK));
         map[0][3] = div;
 
         div = new MapDivision();
-        div.addObject(new Rock(0, 0,8 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(0, 0, 8 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(0, 4 * Game.TILE, 4 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(0, 8 * Game.TILE, 2 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12* Game.TILE,0,4* Game.TILE,2* Game.TILE,ObjectType.ROCK));
-        div.addObject(new Rock(14* Game.TILE,2*Game.TILE,2* Game.TILE,2* Game.TILE,ObjectType.ROCK));
-        div.addObject(new Rock(6* Game.TILE,10*Game.TILE,10* Game.TILE,2* Game.TILE,ObjectType.ROCK));
-        div.addObject(new Rock(8* Game.TILE,8*Game.TILE,8* Game.TILE,2* Game.TILE,ObjectType.ROCK));
+        div.addObject(new Rock(12 * Game.TILE, 0, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(14 * Game.TILE, 2 * Game.TILE, 2 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(6 * Game.TILE, 10 * Game.TILE, 10 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(8 * Game.TILE, 8 * Game.TILE, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
         map[1][0] = div;
 
         div = new MapDivision();
@@ -83,15 +85,15 @@ public class GameMap {
         div = new MapDivision();
         div.addObject(new Rock(0, 0, 6 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
         div.addObject(new Rock(10 * Game.TILE, 0, 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(10*Game.TILE, 6 * Game.TILE, 6 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
-        map[1][2]=div;
+        div.addObject(new Rock(10 * Game.TILE, 6 * Game.TILE, 6 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
+        map[1][2] = div;
 
         div = new MapDivision();
         div.addObject(new Rock(0, 0, 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0,6 * Game.TILE, 8 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(14  * Game.TILE,0, 2 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
+        div.addObject(new Rock(0, 6 * Game.TILE, 8 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(14 * Game.TILE, 0, 2 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
         div.addObject(new Rock(12 * Game.TILE, 8 * Game.TILE, 2 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        map[1][3]=div;
+        map[1][3] = div;
 
         div = new MapDivision();
         div.addObject(new Rock(0, 0, 2 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
@@ -117,19 +119,19 @@ public class GameMap {
 
         div = new MapDivision();
         div.addObject(new Rock(0, 0, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock( 0,2 * Game.TILE, 4* Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(0, 2 * Game.TILE, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(14 * Game.TILE, 0, 2 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 0 , 2 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(12 * Game.TILE, 0, 2 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(0, 8 * Game.TILE, 4 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(8 * Game.TILE, 10* Game.TILE , 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(8 * Game.TILE, 10 * Game.TILE, 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
         map[2][3] = div;
 
         div = new MapDivision();
         div.addObject(new Rock(0, 0, 2 * Game.TILE, 10 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(2 * Game.TILE,0,6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(2 * Game.TILE, 0, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(0, 10 * Game.TILE, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(12 * Game.TILE, 0, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(14 * Game.TILE, 6*Game.TILE, 2 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(14 * Game.TILE, 6 * Game.TILE, 2 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
         map[3][0] = div;
 
         div = new MapDivision();
@@ -148,14 +150,19 @@ public class GameMap {
         div.addObject(new Rock(0, 6 * Game.TILE, 4 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(0, 10 * Game.TILE, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(8 * Game.TILE, 0, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(10 * Game.TILE, 2*Game.TILE, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(14 * Game.TILE, 6*Game.TILE, 2 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(10 * Game.TILE, 2 * Game.TILE, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
+        div.addObject(new Rock(14 * Game.TILE, 6 * Game.TILE, 2 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
         map[3][3] = div;
 
         mapi = 2;
         mapj = 1;
         division = map[mapi][mapj];
-        sound = null;
+        try {
+            bumpSound = new Sound("../ressources/sound/smb_bump.wav");
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
+        instruction = "Allez en haut.";
     }
 
     public void renderDivision(Graphics g) {
@@ -280,11 +287,14 @@ public class GameMap {
     }
 
     private void playBump() {
-        try {
-            Sound sound = new Sound("../ressources/sound/smb_bump.wav");
-            sound.play();
-        } catch (SlickException e) {
-            e.printStackTrace();
+        if (!bumpSound.playing()) {
+            bumpSound.play();
         }
+    }
+
+    // Accesseurs
+
+    public String getInstruction() {
+        return instruction;
     }
 }
