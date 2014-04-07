@@ -28,7 +28,7 @@ public class Hero {
         this.width = width;
         this.height = height;
         try {
-            moveSound = new Sound("../ressources/sound/pacman_chomp.wav");
+            moveSound = new Sound("../ressources/sound/smb_stomp.wav");
         } catch (SlickException e) {
             e.printStackTrace();
         }

@@ -26,6 +26,7 @@ public class GameMap {
     private int mapj;
     private Hero hero;
     private Sound bumpSound;
+    private Sound switchSound;
     private String instruction;
 
     public GameMap() {
@@ -159,6 +160,7 @@ public class GameMap {
         division = map[mapi][mapj];
         try {
             bumpSound = new Sound("../ressources/sound/smb_bump.wav");
+            switchSound = new Sound("../ressources/sound/smb2_enter_door.wav");
         } catch (SlickException e) {
             e.printStackTrace();
         }
@@ -259,28 +261,28 @@ public class GameMap {
     }
 
     private void switchDivisionUp() {
-        Preferences.getVoice().playWav("../ressources/sound/cw_sound17.wav");
+        playSwitch();
         mapi--;
         division = map[mapi][mapj];
         hero.setY(Game.FRAMEHEIGHT - hero.getHeight());
     }
 
     private void switchDivisionLeft() {
-        Preferences.getVoice().playWav("../ressources/sound/cw_sound17.wav");
+        playSwitch();
         mapj--;
         division = map[mapi][mapj];
         hero.setX(Game.FRAMEWIDTH - hero.getWidth());
     }
 
     private void switchDivisionRight() {
-        Preferences.getVoice().playWav("../ressources/sound/cw_sound17.wav");
+        playSwitch();
         mapj++;
         division = map[mapi][mapj];
         hero.setX(0);
     }
 
     private void switchDivisionDown() {
-        Preferences.getVoice().playWav("../ressources/sound/cw_sound17.wav");
+        playSwitch();
         mapi++;
         division = map[mapi][mapj];
         hero.setY(0);
@@ -290,6 +292,10 @@ public class GameMap {
         if (!bumpSound.playing()) {
             bumpSound.play();
         }
+    }
+
+    private void playSwitch() {
+        switchSound.play();
     }
 
     // Accesseurs
