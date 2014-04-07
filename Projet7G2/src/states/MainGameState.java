@@ -22,10 +22,12 @@ public class MainGameState extends BasicGameState {
 
     private GameMap map;
     private String instruction;
+    private boolean goal1;
 
     public MainGameState() {
-        map = new GameMap();
+        map = new GameMap(this);
         instruction = "Utilisez les flèches pour vous déplacer.";
+        goal1 = false;
     }
 
     @Override
@@ -62,6 +64,7 @@ public class MainGameState extends BasicGameState {
         else if(container.getInput().isKeyDown(Input.KEY_DOWN)) {
             onDown();
         }
+        updateGoals();
     }
 
     @Override
@@ -72,9 +75,6 @@ public class MainGameState extends BasicGameState {
     @Override
     public void keyPressed(int key, char c) {
         switch (key) {
-            case Input.KEY_ENTER:
-                onEnter();
-                break;
             case Input.KEY_F1:
                 onF1();
                 break;
@@ -98,15 +98,6 @@ public class MainGameState extends BasicGameState {
         try {
             leave(container, game);
             game.enterState(4, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));;
-        } catch (SlickException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void onEnter() {
-        try {
-            leave(container, game);
-            System.exit(0);
         } catch (SlickException e) {
             e.printStackTrace();
         }
@@ -142,5 +133,31 @@ public class MainGameState extends BasicGameState {
 
     private void onDown() {
         map.moveHeroDown();
+    }
+
+    private void updateGoals() {
+        if(!goal1) {
+            if(map.getMapi() == 3 && map.getMapj() == 0) {
+                goal1 = true;
+                map.setInstruction("Retournez au point de départ.");
+            }
+        }
+        else {
+            if(map.getMapi() == 2 && map.getMapj() == 1) {
+                Preferences.getVoice().playShortText("Bravo !");
+                try {
+                    leave(container, game);
+                    game.enterState(1, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                } catch (SlickException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    // Accesseurs
+
+    public boolean getGoal1() {
+        return goal1;
     }
 }
