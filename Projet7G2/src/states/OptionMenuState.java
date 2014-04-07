@@ -12,7 +12,9 @@ import util.Preferences;
 
 import java.awt.Font;
 /**
- * Created by tom on 04/04/14.
+ * Created by Tom VENIAT on 04/04/14.
+ *
+ * @author Tom VENIAT, Marc KARASSEV
  */
 public class OptionMenuState extends BasicGameState {
 

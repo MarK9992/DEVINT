@@ -57,6 +57,11 @@ public class Game extends StateBasedGame {
 
     public void reinitGame() {
         game = new MainGameState();
+        try {
+            game.init(container, this);
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
         addState(game);
     }
 

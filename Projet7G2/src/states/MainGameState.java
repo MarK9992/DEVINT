@@ -148,12 +148,17 @@ public class MainGameState extends BasicGameState {
                 try {
                     leave(container, game);
                     game.enterState(1, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-                    game.reinitGame();
+                    reinitGame();
                 } catch (SlickException e) {
                     e.printStackTrace();
                 }
             }
         }
+    }
+
+    private void reinitGame() {
+        goal1 = false;
+        game.reinitGame();
     }
 
     // Accesseurs
