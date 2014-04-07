@@ -157,6 +157,7 @@ public class OptionMenuState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         currentButton = 0;
+        Preferences.getVoice().stop();
         Preferences.getVoice().playShortText("Choisissez l'option que vous voulez modifier. Choisir couleurs.");
     }
 
@@ -185,14 +186,17 @@ public class OptionMenuState extends BasicGameState {
         switch (currentButton) {
             case 0:
                 currentButton = 2;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Retour.");
                 break;
             case 1:
                 currentButton = 0;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Choisir couleurs.");
                 break;
             case 2:
                 currentButton = 1;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Choisir voix.");
                 break;
             default:
@@ -204,14 +208,17 @@ public class OptionMenuState extends BasicGameState {
         switch (currentButton) {
             case 0:
                 currentButton = 1;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Choisir voix.");
                 break;
             case 1:
                 currentButton = 2;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Retour.");
                 break;
             case 2:
                 currentButton = 0;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Choisir couleurs.");
                 break;
             default:

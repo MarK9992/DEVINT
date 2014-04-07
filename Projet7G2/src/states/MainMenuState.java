@@ -103,6 +103,7 @@ public class MainMenuState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         currentButton = 0;
+        Preferences.getVoice().stop();
         Preferences.getVoice().playShortText("Choisissez ce que vous voulez faire. Jouer.");
     }
 
@@ -164,6 +165,7 @@ public class MainMenuState extends BasicGameState {
     private void onEnter() {
         switch (currentButton) {
             case 0:
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Jouer.");
                 try {
                     leave(container, game);
@@ -173,6 +175,7 @@ public class MainMenuState extends BasicGameState {
                 }
                 break;
             case 1:
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Options.");
                 try {
                     leave(container, game);
@@ -182,6 +185,7 @@ public class MainMenuState extends BasicGameState {
                 }
                 break;
             case 2:
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Quitter.");
                 try {
                     leave(container, game);
@@ -198,15 +202,18 @@ public class MainMenuState extends BasicGameState {
     private void onUp() {
         switch (currentButton) {
             case 0:
+                Preferences.getVoice().stop();
                 currentButton = 2;
                 Preferences.getVoice().playShortText("Quitter.");
                 break;
             case 1:
                 currentButton = 0;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Jouer.");
                 break;
             case 2:
                 currentButton = 1;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Options.");
                 break;
             default:
@@ -218,14 +225,17 @@ public class MainMenuState extends BasicGameState {
         switch (currentButton) {
             case 0:
                 currentButton = 1;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Options.");
                 break;
             case 1:
                 currentButton = 2;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Quitter.");
                 break;
             case 2:
                 currentButton = 0;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Jouer.");
                 break;
             default:
@@ -234,6 +244,7 @@ public class MainMenuState extends BasicGameState {
     }
 
     private void onEscape() {
+        Preferences.getVoice().stop();
         Preferences.getVoice().playShortText("Quitter.");
         try {
             leave(container, game);

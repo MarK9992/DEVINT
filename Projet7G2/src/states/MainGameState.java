@@ -69,6 +69,7 @@ public class MainGameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
+        Preferences.getVoice().stop();
         Preferences.getVoice().playShortText(instruction + map.getInstruction());
     }
 
@@ -112,10 +113,12 @@ public class MainGameState extends BasicGameState {
     }
 
     private void onF3() {
+        Preferences.getVoice().stop();
         Preferences.getVoice().playShortText(instruction);
     }
 
     private void onF4() {
+        Preferences.getVoice().stop();
         Preferences.getVoice().playShortText(map.getInstruction());
     }
 

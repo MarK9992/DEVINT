@@ -130,6 +130,7 @@ public class PauseMenuState extends BasicGameState{
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         currentButton = 0;
+        Preferences.getVoice().stop();
         Preferences.getVoice().playShortText("Choisissez ce que vous voulez faire. Retour au jeu.");
     }
 
@@ -193,14 +194,17 @@ public class PauseMenuState extends BasicGameState{
         switch (currentButton) {
             case 0:
                 currentButton = 2;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Menu principal.");
                 break;
             case 1:
                 currentButton = 0;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Retour au jeu.");
                 break;
             case 2:
                 currentButton = 1;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Options.");
                 break;
             default:
@@ -212,14 +216,17 @@ public class PauseMenuState extends BasicGameState{
         switch (currentButton) {
             case 0:
                 currentButton = 1;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Options.");
                 break;
             case 1:
                 currentButton = 2;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Menu principal.");
                 break;
             case 2:
                 currentButton = 0;
+                Preferences.getVoice().stop();
                 Preferences.getVoice().playShortText("Retour au jeu.");
                 break;
             default:

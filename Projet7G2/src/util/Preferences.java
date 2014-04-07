@@ -60,6 +60,7 @@ public class Preferences {
             itemColor = Color.black;
             utilityColor = Color.darkGray;
         }
+        voice.stop();
         voice.playShortText("Couleurs mises à jour.");
     }
 
@@ -70,6 +71,7 @@ public class Preferences {
             currentVoice++;
         voice.setVoix(currentVoice);
 
+        voice.stop();
         voice.playShortText("Voix changée.");
     }
 

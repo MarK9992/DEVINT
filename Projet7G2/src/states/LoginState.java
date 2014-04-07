@@ -105,6 +105,7 @@ public class LoginState extends BasicGameState {
     }
 
     private void onEnter() {
+        Preferences.getVoice().stop();
         Preferences.getVoice().playShortText("Nouveau.");
         try {
             leave(container, game);
@@ -115,6 +116,7 @@ public class LoginState extends BasicGameState {
     }
 
     private void onEscape() {
+        Preferences.getVoice().stop();
         Preferences.getVoice().playShortText("Quitter.");
         try {
             leave(container, game);
