@@ -66,7 +66,7 @@ public class MainGameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
-        Preferences.getVoice().playShortText(instruction);
+        Preferences.getVoice().playShortText(instruction + map.getInstruction());
     }
 
     @Override

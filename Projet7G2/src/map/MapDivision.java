@@ -18,10 +18,16 @@ public class MapDivision {
 
     private ArrayList<GameObject> objects;
     private boolean[][] accessMap;
+    private String instruction;
 
     public MapDivision() {
+        this(".");
+    }
+
+    public MapDivision(String instruction) {
         objects = new ArrayList<GameObject>();
         initAccessMap();
+        this.instruction = instruction;
     }
 
     public void render(Graphics g) {
@@ -58,5 +64,11 @@ public class MapDivision {
                 accessMap[i][j] = false;
             }
         }
+    }
+
+    // Accesseurs
+
+    public String getInstruction() {
+        return instruction;
     }
 }

@@ -67,7 +67,7 @@ public class GameMap {
         div.addObject(new Rock(14 * Game.TILE, 0, 2 * Game.TILE, 12 * Game.TILE, ObjectType.ROCK));
         map[0][3] = div;
 
-        div = new MapDivision();
+        div = new MapDivision("Allez en bas.");
         div.addObject(new Rock(0, 0, 8 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(0, 4 * Game.TILE, 4 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(0, 8 * Game.TILE, 2 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
@@ -77,7 +77,7 @@ public class GameMap {
         div.addObject(new Rock(8 * Game.TILE, 8 * Game.TILE, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
         map[1][0] = div;
 
-        div = new MapDivision();
+        div = new MapDivision("Allez à gauche.");
         div.addObject(new Rock(0, 0, 8 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(0, 8 * Game.TILE, 8 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(12 * Game.TILE, 0, 4 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
@@ -96,7 +96,7 @@ public class GameMap {
         div.addObject(new Rock(12 * Game.TILE, 8 * Game.TILE, 2 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
         map[1][3] = div;
 
-        div = new MapDivision();
+        div = new MapDivision("Allez en bas.");
         div.addObject(new Rock(0, 0, 2 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
         div.addObject(new Rock(6 * Game.TILE, 0, 10 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(2 * Game.TILE, 10 * Game.TILE, 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
@@ -104,7 +104,7 @@ public class GameMap {
         div.addObject(new Rock(12 * Game.TILE, 10 * Game.TILE, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
         map[2][0] = div;
 
-        div = new MapDivision();
+        div = new MapDivision("Allez en haut.");
         div.addObject(new Rock(0, 0, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(12 * Game.TILE, 0, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(0, 6 * Game.TILE, 4 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
@@ -127,7 +127,7 @@ public class GameMap {
         div.addObject(new Rock(8 * Game.TILE, 10 * Game.TILE, 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
         map[2][3] = div;
 
-        div = new MapDivision();
+        div = new MapDivision("Bien. Retournez au point de départ maintenant.");
         div.addObject(new Rock(0, 0, 2 * Game.TILE, 10 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(2 * Game.TILE, 0, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
         div.addObject(new Rock(0, 10 * Game.TILE, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
@@ -164,7 +164,7 @@ public class GameMap {
         } catch (SlickException e) {
             e.printStackTrace();
         }
-        instruction = "Allez en haut.";
+        instruction = division.getInstruction();
     }
 
     public void renderDivision(Graphics g) {
@@ -265,6 +265,7 @@ public class GameMap {
         mapi--;
         division = map[mapi][mapj];
         hero.setY(Game.FRAMEHEIGHT - hero.getHeight());
+        playInstruction();
     }
 
     private void switchDivisionLeft() {
@@ -272,6 +273,7 @@ public class GameMap {
         mapj--;
         division = map[mapi][mapj];
         hero.setX(Game.FRAMEWIDTH - hero.getWidth());
+        playInstruction();
     }
 
     private void switchDivisionRight() {
@@ -279,6 +281,7 @@ public class GameMap {
         mapj++;
         division = map[mapi][mapj];
         hero.setX(0);
+        playInstruction();
     }
 
     private void switchDivisionDown() {
@@ -286,6 +289,7 @@ public class GameMap {
         mapi++;
         division = map[mapi][mapj];
         hero.setY(0);
+        playInstruction();
     }
 
     private void playBump() {
@@ -296,6 +300,11 @@ public class GameMap {
 
     private void playSwitch() {
         switchSound.play();
+    }
+
+    private void playInstruction() {
+        instruction = division.getInstruction();
+        Preferences.getVoice().playShortText(instruction);
     }
 
     // Accesseurs
