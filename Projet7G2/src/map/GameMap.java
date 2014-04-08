@@ -178,7 +178,7 @@ public class GameMap {
     public void moveHeroUp() {
         int speed = -DEFAULTSPEED;
 
-        if (Game.toTile(hero.getUpLeftCornerY() + speed) == -1) {
+        if ((Game.toTile(hero.getUpLeftCornerY() + speed) == -1)||(Preferences.getHandicap()==1)) {
             switchDivisionUp();
         } else {
             while (isUpTileAccessible(speed) && speed != 0) {
@@ -195,7 +195,7 @@ public class GameMap {
     public void moveHeroLeft() {
         int speed = -DEFAULTSPEED;
 
-        if (Game.toTile(hero.getUpLeftCornerX() + speed) == -1) {
+        if ((Game.toTile(hero.getUpLeftCornerX() + speed) == -1)||(Preferences.getHandicap()==1)) {
             switchDivisionLeft();
         } else {
             while (isLeftTileAccessible(speed) && speed != 0) {
@@ -212,7 +212,7 @@ public class GameMap {
     public void moveHeroRight() {
         int speed = DEFAULTSPEED;
 
-        if (Game.toTile(hero.getUpRightCornerX() + speed) == Game.XTILEMAX) {
+        if ((Game.toTile(hero.getUpRightCornerX() + speed) == Game.XTILEMAX)||(Preferences.getHandicap()==1)) {
             switchDivisionRight();
         } else {
             while (isRightTileAccessible(speed) && speed != 0) {
@@ -229,7 +229,7 @@ public class GameMap {
     public void moveHeroDown() {
         int speed = DEFAULTSPEED;
 
-        if (Game.toTile(hero.getDownLeftCornerY() + speed) == Game.YTILEMAX) {
+        if ((Game.toTile(hero.getDownLeftCornerY() + speed) == Game.YTILEMAX)||(Preferences.getHandicap()==1)) {
             switchDivisionDown();
         } else {
             while (isDownTileAccessible(speed) && speed != 0) {
@@ -265,32 +265,40 @@ public class GameMap {
 
     private void switchDivisionUp() {
         playSwitch();
+        if (mapi>0)
         mapi--;
         division = map[mapi][mapj];
+        if(Preferences.getHandicap()==0)
         hero.setY(Game.FRAMEHEIGHT - hero.getHeight());
         playInstruction();
     }
 
     private void switchDivisionLeft() {
         playSwitch();
+        if (mapj>0)
         mapj--;
         division = map[mapi][mapj];
+        if(Preferences.getHandicap()==0)
         hero.setX(Game.FRAMEWIDTH - hero.getWidth());
         playInstruction();
     }
 
     private void switchDivisionRight() {
         playSwitch();
+        if (mapj<3)
         mapj++;
         division = map[mapi][mapj];
+        if(Preferences.getHandicap()==0)
         hero.setX(0);
         playInstruction();
     }
 
     private void switchDivisionDown() {
         playSwitch();
+        if (mapi<3)
         mapi++;
         division = map[mapi][mapj];
+        if(Preferences.getHandicap()==0)
         hero.setY(0);
         playInstruction();
     }

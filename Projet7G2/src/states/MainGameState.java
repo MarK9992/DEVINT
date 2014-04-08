@@ -52,17 +52,19 @@ public class MainGameState extends BasicGameState {
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-        if(container.getInput().isKeyDown(Input.KEY_LEFT)) {
-            onLeft();
-        }
-        else if(container.getInput().isKeyDown(Input.KEY_UP)) {
-            onUp();
-        }
-        else if(container.getInput().isKeyDown(Input.KEY_RIGHT)) {
-            onRight();
-        }
-        else if(container.getInput().isKeyDown(Input.KEY_DOWN)) {
-            onDown();
+        if (Preferences.getHandicap()==0){
+            if(container.getInput().isKeyDown(Input.KEY_LEFT)) {
+                onLeft();
+            }
+            else if(container.getInput().isKeyDown(Input.KEY_UP)) {
+                onUp();
+            }
+            else if(container.getInput().isKeyDown(Input.KEY_RIGHT)) {
+                onRight();
+            }
+            else if(container.getInput().isKeyDown(Input.KEY_DOWN)) {
+                onDown();
+            }
         }
         updateGoals();
     }
@@ -75,6 +77,20 @@ public class MainGameState extends BasicGameState {
 
     @Override
     public void keyPressed(int key, char c) {
+        if (Preferences.getHandicap()==1){
+            if(container.getInput().isKeyDown(Input.KEY_LEFT)) {
+                onLeft();
+            }
+            else if(container.getInput().isKeyDown(Input.KEY_UP)) {
+                onUp();
+            }
+            else if(container.getInput().isKeyDown(Input.KEY_RIGHT)) {
+                onRight();
+            }
+            else if(container.getInput().isKeyDown(Input.KEY_DOWN)) {
+                onDown();
+            }
+        }
         switch (key) {
             case Input.KEY_F1:
                 onF1();

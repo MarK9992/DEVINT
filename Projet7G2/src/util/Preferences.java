@@ -22,6 +22,9 @@ public class Preferences {
     private static Color textColor;
     private static Color utilityColor;
 
+    public static int handicap=0;
+
+
     private Preferences() {
         currentVoice = 1;
         voice = new SIVOXDevint(currentVoice);
@@ -97,5 +100,13 @@ public class Preferences {
 
     public static SIVOXDevint getVoice() {
         return voice;
+    }
+
+    public static void setHandicap(int i) {
+        handicap=i;
+    }
+
+    public static int getHandicap(){
+        return handicap;
     }
 }
