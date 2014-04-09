@@ -1,6 +1,7 @@
 package util;
 
 import org.newdawn.slick.Color;
+import states.MainGameState;
 import t2s.SIVOXDevint;
 
 /**
@@ -23,6 +24,10 @@ public class Preferences {
     private static Color utilityColor;
 
     public static int handicap=0;
+
+    public static String stockedInstruction="";
+    public static MainGameState game;
+    public static boolean retour=false;
 
 
     private Preferences() {
@@ -108,5 +113,10 @@ public class Preferences {
 
     public static int getHandicap(){
         return handicap;
+    }
+
+    public static void makeSivoxSay(String text){
+        System.out.println(text);
+        getVoice().playShortText(text);
     }
 }
