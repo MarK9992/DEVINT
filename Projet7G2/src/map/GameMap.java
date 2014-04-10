@@ -177,6 +177,7 @@ public class GameMap {
         mapi = 2;
         mapj = 1;
         division = map[mapi][mapj];
+        Preferences.start=map[mapi][mapj];
         try {
             bumpSound = new Sound("../ressources/sound/smb_bump.wav");
             switchSound = new Sound("../ressources/sound/smb2_enter_door.wav");
@@ -290,6 +291,8 @@ public class GameMap {
                 Preferences.makeSivoxSay("Sortir "+instru+".");
         }
         division = map[mapi][mapj];
+        if (division.equals(Preferences.start)&&Preferences.retour)
+            Preferences.game.win();
         if(Preferences.getHandicap()==0)
         hero.setY(Game.FRAMEHEIGHT - hero.getHeight());
 
@@ -304,6 +307,8 @@ public class GameMap {
                 Preferences.makeSivoxSay("Sortir "+instru+".");
         }
         division = map[mapi][mapj];
+        if (division.equals(Preferences.start)&&Preferences.retour)
+            Preferences.game.win();
         if(Preferences.getHandicap()==0)
         hero.setX(Game.FRAMEWIDTH - hero.getWidth());
 
@@ -318,6 +323,8 @@ public class GameMap {
                 Preferences.makeSivoxSay("Sortir "+instru+".");
         }
         division = map[mapi][mapj];
+        if (division.equals(Preferences.start)&&Preferences.retour)
+            Preferences.game.win();
         if(Preferences.getHandicap()==0)
         hero.setX(0);
 
@@ -332,6 +339,8 @@ public class GameMap {
                 Preferences.makeSivoxSay("Sortir "+instru+".");
         }
         division = map[mapi][mapj];
+        if (division.equals(Preferences.start)&&Preferences.retour)
+            Preferences.game.win();
         if(Preferences.getHandicap()==0)
         hero.setY(0);
     }

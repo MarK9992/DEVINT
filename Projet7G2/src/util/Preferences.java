@@ -1,5 +1,6 @@
 package util;
 
+import map.MapDivision;
 import org.newdawn.slick.Color;
 import states.MainGameState;
 import t2s.SIVOXDevint;
@@ -28,6 +29,7 @@ public class Preferences {
     public static String stockedInstruction="";
     public static MainGameState game;
     public static boolean retour=false;
+    public static MapDivision start;
 
 
     private Preferences() {
@@ -117,6 +119,6 @@ public class Preferences {
 
     public static void makeSivoxSay(String text){
         System.out.println(text);
-        getVoice().playShortText(text);
+        //getVoice().playShortText(text);
     }
 }
