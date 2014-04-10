@@ -160,7 +160,7 @@ public class LoginState extends BasicGameState {
     public void enter(GameContainer container, StateBasedGame game) {
         currentButton = 0;
         Preferences.getVoice().stop();
-        Preferences.getVoice().playShortText("Choisissez l'option que vous voulez modifier. Choisir couleurs.");
+        Preferences.getVoice().playShortText("Choisissez le Mode de Jeu. Mal Voyants.");
     }
 
     private void onEnter() {

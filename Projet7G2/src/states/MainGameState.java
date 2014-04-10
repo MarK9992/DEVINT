@@ -43,6 +43,7 @@ public class MainGameState extends BasicGameState {
         if (stateBasedGame instanceof Game) {
             game = (Game) stateBasedGame;
         } else throw new SlickException("init game");
+        Preferences.game=this;
     }
 
     @Override
@@ -66,13 +67,14 @@ public class MainGameState extends BasicGameState {
                 onDown();
             }
         }
-        updateGoals();
+        //updateGoals();
     }
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         Preferences.getVoice().stop();
-        Preferences.getVoice().playShortText(instruction + map.getInstruction());
+        Preferences.makeSivoxSay("Sortir "+Preferences.stockedInstruction+".");
+        //Preferences.getVoice().playShortText(instruction + map.getInstruction());
     }
 
     @Override
@@ -113,8 +115,9 @@ public class MainGameState extends BasicGameState {
 
     private void onEscape() {
         try {
+            Preferences.stockedInstruction=map.getObjective().getCurrentInstruction();
             leave(container, game);
-            game.enterState(4, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));;
+            game.enterState(4, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
         } catch (SlickException e) {
             e.printStackTrace();
         }
@@ -135,7 +138,7 @@ public class MainGameState extends BasicGameState {
 
     private void onF4() {
         Preferences.getVoice().stop();
-        Preferences.getVoice().playShortText(map.getInstruction());
+        Preferences.makeSivoxSay("Sortir "+map.getObjective().getCurrentInstruction()+".");
     }
 
     private void onUp() {
@@ -177,6 +180,7 @@ public class MainGameState extends BasicGameState {
 
     private void reinitGame() {
         goal1 = false;
+        Preferences.retour=false;
         game.reinitGame();
     }
 
@@ -184,5 +188,15 @@ public class MainGameState extends BasicGameState {
 
     public boolean getGoal1() {
         return goal1;
+    }
+
+    public void win(){
+        try {
+            leave(container, game);
+            game.enterState(1, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+            reinitGame();
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
     }
 }

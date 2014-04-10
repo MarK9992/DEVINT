@@ -1,5 +1,8 @@
 package map;
 
+import level.Direction;
+import level.ObjectiveGestion;
+import level.Way;
 import main.Game;
 import objects.Hero;
 import objects.ObjectType;
@@ -9,6 +12,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import states.MainGameState;
 import util.Preferences;
+
+import java.util.ArrayList;
 
 /**
  * Created by Marc KARASSEV on 24/03/14.
@@ -31,12 +36,23 @@ public class GameMap {
     private Sound switchSound;
     private String instruction;
 
+    private ObjectiveGestion objective;
+
     public GameMap(MainGameState game) {
         MapDivision div;
 
         this.game = game;
         map = new MapDivision[MAPWIDTH][MAPHEIGHT];
         hero = new Hero((Game.FRAMEWIDTH - 50) / 2, (Game.FRAMEHEIGHT - 50) / 2, 50, 50);
+
+        ArrayList<Direction> list=new ArrayList<Direction>();
+        list.add(Direction.UP);
+        list.add(Direction.LEFT);
+        list.add(Direction.UP);
+        list.add(Direction.RIGHT);
+        list.add(Direction.DOWN);
+        this.objective=new ObjectiveGestion(list);
+
 
         // Création dégueulasse des divisions
 
@@ -168,6 +184,8 @@ public class GameMap {
             e.printStackTrace();
         }
         instruction = division.getInstruction();
+
+        Preferences.stockedInstruction=objective.getFirstInstruction();
     }
 
     public void renderDivision(Graphics g) {
@@ -265,42 +283,57 @@ public class GameMap {
 
     private void switchDivisionUp() {
         playSwitch();
-        if (mapi>0)
-        mapi--;
+        if (mapi>0){
+            mapi--;
+            String instru = objective.getNextInstruction(Direction.UP);
+            if (!Preferences.retour)
+                Preferences.makeSivoxSay("Sortir "+instru+".");
+        }
         division = map[mapi][mapj];
         if(Preferences.getHandicap()==0)
         hero.setY(Game.FRAMEHEIGHT - hero.getHeight());
-        playInstruction();
+
     }
 
     private void switchDivisionLeft() {
         playSwitch();
-        if (mapj>0)
-        mapj--;
+        if (mapj>0){
+            mapj--;
+            String instru=objective.getNextInstruction(Direction.LEFT);
+            if (!Preferences.retour)
+                Preferences.makeSivoxSay("Sortir "+instru+".");
+        }
         division = map[mapi][mapj];
         if(Preferences.getHandicap()==0)
         hero.setX(Game.FRAMEWIDTH - hero.getWidth());
-        playInstruction();
+
     }
 
     private void switchDivisionRight() {
         playSwitch();
-        if (mapj<3)
-        mapj++;
+        if (mapj<3){
+            mapj++;
+            String instru =objective.getNextInstruction(Direction.RIGHT);
+            if (!Preferences.retour)
+                Preferences.makeSivoxSay("Sortir "+instru+".");
+        }
         division = map[mapi][mapj];
         if(Preferences.getHandicap()==0)
         hero.setX(0);
-        playInstruction();
+
     }
 
     private void switchDivisionDown() {
         playSwitch();
-        if (mapi<3)
-        mapi++;
+        if (mapi<3){
+            mapi++;
+            String instru=objective.getNextInstruction(Direction.DOWN);
+            if (!Preferences.retour)
+                Preferences.makeSivoxSay("Sortir "+instru+".");
+        }
         division = map[mapi][mapj];
         if(Preferences.getHandicap()==0)
         hero.setY(0);
-        playInstruction();
     }
 
     private void playBump() {
@@ -313,12 +346,12 @@ public class GameMap {
         switchSound.play();
     }
 
-    private void playInstruction() {
+ /*   private void playInstruction() {
         if(!game.getGoal1()) {
             instruction = division.getInstruction();
             Preferences.getVoice().playShortText(instruction);
         }
-    }
+    }*/
 
     // Accesseurs
 
@@ -336,5 +369,9 @@ public class GameMap {
 
     public int getMapj() {
         return mapj;
+    }
+
+    public ObjectiveGestion getObjective() {
+        return objective;
     }
 }

@@ -165,6 +165,7 @@ public class PauseMenuState extends BasicGameState{
                 try {
                     leave(container, game);
                     game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                    Preferences.makeSivoxSay(Preferences.stockedInstruction);
                 } catch (SlickException e) {
                     e.printStackTrace();
                 }
