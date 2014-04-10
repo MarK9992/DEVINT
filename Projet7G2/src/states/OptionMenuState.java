@@ -144,11 +144,11 @@ public class OptionMenuState extends BasicGameState {
             case Input.KEY_ESCAPE:
                 onEscape();
                 break;
-            case Input.KEY_F1:
-                onF1();
+            case Input.KEY_F3:
+                onF3();
                 break;
-            case Input.KEY_F2:
-                onF2();
+            case Input.KEY_F4:
+                onF4();
                 break;
             default:
         }
@@ -235,11 +235,11 @@ public class OptionMenuState extends BasicGameState {
         }
     }
 
-    private void onF1() {
+    private void onF3() {
         Preferences.changeColors();
     }
 
-    private void onF2() {
+    private void onF4() {
         Preferences.changeVoice();
     }
 }
