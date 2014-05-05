@@ -9,4 +9,4 @@ doc/
 AtelierCleUSB/
 ressources/
 VocalyzeSIVOX/
- *.rar
+ *.rar *.jar DListor* *.zip jre* slick*
