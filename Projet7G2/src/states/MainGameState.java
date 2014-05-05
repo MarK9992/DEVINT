@@ -1,6 +1,5 @@
 package states;
 
-import main.*;
 import main.Game;
 import map.GameMap;
 import org.newdawn.slick.*;
@@ -73,7 +72,7 @@ public class MainGameState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         Preferences.getVoice().stop();
-        Preferences.makeSivoxSay("Sortir "+Preferences.stockedInstruction+".");
+        Preferences.makeSivoxSay("Sortir " + Preferences.stockedInstruction + ".");
         //Preferences.getVoice().playShortText(instruction + map.getInstruction());
     }
 
@@ -123,22 +122,22 @@ public class MainGameState extends BasicGameState {
         }
     }
 
-    private void onF1() {
+    private void onF3() {
         Preferences.changeColors();
     }
 
-    private void onF2() {
+    private void onF4() {
         Preferences.changeVoice();
     }
 
-    private void onF3() {
+    private void onF1() {
         Preferences.getVoice().stop();
         Preferences.getVoice().playShortText(instruction);
     }
 
-    private void onF4() {
+    private void onF2() {
         Preferences.getVoice().stop();
-        Preferences.makeSivoxSay("Sortir "+map.getObjective().getCurrentInstruction()+".");
+        Preferences.makeSivoxSay("Sortir " + map.getObjective().getCurrentInstruction() + ".");
     }
 
     private void onUp() {
