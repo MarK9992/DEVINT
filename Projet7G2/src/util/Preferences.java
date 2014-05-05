@@ -1,6 +1,8 @@
 package util;
 
+import map.MapDivision;
 import org.newdawn.slick.Color;
+import states.MainGameState;
 import t2s.SIVOXDevint;
 
 /**
@@ -21,6 +23,14 @@ public class Preferences {
     private static Color highlightColor;
     private static Color textColor;
     private static Color utilityColor;
+
+    public static int handicap=0;
+
+    public static String stockedInstruction="";
+    public static MainGameState game;
+    public static boolean retour=false;
+    public static MapDivision start;
+
 
     private Preferences() {
         currentVoice = 1;
@@ -97,5 +107,18 @@ public class Preferences {
 
     public static SIVOXDevint getVoice() {
         return voice;
+    }
+
+    public static void setHandicap(int i) {
+        handicap=i;
+    }
+
+    public static int getHandicap(){
+        return handicap;
+    }
+
+    public static void makeSivoxSay(String text){
+        System.out.println(text);
+        getVoice().playShortText(text);
     }
 }

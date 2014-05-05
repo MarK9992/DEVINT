@@ -1,5 +1,8 @@
 package map;
 
+import level.Direction;
+import level.ObjectiveGestion;
+import level.Way;
 import main.Game;
 import objects.Hero;
 import objects.ObjectType;
@@ -9,6 +12,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import states.MainGameState;
 import util.Preferences;
+
+import java.util.ArrayList;
 
 /**
  * Created by Marc KARASSEV on 24/03/14.
@@ -31,12 +36,23 @@ public class GameMap {
     private Sound switchSound;
     private String instruction;
 
+    private ObjectiveGestion objective;
+
     public GameMap(MainGameState game) {
         MapDivision div;
 
         this.game = game;
         map = new MapDivision[MAPWIDTH][MAPHEIGHT];
         hero = new Hero((Game.FRAMEWIDTH - 50) / 2, (Game.FRAMEHEIGHT - 50) / 2, 50, 50);
+
+        ArrayList<Direction> list=new ArrayList<Direction>();
+        list.add(Direction.UP);
+        list.add(Direction.LEFT);
+        list.add(Direction.UP);
+        list.add(Direction.RIGHT);
+        list.add(Direction.DOWN);
+        this.objective=new ObjectiveGestion(list);
+
 
         // Création dégueulasse des divisions
 
@@ -161,6 +177,7 @@ public class GameMap {
         mapi = 2;
         mapj = 1;
         division = map[mapi][mapj];
+        Preferences.start=map[mapi][mapj];
         try {
             bumpSound = new Sound("../ressources/sound/smb_bump.wav");
             switchSound = new Sound("../ressources/sound/smb2_enter_door.wav");
@@ -168,6 +185,8 @@ public class GameMap {
             e.printStackTrace();
         }
         instruction = division.getInstruction();
+
+        Preferences.stockedInstruction=objective.getFirstInstruction();
     }
 
     public void renderDivision(Graphics g) {
@@ -178,7 +197,7 @@ public class GameMap {
     public void moveHeroUp() {
         int speed = -DEFAULTSPEED;
 
-        if (Game.toTile(hero.getUpLeftCornerY() + speed) == -1) {
+        if ((Game.toTile(hero.getUpLeftCornerY() + speed) == -1)||(Preferences.getHandicap()==1)) {
             switchDivisionUp();
         } else {
             while (isUpTileAccessible(speed) && speed != 0) {
@@ -195,7 +214,7 @@ public class GameMap {
     public void moveHeroLeft() {
         int speed = -DEFAULTSPEED;
 
-        if (Game.toTile(hero.getUpLeftCornerX() + speed) == -1) {
+        if ((Game.toTile(hero.getUpLeftCornerX() + speed) == -1)||(Preferences.getHandicap()==1)) {
             switchDivisionLeft();
         } else {
             while (isLeftTileAccessible(speed) && speed != 0) {
@@ -212,7 +231,7 @@ public class GameMap {
     public void moveHeroRight() {
         int speed = DEFAULTSPEED;
 
-        if (Game.toTile(hero.getUpRightCornerX() + speed) == Game.XTILEMAX) {
+        if ((Game.toTile(hero.getUpRightCornerX() + speed) == Game.XTILEMAX)||(Preferences.getHandicap()==1)) {
             switchDivisionRight();
         } else {
             while (isRightTileAccessible(speed) && speed != 0) {
@@ -229,7 +248,7 @@ public class GameMap {
     public void moveHeroDown() {
         int speed = DEFAULTSPEED;
 
-        if (Game.toTile(hero.getDownLeftCornerY() + speed) == Game.YTILEMAX) {
+        if ((Game.toTile(hero.getDownLeftCornerY() + speed) == Game.YTILEMAX)||(Preferences.getHandicap()==1)) {
             switchDivisionDown();
         } else {
             while (isDownTileAccessible(speed) && speed != 0) {
@@ -265,34 +284,65 @@ public class GameMap {
 
     private void switchDivisionUp() {
         playSwitch();
-        mapi--;
+        if (mapi>0){
+            mapi--;
+            String instru = objective.getNextInstruction(Direction.UP);
+            if (!Preferences.retour)
+                Preferences.makeSivoxSay("Sortir "+instru+".");
+        }
         division = map[mapi][mapj];
+        if (division.equals(Preferences.start)&&Preferences.retour)
+            Preferences.game.win();
+        if(Preferences.getHandicap()==0)
         hero.setY(Game.FRAMEHEIGHT - hero.getHeight());
-        playInstruction();
+
     }
 
     private void switchDivisionLeft() {
         playSwitch();
-        mapj--;
+        if (mapj>0){
+            mapj--;
+            String instru=objective.getNextInstruction(Direction.LEFT);
+            if (!Preferences.retour)
+                Preferences.makeSivoxSay("Sortir "+instru+".");
+        }
         division = map[mapi][mapj];
+        if (division.equals(Preferences.start)&&Preferences.retour)
+            Preferences.game.win();
+        if(Preferences.getHandicap()==0)
         hero.setX(Game.FRAMEWIDTH - hero.getWidth());
-        playInstruction();
+
     }
 
     private void switchDivisionRight() {
         playSwitch();
-        mapj++;
+        if (mapj<3){
+            mapj++;
+            String instru =objective.getNextInstruction(Direction.RIGHT);
+            if (!Preferences.retour)
+                Preferences.makeSivoxSay("Sortir "+instru+".");
+        }
         division = map[mapi][mapj];
+        if (division.equals(Preferences.start)&&Preferences.retour)
+            Preferences.game.win();
+        if(Preferences.getHandicap()==0)
         hero.setX(0);
-        playInstruction();
+
     }
 
     private void switchDivisionDown() {
         playSwitch();
-        mapi++;
+        if (mapi<3){
+            mapi++;
+            String instru=objective.getNextInstruction(Direction.DOWN);
+            if (!Preferences.retour)
+                Preferences.makeSivoxSay("Sortir "+instru+".");
+        }
         division = map[mapi][mapj];
+        if (division.equals(Preferences.start)&&Preferences.retour)
+            Preferences.game.win();
+        if(Preferences.getHandicap()==0)
         hero.setY(0);
-        playInstruction();
     }
 
     private void playBump() {
@@ -305,12 +355,12 @@ public class GameMap {
         switchSound.play();
     }
 
-    private void playInstruction() {
+ /*   private void playInstruction() {
         if(!game.getGoal1()) {
             instruction = division.getInstruction();
             Preferences.getVoice().playShortText(instruction);
         }
-    }
+    }*/
 
     // Accesseurs
 
@@ -328,5 +378,9 @@ public class GameMap {
 
     public int getMapj() {
         return mapj;
+    }
+
+    public ObjectiveGestion getObjective() {
+        return objective;
     }
 }

@@ -1,5 +1,6 @@
 package main;
 
+import level.Direction;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -18,6 +19,7 @@ public class Game extends StateBasedGame {
     public static final int XTILEMAX = 16;
     public static final int YTILEMAX = 12;
     public static final int TARGETFRAMERATE = 60;
+    public static int handicap=0;
 
     private AppGameContainer container;
     private LoginState login;
@@ -48,8 +50,9 @@ public class Game extends StateBasedGame {
         options = new OptionMenuState();
         pause = new PauseMenuState();
         container.setShowFPS(false);
-        //addState(login);
+        addState(login);
         addState(menu);
+
         addState(game);
         addState(options);
         addState(pause);
@@ -75,4 +78,6 @@ public class Game extends StateBasedGame {
             e.printStackTrace();
         }
     }
+
+
 }

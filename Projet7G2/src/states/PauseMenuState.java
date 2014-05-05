@@ -165,6 +165,7 @@ public class PauseMenuState extends BasicGameState{
                 try {
                     leave(container, game);
                     game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                    Preferences.makeSivoxSay(Preferences.stockedInstruction);
                 } catch (SlickException e) {
                     e.printStackTrace();
                 }
@@ -237,7 +238,7 @@ public class PauseMenuState extends BasicGameState{
     private void onEscape() {
         try {
             leave(container, game);
-            game.enterState(3, new FadeOutTransition(org.newdawn.slick.Color.black), new FadeInTransition(org.newdawn.slick.Color.black));
+            game.enterState(1, new FadeOutTransition(org.newdawn.slick.Color.black), new FadeInTransition(org.newdawn.slick.Color.black));
         } catch (SlickException e) {
             e.printStackTrace();
         }

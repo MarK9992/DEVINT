@@ -31,7 +31,7 @@ public class MainMenuState extends BasicGameState {
     private static final int ID = 1;
     private static final String PLAY = "JOUER";
     private static final String OPTIONS = "OPTIONS";
-    private static final String QUIT = "QUITTER";
+    private static final String QUIT = "RETOUR";
     private static final TrueTypeFont FONT = new TrueTypeFont(new Font("Arial", Font.BOLD, 60), true);
     private static final int PLAYX = (Game.FRAMEWIDTH - FONT.getWidth(PLAY)) / 2;
     private static final int PLAYY = (Game.FRAMEHEIGHT - 3 * FONT.getHeight() - 120) / 2;
@@ -186,10 +186,10 @@ public class MainMenuState extends BasicGameState {
                 break;
             case 2:
                 Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Quitter.");
+                Preferences.getVoice().playShortText("Retour.");
                 try {
                     leave(container, game);
-                    System.exit(0);
+                    game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 } catch (SlickException e) {
                     e.printStackTrace();
                 }
@@ -204,7 +204,7 @@ public class MainMenuState extends BasicGameState {
             case 0:
                 Preferences.getVoice().stop();
                 currentButton = 2;
-                Preferences.getVoice().playShortText("Quitter.");
+                Preferences.getVoice().playShortText("Retour.");
                 break;
             case 1:
                 currentButton = 0;
@@ -231,7 +231,7 @@ public class MainMenuState extends BasicGameState {
             case 1:
                 currentButton = 2;
                 Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Quitter.");
+                Preferences.getVoice().playShortText("Retour.");
                 break;
             case 2:
                 currentButton = 0;
@@ -245,7 +245,7 @@ public class MainMenuState extends BasicGameState {
 
     private void onEscape() {
         Preferences.getVoice().stop();
-        Preferences.getVoice().playShortText("Quitter.");
+        Preferences.getVoice().playShortText("Retour.");
         try {
             leave(container, game);
             game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
