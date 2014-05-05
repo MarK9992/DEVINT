@@ -1,5 +1,5 @@
 rem set PATH=../../lib/;../../jre/bin/
-rem javac -cp .;../../VocalyzeSIVOX/bin/SI_VOX.jar -Djava.library.path=../ressources/lib/ -d ../bin devintAPI/*.java jeu/*.java
+rem -cp .;../../VocalyzeSIVOX/bin/SI_VOX.jar;../ressources/lib/slick/slick.jar;../ressources/lib/slick/lwjgl.jar -d ../bin src/*.java
 
-javac -cp .;../../VocalyzeSIVOX/bin/SI_VOX.jar -d ../bin devintAPI/*.java jeu/*.java  
+javac -cp .;../../VocalyzeSIVOX/bin/SI_VOX.jar;../ressources/lib/slick/slick.jar;../ressources/lib/slick/lwjgl.jar -d ../bin level/*.java main/*.java map/*.java objects/*.java states/*.java util/*.java
 pause

@@ -119,6 +119,6 @@ public class Preferences {
 
     public static void makeSivoxSay(String text){
         System.out.println(text);
-        //getVoice().playShortText(text);
+        getVoice().playShortText(text);
     }
 }
