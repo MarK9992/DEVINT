@@ -1,9 +1,6 @@
 package objects;
 
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
+import org.newdawn.slick.*;
 import util.Preferences;
 
 /**
@@ -19,7 +16,12 @@ public class Hero {
     private int height;
     private Sound moveSound;
     private Image sheet;
-    
+    private short xSheet;
+    private short ySheet;
+
+    private static final Color TRANSP = new Color(34, 177, 76);
+    private static final byte[][] DARKSLIMECOORD = {{70, 67}};
+    private static final byte[][] DARKSLIMEDIM = {{36, 29}};
 
     public Hero() {
         this(0, 0, 1, 1);
@@ -30,6 +32,7 @@ public class Hero {
         this.y = y;
         this.width = width;
         this.height = height;
+        sheet = null;
         try {
             moveSound = new Sound("../ressources/sound/smb_stomp.wav");
         } catch (SlickException e) {
@@ -37,9 +40,29 @@ public class Hero {
         }
     }
 
+    public Hero(int x, int y, String sheet) {
+        // TODO recentrer en fonction des sprites
+        this.x = x;
+        this.y = y;
+        try {
+            this.sheet = new Image(sheet, TRANSP);
+            moveSound = new Sound("../ressources/sound/smb_stomp.wav");
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
+        width = DARKSLIMEDIM[0][0];
+        height = DARKSLIMEDIM[0][1];
+    }
+
     public void draw(Graphics g) {
-        g.setColor(Preferences.getHighlightColor());
-        g.fillRect(x, y, width, height);
+        if(sheet == null) {
+            g.setColor(Preferences.getHighlightColor());
+            g.fillRect(x, y, width, height);
+        }
+        else {
+            g.drawImage(sheet, x, y, x + DARKSLIMEDIM[0][0], y + DARKSLIMEDIM[0][1], DARKSLIMECOORD[0][0], DARKSLIMECOORD[0][1],
+                    DARKSLIMECOORD[0][0] + DARKSLIMEDIM[0][0], DARKSLIMECOORD[0][1] + DARKSLIMEDIM[0][1]);
+        }
     }
 
     public void moveV(int y) {
