@@ -1,6 +1,7 @@
 package objects;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import util.Preferences;
@@ -17,6 +18,8 @@ public class Hero {
     private int width;
     private int height;
     private Sound moveSound;
+    private Image sheet;
+    
 
     public Hero() {
         this(0, 0, 1, 1);
