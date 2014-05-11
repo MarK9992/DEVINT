@@ -43,8 +43,8 @@ public class GameMap {
 
         this.game = game;
         map = new MapDivision[MAPWIDTH][MAPHEIGHT];
-        //hero = new Hero((Game.FRAMEWIDTH - 50) / 2, (Game.FRAMEHEIGHT - 50) / 2, 50, 50);
-        hero = new Hero((Game.FRAMEWIDTH - 50) / 2, (Game.FRAMEHEIGHT - 50) / 2, "../ressources/pic/dark slimes.png");
+        //hero = new Hero(50, 50);
+        hero = new Hero("../ressources/pic/dark slimes.png");
 
         ArrayList<Direction> list=new ArrayList<Direction>();
         list.add(Direction.UP);

@@ -1,6 +1,7 @@
 package objects;
 
 import org.newdawn.slick.*;
+import main.Game;
 import util.Preferences;
 
 /**
@@ -24,14 +25,14 @@ public class Hero {
     private static final byte[][] DARKSLIMEDIM = {{36, 29}};
 
     public Hero() {
-        this(0, 0, 1, 1);
+        this(1, 1);
     }
 
-    public Hero(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
+    public Hero(int width, int height) {
         this.width = width;
         this.height = height;
+        x = (Game.FRAMEWIDTH - width) / 2;
+        y = (Game.FRAMEHEIGHT - height) / 2;
         sheet = null;
         try {
             moveSound = new Sound("../ressources/sound/smb_stomp.wav");
@@ -40,10 +41,7 @@ public class Hero {
         }
     }
 
-    public Hero(int x, int y, String sheet) {
-        // TODO recentrer en fonction des sprites
-        this.x = x;
-        this.y = y;
+    public Hero(String sheet) {
         try {
             this.sheet = new Image(sheet, TRANSP);
             moveSound = new Sound("../ressources/sound/smb_stomp.wav");
@@ -52,6 +50,8 @@ public class Hero {
         }
         width = DARKSLIMEDIM[0][0];
         height = DARKSLIMEDIM[0][1];
+        x = (Game.FRAMEWIDTH - width) / 2;
+        y = (Game.FRAMEHEIGHT - height) / 2;
     }
 
     public void draw(Graphics g) {
