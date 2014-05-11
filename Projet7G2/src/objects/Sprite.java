@@ -40,12 +40,15 @@ public enum Sprite {
                 break;
             case 1:
                 sheet = "../ressources/pic/angel slimes.png";
+                setAngelMatrixes();
                 break;
             case 2:
                 sheet = "../ressources/pic/fang slimes.png";
+                setFangMatrixes();
                 break;
             case 3:
                 sheet = "../ressources/pic/slimes.png";
+                setSlimeMatrixes();
                 break;
             default:
         }
@@ -58,6 +61,27 @@ public enum Sprite {
         COORD[0][1] = 67;
         DIM[0][0] = 36;
         DIM[0][1] = 29;
+    }
+
+    private void setAngelMatrixes() {
+        COORD[0][0] = 0;
+        COORD[0][1] = 62;
+        DIM[0][0] = 38;
+        DIM[0][1] = 29;
+    }
+
+    private void setFangMatrixes() {
+        COORD[0][0] = 0;
+        COORD[0][1] = 68;
+        DIM[0][0] = 36;
+        DIM[0][1] = 34;
+    }
+
+    private void setSlimeMatrixes() {
+        COORD[0][0] = 0;
+        COORD[0][1] = 100;
+        DIM[0][0] = 24;
+        DIM[0][1] = 24;
     }
 
     // Methods
