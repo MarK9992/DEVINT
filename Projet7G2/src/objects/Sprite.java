@@ -1,10 +1,82 @@
 package objects;
 
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+
 /**
  * Created by Marc KARASSEV on 02/05/2014.
+ *
+ * Each sprite has four images related to their movement direction.
+ * The coordinate and dimensions of these images in the sheet are stored in the fields COORD and DIM.
+ * The lignes of these matrixes match to an image, they are ordered by the sprite's direction : SOUTH, WEST, EAST and NORTH.
+ * The first column is the x location for COORD or the width for DIM, the second column is the y location or the height.
  *
  * @author Marc KARASSEV
  */
 public enum Sprite {
-    //TODO
+
+    // Constants
+
+    DARKSLIME(0),
+    ANGELSLIME(1),
+    FANGSLIME(2),
+    SLIME(3);
+
+    // Fields
+
+    private String sheet;
+    private final short[][] COORD = new short[4][2], DIM = new short[4][2];
+    public static final Color TRANSP = new Color(34, 177, 76);
+
+    // Constructors
+
+    private Sprite(int type) {
+        switch(type) {
+            case 0:
+                sheet = "../ressources/pic/dark slimes.png";
+                setDarkMatrixes();
+                break;
+            case 1:
+                sheet = "../ressources/pic/angel slimes.png";
+                break;
+            case 2:
+                sheet = "../ressources/pic/fang slimes.png";
+                break;
+            case 3:
+                sheet = "../ressources/pic/slimes.png";
+                break;
+            default:
+        }
+    }
+
+    // Init methods
+
+    private void setDarkMatrixes() {
+        COORD[0][0] = 70;
+        COORD[0][1] = 67;
+        DIM[0][0] = 36;
+        DIM[0][1] = 29;
+    }
+
+    // Methods
+
+    public short[] getSouthCoords() {
+        short[] coords = {COORD[0][0], COORD[0][1]};
+
+        return coords;
+    }
+
+    public short[] getSouthDims() {
+        short[] dims = {DIM[0][0], DIM[0][1]};
+
+        return dims;
+    }
+
+    // Getters and setters
+
+    public String getSheet() {
+        return sheet;
+    }
 }
