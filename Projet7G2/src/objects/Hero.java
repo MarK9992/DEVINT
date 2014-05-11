@@ -11,18 +11,17 @@ import util.Preferences;
  */
 public class Hero {
 
+    // Fields
+
     private int x;
     private int y;
     private int width;
     private int height;
     private Sound moveSound;
+    private Sprite sprite;
     private Image sheet;
-    private short xSheet;
-    private short ySheet;
 
-    private static final Color TRANSP = new Color(34, 177, 76);
-    private static final byte[][] DARKSLIMECOORD = {{70, 67}};
-    private static final byte[][] DARKSLIMEDIM = {{36, 29}};
+    // Constructors
 
     public Hero() {
         this(1, 1);
@@ -33,7 +32,6 @@ public class Hero {
         this.height = height;
         x = (Game.FRAMEWIDTH - width) / 2;
         y = (Game.FRAMEHEIGHT - height) / 2;
-        sheet = null;
         try {
             moveSound = new Sound("../ressources/sound/smb_stomp.wav");
         } catch (SlickException e) {
@@ -41,27 +39,30 @@ public class Hero {
         }
     }
 
-    public Hero(String sheet) {
+    public Hero(Sprite sprite) {
+        this.sprite = sprite;
         try {
-            this.sheet = new Image(sheet, TRANSP);
+            sheet = new Image(sprite.getSheet(), Sprite.TRANSP);
             moveSound = new Sound("../ressources/sound/smb_stomp.wav");
         } catch (SlickException e) {
             e.printStackTrace();
         }
-        width = DARKSLIMEDIM[0][0];
-        height = DARKSLIMEDIM[0][1];
+        width = sprite.getSouthDims()[0];
+        height = sprite.getSouthDims()[1];
         x = (Game.FRAMEWIDTH - width) / 2;
         y = (Game.FRAMEHEIGHT - height) / 2;
     }
 
+    // Methods
+
     public void draw(Graphics g) {
-        if(sheet == null) {
+        if(sprite == null) {
             g.setColor(Preferences.getHighlightColor());
             g.fillRect(x, y, width, height);
         }
         else {
-            g.drawImage(sheet, x, y, x + DARKSLIMEDIM[0][0], y + DARKSLIMEDIM[0][1], DARKSLIMECOORD[0][0], DARKSLIMECOORD[0][1],
-                    DARKSLIMECOORD[0][0] + DARKSLIMEDIM[0][0], DARKSLIMECOORD[0][1] + DARKSLIMEDIM[0][1]);
+            short[] coords = sprite.getSouthCoords();
+            g.drawImage(sheet, x, y, x + width, y + height, coords[0], coords[1], coords[0] + width, coords[1] + height);
         }
     }
 
@@ -73,6 +74,12 @@ public class Hero {
     public void moveH(int x) {
         this.x += x;
         playMove();
+    }
+
+    private void playMove() {
+        if(!moveSound.playing()) {
+            moveSound.play();
+        }
     }
 
     public int getUpLeftCornerX() { return x; }
@@ -90,6 +97,8 @@ public class Hero {
     public int getDownLeftCornerY() { return  y + height; }
 
     public int getDownRightCornerY() { return y + height; }
+
+    // Getters and setters
 
     public int getX() {
         return x;
@@ -114,11 +123,5 @@ public class Hero {
     public int getHeight() {
         return height;
 
-    }
-
-    private void playMove() {
-        if(!moveSound.playing()) {
-            moveSound.play();
-        }
     }
 }

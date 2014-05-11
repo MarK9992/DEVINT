@@ -7,6 +7,7 @@ import main.Game;
 import objects.Hero;
 import objects.ObjectType;
 import objects.Rock;
+import objects.Sprite;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -44,7 +45,7 @@ public class GameMap {
         this.game = game;
         map = new MapDivision[MAPWIDTH][MAPHEIGHT];
         //hero = new Hero(50, 50);
-        hero = new Hero("../ressources/pic/dark slimes.png");
+        hero = new Hero(Sprite.DARKSLIME);
 
         ArrayList<Direction> list=new ArrayList<Direction>();
         list.add(Direction.UP);
