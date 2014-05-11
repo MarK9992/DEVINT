@@ -20,6 +20,8 @@ public class Hero {
     private Sound moveSound;
     private Sprite sprite;
     private Image sheet;
+    private short xSheet;
+    private short ySheet;
 
     // Constructors
 
@@ -47,6 +49,8 @@ public class Hero {
         } catch (SlickException e) {
             e.printStackTrace();
         }
+        xSheet = sprite.getSouthCoords()[0];
+        ySheet = sprite.getSouthCoords()[1];
         width = sprite.getSouthDims()[0];
         height = sprite.getSouthDims()[1];
         x = (Game.FRAMEWIDTH - width) / 2;
@@ -61,8 +65,7 @@ public class Hero {
             g.fillRect(x, y, width, height);
         }
         else {
-            short[] coords = sprite.getSouthCoords();
-            g.drawImage(sheet, x, y, x + width, y + height, coords[0], coords[1], coords[0] + width, coords[1] + height);
+            g.drawImage(sheet, x, y, x + width, y + height, xSheet, ySheet, xSheet + width, ySheet + height);
         }
     }
 
