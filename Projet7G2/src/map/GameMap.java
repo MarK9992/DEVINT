@@ -22,11 +22,12 @@ import java.util.ArrayList;
  */
 public class GameMap {
 
-    private static final int MAPWIDTH = 4;
-    private static final int MAPHEIGHT = 4;
+    private int mapWidth;
+    private int mapHeight;
     private static final int DEFAULTSPEED = 5;
 
     private MainGameState game;
+    private MapCreator mapCreator;
     private MapDivision[][] map;
     private MapDivision division;
     private int mapi;
@@ -39,11 +40,11 @@ public class GameMap {
     private ObjectiveGestion objective;
 
     public GameMap(MainGameState game) {
-        MapDivision div;
 
         this.game = game;
-        map = new MapDivision[MAPWIDTH][MAPHEIGHT];
+       // map = new MapDivision[MAPWIDTH][MAPHEIGHT];
         hero = new Hero((Game.FRAMEWIDTH - 50) / 2, (Game.FRAMEHEIGHT - 50) / 2, 50, 50);
+        mapCreator=new MapCreator();
 
         ArrayList<Direction> list=new ArrayList<Direction>();
         list.add(Direction.UP);
@@ -53,129 +54,10 @@ public class GameMap {
         list.add(Direction.DOWN);
         this.objective=new ObjectiveGestion(list);
 
+        mapCreator.initialize(this);
 
-        // Création dégueulasse des divisions
-
-        div = new MapDivision("Allez à droite.");
-        div.addObject(new Rock(0, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 2 * Game.TILE, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 8 * Game.TILE, 4 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 2 * Game.TILE, 2 * Game.TILE, 10 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(2 * Game.TILE, 10 * Game.TILE, 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        map[0][0] = div;
-
-
-        div = new MapDivision("Allez en bas.");
-        div.addObject(new Rock(0, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 2 * Game.TILE, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 8 * Game.TILE, 8 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 6 * Game.TILE, 4 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
-        map[0][1] = div;
-
-
-        div = new MapDivision("Allez en bas.");
-        div.addObject(new Rock(0, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 6 * Game.TILE, 6 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(10 * Game.TILE, 8 * Game.TILE, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        map[0][2] = div;
-
-
-        div = new MapDivision("Sortir à gauche.");
-        div.addObject(new Rock(0, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 8 * Game.TILE, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(14 * Game.TILE, 0, 2 * Game.TILE, 12 * Game.TILE, ObjectType.ROCK));
-        map[0][3] = div;
-
-        div = new MapDivision("Sortir en bas.");
-        div.addObject(new Rock(0, 0, 8 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 4 * Game.TILE, 4 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 8 * Game.TILE, 2 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 0, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(14 * Game.TILE, 2 * Game.TILE, 2 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(6 * Game.TILE, 10 * Game.TILE, 10 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(8 * Game.TILE, 8 * Game.TILE, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        map[1][0] = div;
-
-        div = new MapDivision("Sortir à gauche.");
-        div.addObject(new Rock(0, 0, 8 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 8 * Game.TILE, 8 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 0, 4 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
-        map[1][1] = div;
-
-        div = new MapDivision("Sortir en bas.");
-        div.addObject(new Rock(0, 0, 6 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
-        div.addObject(new Rock(10 * Game.TILE, 0, 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(10 * Game.TILE, 6 * Game.TILE, 6 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
-        map[1][2] = div;
-
-        div = new MapDivision("Sortir à gauche.");
-        div.addObject(new Rock(0, 0, 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 6 * Game.TILE, 8 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(14 * Game.TILE, 0, 2 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 8 * Game.TILE, 2 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        map[1][3] = div;
-
-        div = new MapDivision("Sortir en bas.");
-        div.addObject(new Rock(0, 0, 2 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
-        div.addObject(new Rock(6 * Game.TILE, 0, 10 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(2 * Game.TILE, 10 * Game.TILE, 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(14 * Game.TILE, 6 * Game.TILE, 2 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 10 * Game.TILE, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        map[2][0] = div;
-
-        div = new MapDivision("Sortir en haut.");
-        div.addObject(new Rock(0, 0, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 0, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 6 * Game.TILE, 4 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 10 * Game.TILE, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        map[2][1] = div;
-
-        div = new MapDivision("Sortir à gauche.");
-        div.addObject(new Rock(0, 0, 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(10 * Game.TILE, 0, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 10 * Game.TILE, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(10 * Game.TILE, 8 * Game.TILE, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        map[2][2] = div;
-
-        div = new MapDivision("Sortir à gauche.");
-        div.addObject(new Rock(0, 0, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 2 * Game.TILE, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(14 * Game.TILE, 0, 2 * Game.TILE, Game.FRAMEHEIGHT, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 0, 2 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 8 * Game.TILE, 4 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(8 * Game.TILE, 10 * Game.TILE, 6 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        map[2][3] = div;
-
-        div = new MapDivision("Bien. Retournez au point de départ maintenant.");
-        div.addObject(new Rock(0, 0, 2 * Game.TILE, 10 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(2 * Game.TILE, 0, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 10 * Game.TILE, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 0, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(14 * Game.TILE, 6 * Game.TILE, 2 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
-        map[3][0] = div;
-
-        div = new MapDivision("Sortir en haut.");
-        div.addObject(new Rock(0, 0, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(12 * Game.TILE, 0, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 6 * Game.TILE, Game.FRAMEWIDTH, 6 * Game.TILE, ObjectType.ROCK));
-        map[3][1] = div;
-
-        div = new MapDivision("Sortir à gauche.");
-        div.addObject(new Rock(0, 0, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 6 * Game.TILE, Game.FRAMEWIDTH, 6 * Game.TILE, ObjectType.ROCK));
-        map[3][2] = div;
-
-        div = new MapDivision("Sortir à gauche.");
-        div.addObject(new Rock(0, 0, 4 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 6 * Game.TILE, 4 * Game.TILE, 6 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(0, 10 * Game.TILE, Game.FRAMEWIDTH, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(8 * Game.TILE, 0, 8 * Game.TILE, 2 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(10 * Game.TILE, 2 * Game.TILE, 6 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        div.addObject(new Rock(14 * Game.TILE, 6 * Game.TILE, 2 * Game.TILE, 4 * Game.TILE, ObjectType.ROCK));
-        map[3][3] = div;
-
-        mapi = 2;
-        mapj = 1;
+        mapi = 1;
+        mapj = 2;
         division = map[mapi][mapj];
         Preferences.start=map[mapi][mapj];
         try {
@@ -284,8 +166,8 @@ public class GameMap {
 
     private void switchDivisionUp() {
         playSwitch();
-        if (mapi>0){
-            mapi--;
+        if (mapj>0){
+            mapj--;
             String instru = objective.getNextInstruction(Direction.UP);
             if (!Preferences.retour)
                 Preferences.makeSivoxSay("Sortir "+instru+".");
@@ -300,8 +182,8 @@ public class GameMap {
 
     private void switchDivisionLeft() {
         playSwitch();
-        if (mapj>0){
-            mapj--;
+        if (mapi>0){
+            mapi--;
             String instru=objective.getNextInstruction(Direction.LEFT);
             if (!Preferences.retour)
                 Preferences.makeSivoxSay("Sortir "+instru+".");
@@ -316,8 +198,8 @@ public class GameMap {
 
     private void switchDivisionRight() {
         playSwitch();
-        if (mapj<3){
-            mapj++;
+        if (mapi<mapWidth-1){
+            mapi++;
             String instru =objective.getNextInstruction(Direction.RIGHT);
             if (!Preferences.retour)
                 Preferences.makeSivoxSay("Sortir "+instru+".");
@@ -332,8 +214,8 @@ public class GameMap {
 
     private void switchDivisionDown() {
         playSwitch();
-        if (mapi<3){
-            mapi++;
+        if (mapj<mapHeight-1){
+            mapj++;
             String instru=objective.getNextInstruction(Direction.DOWN);
             if (!Preferences.retour)
                 Preferences.makeSivoxSay("Sortir "+instru+".");
@@ -382,5 +264,17 @@ public class GameMap {
 
     public ObjectiveGestion getObjective() {
         return objective;
+    }
+
+    public void setMapWidth(int mapWidth) {
+        this.mapWidth = mapWidth;
+    }
+
+    public void setMapHeight(int mapHeight) {
+        this.mapHeight = mapHeight;
+    }
+
+    public void setMap(MapDivision[][] map) {
+        this.map = map;
     }
 }
