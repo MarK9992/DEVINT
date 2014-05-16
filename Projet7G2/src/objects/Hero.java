@@ -24,6 +24,8 @@ public class Hero {
     private short ySheet;
     private byte direction;
 
+    private static final byte DOWN = 0, LEFT = 1, RIGHT = 2, UP = 3;
+
     // Constructors
 
     public Hero() {
@@ -72,6 +74,9 @@ public class Hero {
     }
 
     public void moveUp(int y) {
+        if(direction != UP) {
+            setDirectionUP();
+        }
         if(y > 0) {
             this.y -= y;
             playMove();
@@ -79,6 +84,9 @@ public class Hero {
     }
 
     public void moveDown(int y) {
+        if(direction != DOWN) {
+            setDirectionDOWN();
+        }
         if(y > 0) {
             this.y += y;
             playMove();
@@ -86,6 +94,9 @@ public class Hero {
     }
 
     public void moveLeft(int x) {
+        if(direction != LEFT) {
+            setDirectionLEFT();
+        }
         if(x > 0) {
             this.x -= x;
             playMove();
@@ -93,10 +104,45 @@ public class Hero {
     }
 
     public void moveRight(int x) {
+        if(direction != RIGHT) {
+            setDirectionRIGHT();
+        }
         if(x > 0) {
             this.x += x;
             playMove();
         }
+    }
+
+    private void setDirectionUP() {
+        direction = UP;
+        xSheet = sprite.getNorthCoords()[0];
+        ySheet = sprite.getNorthCoords()[1];
+        width = 2 * sprite.getNorthDims()[0];
+        height = 2 * sprite.getNorthDims()[1];
+    }
+
+    private void setDirectionLEFT() {
+        direction = LEFT;
+        xSheet = sprite.getWestCoords()[0];
+        ySheet = sprite.getWestCoords()[1];
+        width = 2 * sprite.getWestDims()[0];
+        height = 2 * sprite.getWestDims()[1];
+    }
+
+    private void setDirectionRIGHT() {
+        direction = RIGHT;
+        xSheet = sprite.getWestCoords()[0];
+        ySheet = sprite.getWestCoords()[1];
+        width = 2 * sprite.getWestDims()[0];
+        height = 2 * sprite.getWestDims()[1];
+    }
+
+    private void setDirectionDOWN() {
+        direction = RIGHT;
+        xSheet = sprite.getSouthCoords()[0];
+        ySheet = sprite.getSouthCoords()[1];
+        width = 2 * sprite.getSouthDims()[0];
+        height = 2 * sprite.getSouthDims()[1];
     }
 
     private void playMove() {
