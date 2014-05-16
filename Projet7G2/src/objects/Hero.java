@@ -22,6 +22,7 @@ public class Hero {
     private Image sheet;
     private short xSheet;
     private short ySheet;
+    private byte direction;
 
     // Constructors
 
@@ -49,6 +50,7 @@ public class Hero {
         } catch (SlickException e) {
             e.printStackTrace();
         }
+        direction = 0;
         xSheet = sprite.getSouthCoords()[0];
         ySheet = sprite.getSouthCoords()[1];
         width = 2 * sprite.getSouthDims()[0];
