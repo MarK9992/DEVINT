@@ -51,8 +51,8 @@ public class Hero {
         }
         xSheet = sprite.getSouthCoords()[0];
         ySheet = sprite.getSouthCoords()[1];
-        width = sprite.getSouthDims()[0];
-        height = sprite.getSouthDims()[1];
+        width = 2 * sprite.getSouthDims()[0];
+        height = 2 * sprite.getSouthDims()[1];
         x = (Game.FRAMEWIDTH - width) / 2;
         y = (Game.FRAMEHEIGHT - height) / 2;
     }
@@ -65,7 +65,7 @@ public class Hero {
             g.fillRect(x, y, width, height);
         }
         else {
-            g.drawImage(sheet, x, y, x + width, y + height, xSheet, ySheet, xSheet + width, ySheet + height);
+            g.drawImage(sheet, x, y, x + width, y + height, xSheet, ySheet, xSheet + width / 2, ySheet + height / 2);
         }
     }
 

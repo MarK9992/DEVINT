@@ -45,7 +45,7 @@ public class GameMap {
         this.game = game;
         map = new MapDivision[MAPWIDTH][MAPHEIGHT];
         //hero = new Hero(50, 50);
-        hero = new Hero(Sprite.DARKSLIME);
+        hero = new Hero(Sprite.FANGSLIME);
 
         ArrayList<Direction> list=new ArrayList<Direction>();
         list.add(Direction.UP);
@@ -54,7 +54,6 @@ public class GameMap {
         list.add(Direction.RIGHT);
         list.add(Direction.DOWN);
         this.objective=new ObjectiveGestion(list);
-
 
         // Création dégueulasse des divisions
 

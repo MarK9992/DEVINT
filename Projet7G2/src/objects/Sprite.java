@@ -1,9 +1,6 @@
 package objects;
 
 import org.newdawn.slick.Color;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 
 /**
  * Created by Marc KARASSEV on 02/05/2014.
@@ -71,10 +68,10 @@ public enum Sprite {
     }
 
     private void setFangMatrixes() {
-        COORD[0][0] = 0;
-        COORD[0][1] = 68;
-        DIM[0][0] = 36;
-        DIM[0][1] = 34;
+        COORD[0][0] = 1;
+        COORD[0][1] = 69;
+        DIM[0][0] = 34;
+        DIM[0][1] = 32;
     }
 
     private void setSlimeMatrixes() {
