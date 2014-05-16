@@ -26,13 +26,6 @@ public class MapCreator {
     
 
 
-
-
-
-
-
-
-
     private MapDivision[][] getHardcoreMap() {
         MapDivision div;
 
