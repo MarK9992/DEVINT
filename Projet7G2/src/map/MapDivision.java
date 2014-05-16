@@ -2,8 +2,6 @@ package map;
 
 import main.Game;
 import objects.GameObject;
-import objects.ObjectType;
-import objects.Rock;
 import org.newdawn.slick.Graphics;
 import util.Preferences;
 
@@ -28,6 +26,12 @@ public class MapDivision {
         objects = new ArrayList<GameObject>();
         initAccessMap();
         this.instruction = instruction;
+    }
+
+    public MapDivision(boolean[] accessMap){
+        objects = new ArrayList<GameObject>();
+        //this.accessMap=accessMap;
+
     }
 
     public void render(Graphics g) {

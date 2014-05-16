@@ -20,11 +20,13 @@ public class MapParser {
     private int[][] map;
 
     public MapParser(){
-        Scanner reader= new Scanner(System.in);
 
+        Scanner reader= new Scanner(System.in);
         setSize(reader.nextLine());
 
         createInputMaps(reader);
+
+
 
         convertMap();
 
@@ -112,5 +114,9 @@ public class MapParser {
         System.out.println(haut+"  -  "+larg);
         System.out.println(haut*5+larg);
         new MapParser();
+    }
+
+    public int[][] getMap() {
+        return map;
     }
 }

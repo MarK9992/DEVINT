@@ -9,10 +9,13 @@ import objects.Rock;
  */
 public class MapCreator {
     private int width, height;
+    private int[][] accessMap;
+    MapDivision[][] map ;
 
     public MapCreator(){
         width=4;
         height=4;
+        map = new MapDivision[width][height];
     }
 
     public void initialize(GameMap game) {
@@ -20,16 +23,20 @@ public class MapCreator {
         game.setMapWidth(width);
         game.setMapHeight(height);
 
-        game.setMap(getHardcoreMap());
+        MapParser parser=new MapParser();
+        accessMap=parser.getMap();
+        createHardcoreMap();
+
+        game.setMap(map);
     }
 
-    
 
 
-    private MapDivision[][] getHardcoreMap() {
+
+
+
+    private void createHardcoreMap() {
         MapDivision div;
-
-        MapDivision[][] map = new MapDivision[width][height];
 
         // Création dégueulasse des divisions
 
@@ -156,6 +163,5 @@ public class MapCreator {
 
         map[3][3] = div;
 
-        return map;
     }
 }
