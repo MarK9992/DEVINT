@@ -97,8 +97,32 @@ public enum Sprite {
         return coords;
     }
 
+    public short[] getWestCoords() {
+        short[] coords = {COORD[1][0], COORD[1][1]};
+
+        return coords;
+    }
+
+    public short[] getNorthCoords() {
+        short[] coords = {COORD[2][0], COORD[2][1]};
+
+        return coords;
+    }
+
     public short[] getSouthDims() {
         short[] dims = {DIM[0][0], DIM[0][1]};
+
+        return dims;
+    }
+
+    public short[] getWestDims() {
+        short[] dims = {DIM[1][0], DIM[1][1]};
+
+        return dims;
+    }
+
+    public short[] getNorthDims() {
+        short[] dims = {DIM[2][0], DIM[2][1]};
 
         return dims;
     }
