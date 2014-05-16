@@ -2,6 +2,10 @@ package map;
 
 import main.Game;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -21,13 +25,30 @@ public class MapParser {
 
     public MapParser(){
 
-        Scanner reader= new Scanner(System.in);
+        File inputFile = new File("../ressources/maps/Map_4_4_01.txt");
+
+
+        try {
+            FileReader reader = new FileReader(inputFile);
+            BufferedReader in = new BufferedReader(reader);
+
+            setSize(in.readLine());
+
+            createInputMaps(in);
+
+            in.close();
+            reader.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+/*
+        Scanner reader = new Scanner(System.in);
+
         setSize(reader.nextLine());
 
         createInputMaps(reader);
-
-
-
+*/
         convertMap();
 
         printGrid();
@@ -37,7 +58,7 @@ public class MapParser {
 
     private void convertMap() {
         globalMap =new int[height*width];
-        map=new int[Game.XTILEMAX*Game.YTILEMAX][gameWidth*gameHeight];
+        map=new int[gameWidth*gameHeight][Game.XTILEMAX*Game.YTILEMAX];
         int value,mapX,mapY,posMap,divX,divY,posDiv;
         for (int i=0;i< inputGlobalMap.length;i++){
             value=Character.getNumericValue(inputGlobalMap[i]);
@@ -48,16 +69,29 @@ public class MapParser {
             divX=i%Game.XTILEMAX;
             divY=(i%(width*Game.YTILEMAX))/width;
             posDiv=divY*Game.XTILEMAX+divX;
-            map[posDiv][posMap]=value;
+            map[posMap][posDiv]=value;
         }
     }
 
-    private void createInputMaps(Scanner reader) {
+    private void createInputMaps(BufferedReader reader) throws IOException {
         StringBuilder sb =new StringBuilder();
+        String s;
         for (int i=0;i<height;i++){
-            String s =reader.nextLine().trim();
+            s = reader.readLine().trim();
             if (s.matches("[01]{"+width+"}")){
               sb.append(s);
+            }else throw new IllegalArgumentException("Bad format");
+        }
+        inputGlobalMap = sb.toString().toCharArray();
+    }
+
+    private void createInputMaps(Scanner reader){
+        StringBuilder sb =new StringBuilder();
+        String s;
+        for (int i=0;i<height;i++){
+            s = reader.nextLine().trim();
+            if (s.matches("[01]{"+width+"}")){
+                sb.append(s);
             }else throw new IllegalArgumentException("Bad format");
         }
         inputGlobalMap = sb.toString().toCharArray();
@@ -70,7 +104,7 @@ public class MapParser {
             gameHeight=Integer.parseInt(dim[1]);
             width=gameWidth* Game.XTILEMAX;
             height=gameHeight* Game.YTILEMAX;
-            map= new int[Game.XTILEMAX*Game.YTILEMAX][gameWidth*gameHeight];
+            map= new int[gameWidth*gameHeight][Game.XTILEMAX*Game.YTILEMAX];
         }else throw new IllegalArgumentException("Bad format");
     }
 
@@ -98,12 +132,18 @@ public class MapParser {
             divX=i%Game.XTILEMAX;
             divY=(i%(width*Game.YTILEMAX))/width;
             posDiv=divY*Game.XTILEMAX+divX;
-            sb.append(map[posDiv][posMap] == 0 ? ' ' : '▮');
+            sb.append(map[posMap][posDiv] == 0 ? ' ' : '▮');
         }
         System.out.println(sb.toString());
     }
 
     public static void main( String[] a ){
+
+
+        int[][] tab =new int[10][5];
+        for (int[] t :tab )
+            System.out.println(t.length);
+
         int n = 114;
         int mapX=(n%10)/5;//Game.XTILEMAX;
         int mapY=(n/(10*4));//Game.YTILEMAX;

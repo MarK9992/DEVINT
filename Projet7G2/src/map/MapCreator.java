@@ -25,12 +25,17 @@ public class MapCreator {
 
         MapParser parser=new MapParser();
         accessMap=parser.getMap();
-        createHardcoreMap();
+
+        for(int j=0;j<height;j++){
+            for (int i=0;i<width;i++){
+                map[i][j]=new MapDivision(accessMap[j*width+i]);
+            }
+        }
+
+        //createHardcoreMap();
 
         game.setMap(map);
     }
-
-
 
 
 

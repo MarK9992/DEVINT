@@ -2,6 +2,8 @@ package map;
 
 import main.Game;
 import objects.GameObject;
+import objects.ObjectType;
+import objects.Rock;
 import org.newdawn.slick.Graphics;
 import util.Preferences;
 
@@ -28,9 +30,17 @@ public class MapDivision {
         this.instruction = instruction;
     }
 
-    public MapDivision(boolean[] accessMap){
+    public MapDivision(int[] intAccessMap){
         objects = new ArrayList<GameObject>();
-        //this.accessMap=accessMap;
+        initAccessMap();
+        for (int i=0;i<intAccessMap.length;i++){
+
+            if (intAccessMap[i]==1) {
+                this.addObject(new Rock((i%Game.XTILEMAX)*Game.TILE,(i/Game.XTILEMAX)*Game.TILE,Game.TILE,Game.TILE, ObjectType.ROCK));
+                //System.out.printf("On ajoute un caillou sur la case %d, aux ccordonnée x=%d ; y=%d .\n",i,(i%Game.XTILEMAX),(i/Game.XTILEMAX));
+            }
+
+        }
 
     }
 
