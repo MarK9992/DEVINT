@@ -115,6 +115,8 @@ public class Hero {
         return width;
     }
 
+    public int getHeight() { return height; }
+
     public void setX(int x) {
         this.x = x;
     }
@@ -123,8 +125,11 @@ public class Hero {
         this.y = y;
     }
 
-    public int getHeight() {
-        return height;
-
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+        xSheet = sprite.getSouthCoords()[0];
+        ySheet = sprite.getSouthCoords()[1];
+        width = 2 * sprite.getSouthDims()[0];
+        height = 2 * sprite.getSouthDims()[1];
     }
 }
