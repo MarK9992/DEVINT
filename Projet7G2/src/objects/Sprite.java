@@ -7,7 +7,7 @@ import org.newdawn.slick.Color;
  *
  * Each sprite has four images related to their movement direction.
  * The coordinate and dimensions of these images in the sheet are stored in the fields COORD and DIM.
- * The lignes of these matrixes match to an image, they are ordered by the sprite's direction : SOUTH, WEST, EAST and NORTH.
+ * The lignes of these matrixes match to an image, they are ordered by the sprite's direction : SOUTH, WEST and NORTH.
  * The first column is the x location for COORD or the width for DIM, the second column is the y location or the height.
  *
  * @author Marc KARASSEV
@@ -24,7 +24,7 @@ public enum Sprite {
     // Fields
 
     private String sheet;
-    private final short[][] COORD = new short[4][2], DIM = new short[4][2];
+    private final short[][] COORD = new short[3][2], DIM = new short[3][2];
     public static final Color TRANSP = new Color(34, 177, 76);
 
     // Constructors
@@ -56,8 +56,16 @@ public enum Sprite {
     private void setDarkMatrixes() {
         COORD[0][0] = 70;
         COORD[0][1] = 67;
+        COORD[1][0] = 70;
+        COORD[1][1] = 35;
+        COORD[2][0] = 70;
+        COORD[2][1] = 1;
         DIM[0][0] = 36;
         DIM[0][1] = 29;
+        DIM[1][0] = 36;
+        DIM[1][1] = 29;
+        DIM[2][0] = 36;
+        DIM[2][1] = 31;
     }
 
     private void setAngelMatrixes() {

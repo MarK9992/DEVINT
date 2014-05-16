@@ -45,7 +45,7 @@ public class GameMap {
         this.game = game;
         map = new MapDivision[MAPWIDTH][MAPHEIGHT];
         //hero = new Hero(50, 50);
-        hero = new Hero(Sprite.FANGSLIME);
+        hero = new Hero(Sprite.DARKSLIME);
 
         ArrayList<Direction> list=new ArrayList<Direction>();
         list.add(Direction.UP);
