@@ -71,14 +71,32 @@ public class Hero {
         }
     }
 
-    public void moveV(int y) {
-        this.y += y;
-        playMove();
+    public void moveUp(int y) {
+        if(y > 0) {
+            this.y -= y;
+            playMove();
+        }
     }
 
-    public void moveH(int x) {
-        this.x += x;
-        playMove();
+    public void moveDown(int y) {
+        if(y > 0) {
+            this.y += y;
+            playMove();
+        }
+    }
+
+    public void moveLeft(int x) {
+        if(x > 0) {
+            this.x -= x;
+            playMove();
+        }
+    }
+
+    public void moveRight(int x) {
+        if(x > 0) {
+            this.x += x;
+            playMove();
+        }
     }
 
     private void playMove() {

@@ -196,16 +196,16 @@ public class GameMap {
     }
 
     public void moveHeroUp() {
-        int speed = -DEFAULTSPEED;
+        int speed = DEFAULTSPEED;
 
-        if ((Game.toTile(hero.getUpLeftCornerY() + speed) == -1)||(Preferences.getHandicap()==1)) {
+        if ((Game.toTile(hero.getUpLeftCornerY() - speed) == -1)||(Preferences.getHandicap()==1)) {
             switchDivisionUp();
         } else {
             while (isUpTileAccessible(speed) && speed != 0) {
-                speed++;
+                speed--;
             }
             if (speed != 0) {
-                hero.moveV(speed);
+                hero.moveUp(speed);
             } else {
                 playBump();
             }
@@ -213,16 +213,16 @@ public class GameMap {
     }
 
     public void moveHeroLeft() {
-        int speed = -DEFAULTSPEED;
+        int speed = DEFAULTSPEED;
 
-        if ((Game.toTile(hero.getUpLeftCornerX() + speed) == -1)||(Preferences.getHandicap()==1)) {
+        if ((Game.toTile(hero.getUpLeftCornerX() - speed) == -1)||(Preferences.getHandicap()==1)) {
             switchDivisionLeft();
         } else {
             while (isLeftTileAccessible(speed) && speed != 0) {
-                speed++;
+                speed--;
             }
             if (speed != 0) {
-                hero.moveH(speed);
+                hero.moveLeft(speed);
             } else {
                 playBump();
             }
@@ -239,7 +239,7 @@ public class GameMap {
                 speed--;
             }
             if (speed != 0) {
-                hero.moveH(speed);
+                hero.moveRight(speed);
             } else {
                 playBump();
             }
@@ -256,7 +256,7 @@ public class GameMap {
                 speed--;
             }
             if (speed != 0) {
-                hero.moveV(speed);
+                hero.moveDown(speed);
             } else {
                 playBump();
             }
@@ -264,13 +264,13 @@ public class GameMap {
     }
 
     private boolean isUpTileAccessible(int offset) {
-        return !division.isTileAccessible(Game.toTile(hero.getUpLeftCornerX()), Game.toTile(hero.getUpLeftCornerY() + offset))
-                || !division.isTileAccessible(Game.toTile(hero.getUpRightCornerX()), Game.toTile(hero.getUpRightCornerY() + offset));
+        return !division.isTileAccessible(Game.toTile(hero.getUpLeftCornerX()), Game.toTile(hero.getUpLeftCornerY() - offset))
+                || !division.isTileAccessible(Game.toTile(hero.getUpRightCornerX()), Game.toTile(hero.getUpRightCornerY() - offset));
     }
 
     private boolean isLeftTileAccessible(int offset) {
-        return !division.isTileAccessible(Game.toTile(hero.getUpLeftCornerX() + offset), Game.toTile(hero.getUpLeftCornerY()))
-                || !division.isTileAccessible(Game.toTile(hero.getDownLeftCornerX() + offset), Game.toTile(hero.getDownLeftCornerY()));
+        return !division.isTileAccessible(Game.toTile(hero.getUpLeftCornerX() - offset), Game.toTile(hero.getUpLeftCornerY()))
+                || !division.isTileAccessible(Game.toTile(hero.getDownLeftCornerX() - offset), Game.toTile(hero.getDownLeftCornerY()));
     }
 
     private boolean isRightTileAccessible(int offset) {
