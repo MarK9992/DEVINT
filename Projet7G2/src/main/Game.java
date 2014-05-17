@@ -1,6 +1,5 @@
 package main;
 
-import level.Direction;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -27,6 +26,7 @@ public class Game extends StateBasedGame {
     private MainGameState game;
     private OptionMenuState options;
     private PauseMenuState pause;
+    private CharacterSelectionState selection;
 
     public Game() {
         super("Retrouve ton chemin !");
@@ -49,13 +49,14 @@ public class Game extends StateBasedGame {
         game = new MainGameState();
         options = new OptionMenuState();
         pause = new PauseMenuState();
+        selection = new CharacterSelectionState();
         container.setShowFPS(false);
         addState(login);
         addState(menu);
-
         addState(game);
         addState(options);
         addState(pause);
+        addState(selection);
     }
 
     public void reinitGame() {
