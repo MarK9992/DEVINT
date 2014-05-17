@@ -20,6 +20,7 @@ public class Hero {
     private Sound moveSound;
     private Sprite sprite;
     private Image sheet;
+    private Image reverseSheet;
     private short xSheet;
     private short ySheet;
     private byte direction;
@@ -29,7 +30,7 @@ public class Hero {
     // Constructors
 
     public Hero() {
-        this(1, 1);
+        this(50, 50);
     }
 
     public Hero(int width, int height) {
@@ -48,6 +49,7 @@ public class Hero {
         this.sprite = sprite;
         try {
             sheet = new Image(sprite.getSheet(), Sprite.TRANSP);
+            reverseSheet = new Image(sprite.getReverseSheet(), Sprite.TRANSP);
             moveSound = new Sound("../ressources/sound/smb_stomp.wav");
         } catch (SlickException e) {
             e.printStackTrace();
@@ -69,7 +71,12 @@ public class Hero {
             g.fillRect(x, y, width, height);
         }
         else {
-            g.drawImage(sheet, x, y, x + width, y + height, xSheet, ySheet, xSheet + width / 2, ySheet + height / 2);
+            if(direction != RIGHT) {
+                g.drawImage(sheet, x, y, x + width, y + height, xSheet, ySheet, xSheet + width / 2, ySheet + height / 2);
+            }
+            else {
+                g.drawImage(reverseSheet, x, y, x + width, y + height, xSheet, ySheet, xSheet + width / 2, ySheet + height / 2);
+            }
         }
     }
 
@@ -131,14 +138,14 @@ public class Hero {
 
     private void setDirectionRIGHT() {
         direction = RIGHT;
-        xSheet = sprite.getWestCoords()[0];
-        ySheet = sprite.getWestCoords()[1];
-        width = 2 * sprite.getWestDims()[0];
-        height = 2 * sprite.getWestDims()[1];
+        xSheet = sprite.getEastCoords()[0];
+        ySheet = sprite.getEastCoords()[1];
+        width = 2 * sprite.getEastDims()[0];
+        height = 2 * sprite.getEastDims()[1];
     }
 
     private void setDirectionDOWN() {
-        direction = RIGHT;
+        direction = DOWN;
         xSheet = sprite.getSouthCoords()[0];
         ySheet = sprite.getSouthCoords()[1];
         width = 2 * sprite.getSouthDims()[0];
