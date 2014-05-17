@@ -98,15 +98,39 @@ public enum Sprite {
     private void setFangMatrixes() {
         COORD[0][0] = 1;
         COORD[0][1] = 69;
+        COORD[1][0] = 1;
+        COORD[1][1] = 34;
+        COORD[2][0] = 1;
+        COORD[2][1] = 1;
+        COORD[3][0] = 172;
+        COORD[3][1] = 34;
         DIM[0][0] = 34;
         DIM[0][1] = 32;
+        DIM[1][0] = 34;
+        DIM[1][1] = 32;
+        DIM[2][0] = 34;
+        DIM[2][1] = 30;
+        DIM[3][0] = 34;
+        DIM[3][1] = 32;
     }
 
     private void setSlimeMatrixes() {
-        COORD[0][0] = 0;
-        COORD[0][1] = 100;
-        DIM[0][0] = 24;
-        DIM[0][1] = 24;
+        COORD[0][0] = 1;
+        COORD[0][1] = 101;
+        COORD[1][0] = 1;
+        COORD[1][1] = 51;
+        COORD[2][0] = 1;
+        COORD[2][1] = 1;
+        COORD[3][0] = 118;
+        COORD[3][1] = 51;
+        DIM[0][0] = 22;
+        DIM[0][1] = 22;
+        DIM[1][0] = 22;
+        DIM[1][1] = 22;
+        DIM[2][0] = 22;
+        DIM[2][1] = 22;
+        DIM[3][0] = 22;
+        DIM[3][1] = 22;
     }
 
     // Methods
