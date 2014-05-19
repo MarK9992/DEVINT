@@ -27,7 +27,6 @@ public class MapParser {
 
         File inputFile = new File("../ressources/maps/Map_4_4_01.txt");
 
-
         try {
             FileReader reader = new FileReader(inputFile);
             BufferedReader in = new BufferedReader(reader);

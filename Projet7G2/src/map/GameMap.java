@@ -7,6 +7,7 @@ import main.Game;
 import objects.Hero;
 import objects.ObjectType;
 import objects.Rock;
+import objects.Sprite;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -42,8 +43,7 @@ public class GameMap {
     public GameMap(MainGameState game) {
 
         this.game = game;
-       // map = new MapDivision[MAPWIDTH][MAPHEIGHT];
-        hero = new Hero((Game.FRAMEWIDTH - 50) / 2, (Game.FRAMEHEIGHT - 50) / 2, 50, 50);
+        hero = new Hero(Sprite.DARKSLIME);
         mapCreator=new MapCreator();
 
         ArrayList<Direction> list=new ArrayList<Direction>();
@@ -57,7 +57,7 @@ public class GameMap {
         mapCreator.initialize(this);
 
         mapi = 1;
-        mapj = 2;
+        mapj = 1;
         division = map[mapi][mapj];
         Preferences.start=map[mapi][mapj];
         try {
@@ -77,16 +77,16 @@ public class GameMap {
     }
 
     public void moveHeroUp() {
-        int speed = -DEFAULTSPEED;
+        int speed = DEFAULTSPEED;
 
-        if ((Game.toTile(hero.getUpLeftCornerY() + speed) == -1)||(Preferences.getHandicap()==1)) {
+        if ((Game.toTile(hero.getUpLeftCornerY() - speed) == -1)||(Preferences.getHandicap()==1)) {
             switchDivisionUp();
         } else {
             while (isUpTileAccessible(speed) && speed != 0) {
-                speed++;
+                speed--;
             }
             if (speed != 0) {
-                hero.moveV(speed);
+                hero.moveUp(speed);
             } else {
                 playBump();
             }
@@ -94,16 +94,16 @@ public class GameMap {
     }
 
     public void moveHeroLeft() {
-        int speed = -DEFAULTSPEED;
+        int speed = DEFAULTSPEED;
 
-        if ((Game.toTile(hero.getUpLeftCornerX() + speed) == -1)||(Preferences.getHandicap()==1)) {
+        if ((Game.toTile(hero.getUpLeftCornerX() - speed) == -1)||(Preferences.getHandicap()==1)) {
             switchDivisionLeft();
         } else {
             while (isLeftTileAccessible(speed) && speed != 0) {
-                speed++;
+                speed--;
             }
             if (speed != 0) {
-                hero.moveH(speed);
+                hero.moveLeft(speed);
             } else {
                 playBump();
             }
@@ -120,7 +120,7 @@ public class GameMap {
                 speed--;
             }
             if (speed != 0) {
-                hero.moveH(speed);
+                hero.moveRight(speed);
             } else {
                 playBump();
             }
@@ -137,7 +137,7 @@ public class GameMap {
                 speed--;
             }
             if (speed != 0) {
-                hero.moveV(speed);
+                hero.moveDown(speed);
             } else {
                 playBump();
             }
@@ -145,13 +145,13 @@ public class GameMap {
     }
 
     private boolean isUpTileAccessible(int offset) {
-        return !division.isTileAccessible(Game.toTile(hero.getUpLeftCornerX()), Game.toTile(hero.getUpLeftCornerY() + offset))
-                || !division.isTileAccessible(Game.toTile(hero.getUpRightCornerX()), Game.toTile(hero.getUpRightCornerY() + offset));
+        return !division.isTileAccessible(Game.toTile(hero.getUpLeftCornerX()), Game.toTile(hero.getUpLeftCornerY() - offset))
+                || !division.isTileAccessible(Game.toTile(hero.getUpRightCornerX()), Game.toTile(hero.getUpRightCornerY() - offset));
     }
 
     private boolean isLeftTileAccessible(int offset) {
-        return !division.isTileAccessible(Game.toTile(hero.getUpLeftCornerX() + offset), Game.toTile(hero.getUpLeftCornerY()))
-                || !division.isTileAccessible(Game.toTile(hero.getDownLeftCornerX() + offset), Game.toTile(hero.getDownLeftCornerY()));
+        return !division.isTileAccessible(Game.toTile(hero.getUpLeftCornerX() - offset), Game.toTile(hero.getUpLeftCornerY()))
+                || !division.isTileAccessible(Game.toTile(hero.getDownLeftCornerX() - offset), Game.toTile(hero.getDownLeftCornerY()));
     }
 
     private boolean isRightTileAccessible(int offset) {
@@ -176,8 +176,7 @@ public class GameMap {
         if (division.equals(Preferences.start)&&Preferences.retour)
             Preferences.game.win();
         if(Preferences.getHandicap()==0)
-        hero.setY(Game.FRAMEHEIGHT - hero.getHeight());
-
+            hero.setY(Game.FRAMEHEIGHT - hero.getHeight());
     }
 
     private void switchDivisionLeft() {
@@ -192,7 +191,7 @@ public class GameMap {
         if (division.equals(Preferences.start)&&Preferences.retour)
             Preferences.game.win();
         if(Preferences.getHandicap()==0)
-        hero.setX(Game.FRAMEWIDTH - hero.getWidth());
+            hero.setX(Game.FRAMEWIDTH - hero.getWidth());
 
     }
 
@@ -208,7 +207,7 @@ public class GameMap {
         if (division.equals(Preferences.start)&&Preferences.retour)
             Preferences.game.win();
         if(Preferences.getHandicap()==0)
-        hero.setX(0);
+            hero.setX(0);
 
     }
 
@@ -224,7 +223,7 @@ public class GameMap {
         if (division.equals(Preferences.start)&&Preferences.retour)
             Preferences.game.win();
         if(Preferences.getHandicap()==0)
-        hero.setY(0);
+            hero.setY(0);
     }
 
     private void playBump() {
@@ -237,26 +236,15 @@ public class GameMap {
         switchSound.play();
     }
 
- /*   private void playInstruction() {
-        if(!game.getGoal1()) {
-            instruction = division.getInstruction();
-            Preferences.getVoice().playShortText(instruction);
-        }
-    }*/
-
     // Accesseurs
 
-    public String getInstruction() {
-        return instruction;
-    }
+    public String getInstruction() { return instruction; }
 
     public void setInstruction(String instruction) {
         this.instruction = instruction;
     }
 
-    public int getMapi() {
-        return mapi;
-    }
+    public int getMapi() { return mapi; }
 
     public int getMapj() {
         return mapj;
@@ -265,6 +253,8 @@ public class GameMap {
     public ObjectiveGestion getObjective() {
         return objective;
     }
+
+    public Hero getHero() { return hero; }
 
     public void setMapWidth(int mapWidth) {
         this.mapWidth = mapWidth;

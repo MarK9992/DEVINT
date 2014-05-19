@@ -71,6 +71,7 @@ public class MainGameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
+        map.getHero().setSprite(CharacterSelectionState.getCharacter());
         Preferences.getVoice().stop();
         Preferences.makeSivoxSay("Sortir " + Preferences.stockedInstruction + ".");
         //Preferences.getVoice().playShortText(instruction + map.getInstruction());

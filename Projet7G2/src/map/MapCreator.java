@@ -13,8 +13,8 @@ public class MapCreator {
     MapDivision[][] map ;
 
     public MapCreator(){
-        width=4;
-        height=4;
+        width=2;
+        height=2;
         map = new MapDivision[width][height];
     }
 

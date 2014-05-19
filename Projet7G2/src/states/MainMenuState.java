@@ -169,7 +169,7 @@ public class MainMenuState extends BasicGameState {
                 Preferences.getVoice().playShortText("Jouer.");
                 try {
                     leave(container, game);
-                    game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                    game.enterState(5, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 } catch (SlickException e) {
                     e.printStackTrace();
                 }
