@@ -15,6 +15,7 @@ import util.Preferences;
 public class CharacterSelectionState extends BasicGameState {
 
     private static final int ID = 5, DARKSLIME = 0, ANGELSLIME = 1, FANGSLIME = 2, SLIME = 3;
+    private static final int COLUMNSPACING = 233, ROWSPACING = 167;
 
     private static int currentCharacter;
     private AppGameContainer container;
@@ -50,15 +51,34 @@ public class CharacterSelectionState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException {
-        short[] coords = Sprite.DARKSLIME.getSouthCoords(), dims = Sprite.DARKSLIME.getSouthDims();
-
-        g.drawImage(darkslime, 50, 50, 50 + 2 * dims[0], 50 + 2 * dims[1], coords[0], coords[1],
-                coords[0] + dims[0], coords[1] + dims[1]);
+        drawSprites(g);
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
 
+    }
+
+    private void drawSprites(Graphics g) {
+        // ATTENTION C'EST SUPER SALE
+        short[] coords = Sprite.DARKSLIME.getSouthCoords(), dims = Sprite.DARKSLIME.getSouthDims();
+        g.drawImage(darkslime, COLUMNSPACING, ROWSPACING, COLUMNSPACING + 2 * dims[0], ROWSPACING + 2 * dims[1],
+                coords[0], coords[1], coords[0] + dims[0], coords[1] + dims[1]);
+
+        coords = Sprite.ANGELSLIME.getSouthCoords();
+        dims = Sprite.ANGELSLIME.getSouthDims();
+        g.drawImage(angelslime, 2 * COLUMNSPACING + 50, ROWSPACING, 2 * COLUMNSPACING + 50 + 2 * dims[0],
+                ROWSPACING + 2 * dims[1], coords[0], coords[1], coords[0] + dims[0], coords[1] + dims[1]);
+
+        coords = Sprite.FANGSLIME.getSouthCoords();
+        dims = Sprite.FANGSLIME.getSouthDims();
+        g.drawImage(fangslime, COLUMNSPACING, 2 * ROWSPACING + 50, COLUMNSPACING + 2 * dims[0],
+                2 * ROWSPACING + 50 + 2 * dims[1], coords[0], coords[1], coords[0] + dims[0], coords[1] + dims[1]);
+
+        coords = Sprite.SLIME.getSouthCoords();
+        dims = Sprite.SLIME.getSouthDims();
+        g.drawImage(slime, 2 * COLUMNSPACING + 65, 2 * ROWSPACING + 65, 2 * COLUMNSPACING + 65 + 2 * dims[0],
+                2 * ROWSPACING + 65 + 2 * dims[1], coords[0], coords[1], coords[0] + dims[0], coords[1] + dims[1]);
     }
 
     @Override
