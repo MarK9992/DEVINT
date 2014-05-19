@@ -19,6 +19,19 @@ public class CharacterSelectionState extends BasicGameState {
     private static int currentCharacter;
     private AppGameContainer container;
     private main.Game game;
+    private Image darkslime, angelslime, fangslime, slime;
+
+    public CharacterSelectionState() {
+        super();
+        try {
+            darkslime = new Image(Sprite.DARKSLIME.getSheet(), Sprite.TRANSP);
+            angelslime = new Image(Sprite.ANGELSLIME.getSheet(), Sprite.TRANSP);
+            fangslime = new Image(Sprite.FANGSLIME.getSheet(), Sprite.TRANSP);
+            slime = new Image(Sprite.SLIME.getSheet(), Sprite.TRANSP);
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public int getID() {
@@ -36,8 +49,11 @@ public class CharacterSelectionState extends BasicGameState {
     }
 
     @Override
-    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException {
+        short[] coords = Sprite.DARKSLIME.getSouthCoords(), dims = Sprite.DARKSLIME.getSouthDims();
 
+        g.drawImage(darkslime, 50, 50, 50 + 2 * dims[0], 50 + 2 * dims[1], coords[0], coords[1],
+                coords[0] + dims[0], coords[1] + dims[1]);
     }
 
     @Override
