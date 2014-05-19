@@ -27,7 +27,6 @@ public class MapParser {
 
         File inputFile = new File("../ressources/maps/Map_2_2_03.txt");
 
-
         try {
             FileReader reader = new FileReader(inputFile);
             BufferedReader in = new BufferedReader(reader);
@@ -51,9 +50,6 @@ public class MapParser {
 */
         convertMap();
 
-        printGrid();
-        System.out.println();
-        printDivs();
     }
 
     private void convertMap() {
