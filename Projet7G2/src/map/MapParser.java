@@ -25,7 +25,7 @@ public class MapParser {
 
     public MapParser(){
 
-        File inputFile = new File("../ressources/maps/Map__4_01.txt");
+        File inputFile = new File("../ressources/maps/Map_4_4_01.txt");
 
 
         try {
