@@ -13,6 +13,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import states.MainGameState;
 import util.Preferences;
+import util.SoundPlayer;
 
 import java.util.ArrayList;
 
@@ -34,8 +35,6 @@ public class GameMap {
     private int mapi;
     private int mapj;
     private Hero hero;
-    private Sound bumpSound;
-    private Sound switchSound;
     private String instruction;
 
     private ObjectiveGestion objective;
@@ -60,12 +59,6 @@ public class GameMap {
         mapj = 1;
         division = map[mapi][mapj];
         Preferences.start=map[mapi][mapj];
-        try {
-            bumpSound = new Sound("../ressources/sound/smb_bump.wav");
-            switchSound = new Sound("../ressources/sound/smb2_enter_door.wav");
-        } catch (SlickException e) {
-            e.printStackTrace();
-        }
         instruction = division.getInstruction();
 
         Preferences.stockedInstruction=objective.getFirstInstruction();
@@ -88,7 +81,7 @@ public class GameMap {
             if (speed != 0) {
                 hero.moveUp(speed);
             } else {
-                playBump();
+                SoundPlayer.getInstance().playBump();
             }
         }
     }
@@ -105,7 +98,7 @@ public class GameMap {
             if (speed != 0) {
                 hero.moveLeft(speed);
             } else {
-                playBump();
+                SoundPlayer.getInstance().playBump();
             }
         }
     }
@@ -122,7 +115,7 @@ public class GameMap {
             if (speed != 0) {
                 hero.moveRight(speed);
             } else {
-                playBump();
+                SoundPlayer.getInstance().playBump();
             }
         }
     }
@@ -139,7 +132,7 @@ public class GameMap {
             if (speed != 0) {
                 hero.moveDown(speed);
             } else {
-                playBump();
+                SoundPlayer.getInstance().playBump();
             }
         }
     }
@@ -165,7 +158,7 @@ public class GameMap {
     }
 
     private void switchDivisionUp() {
-        playSwitch();
+        SoundPlayer.getInstance().playSwitch();
         if (mapj>0){
             mapj--;
             String instru = objective.getNextInstruction(Direction.UP);
@@ -180,7 +173,7 @@ public class GameMap {
     }
 
     private void switchDivisionLeft() {
-        playSwitch();
+        SoundPlayer.getInstance().playSwitch();
         if (mapi>0){
             mapi--;
             String instru=objective.getNextInstruction(Direction.LEFT);
@@ -196,7 +189,7 @@ public class GameMap {
     }
 
     private void switchDivisionRight() {
-        playSwitch();
+        SoundPlayer.getInstance().playSwitch();
         if (mapi<mapWidth-1){
             mapi++;
             String instru =objective.getNextInstruction(Direction.RIGHT);
@@ -212,7 +205,7 @@ public class GameMap {
     }
 
     private void switchDivisionDown() {
-        playSwitch();
+        SoundPlayer.getInstance().playSwitch();
         if (mapj<mapHeight-1){
             mapj++;
             String instru=objective.getNextInstruction(Direction.DOWN);
@@ -224,16 +217,6 @@ public class GameMap {
             Preferences.game.win();
         if(Preferences.getHandicap()==0)
             hero.setY(0);
-    }
-
-    private void playBump() {
-        if (!bumpSound.playing()) {
-            bumpSound.play();
-        }
-    }
-
-    private void playSwitch() {
-        switchSound.play();
     }
 
     // Accesseurs
