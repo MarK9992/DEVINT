@@ -1,6 +1,5 @@
 package states;
 
-import main.*;
 import main.Game;
 import objects.Sprite;
 import org.newdawn.slick.*;
@@ -60,25 +59,25 @@ public class CharacterSelectionState extends BasicGameState {
                 onEnter();
                 break;
             case Input.KEY_UP:
-                //onUp();
+                onUpDown();
                 break;
             case Input.KEY_LEFT:
-                //onLeft();
+                onLeftRight();
                 break;
             case Input.KEY_RIGHT:
-                //onRight();
+                onLeftRight();
                 break;
             case Input.KEY_DOWN:
-                //onDown();
+                onUpDown();
                 break;
             case Input.KEY_ESCAPE:
-                //onEscape();
+                onEscape();
                 break;
             case Input.KEY_F3:
-                //onF3();
+                onF3();
                 break;
             case Input.KEY_F4:
-                //onF4();
+                onF4();
                 break;
             default:
         }
@@ -103,6 +102,41 @@ public class CharacterSelectionState extends BasicGameState {
             game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
         } catch (SlickException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void onEscape() {
+        try {
+            leave(container, game);
+            game.enterState(1, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void onF3() {
+        Preferences.changeColors();
+    }
+
+    private void onF4() {
+        Preferences.changeVoice();
+    }
+
+    private void onUpDown() {
+        if(currentCharacter < 2) {
+            currentCharacter += 2;
+        }
+        else {
+            currentCharacter -= 2;
+        }
+    }
+
+    private void onLeftRight() {
+        if(currentCharacter % 2 == 0) {
+            currentCharacter += 1;
+        }
+        else {
+            currentCharacter -= 1;
         }
     }
 
