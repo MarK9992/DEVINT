@@ -29,8 +29,9 @@ public class Preferences {
     public static String stockedInstruction="";
     public static MainGameState game;
     public static boolean retour=false;
-    
+
     public static MapDivision start;
+
 
 
     private Preferences() {
