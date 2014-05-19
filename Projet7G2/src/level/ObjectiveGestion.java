@@ -1,6 +1,7 @@
 package level;
 
 import util.Preferences;
+import util.SoundPlayer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,7 +52,7 @@ public class ObjectiveGestion {
                 return this.getNextStep().getAction();
 
             case 0:
-                Preferences.makeSivoxSay("Bravo, vous avez gagné.");
+                SoundPlayer.getInstance().say("BravoVousAvezGagne");
                 Preferences.game.win();
                 return "";
 
@@ -90,7 +91,7 @@ public class ObjectiveGestion {
 
                 System.out.println("-----------------------");
                 this.currentPosition=0;
-                Preferences.makeSivoxSay("Retournez au point de départ.");
+                SoundPlayer.getInstance().say("retourptdepart.wav");
                 return 1;
             }
             else return -1;

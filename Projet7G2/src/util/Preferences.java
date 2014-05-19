@@ -15,7 +15,6 @@ public class Preferences {
     private static Preferences instance = new Preferences();
 
     private static int currentVoice;
-    private static SIVOXDevint voice;
 
     private static int currentSetOfColor;
     private static Color backgroundColor;
@@ -32,11 +31,8 @@ public class Preferences {
 
     public static MapDivision start;
 
-
-
     private Preferences() {
         currentVoice = 1;
-        voice = new SIVOXDevint(currentVoice);
 
         currentSetOfColor = 0;
         backgroundColor = Color.lightGray;
@@ -72,19 +68,15 @@ public class Preferences {
             itemColor = Color.black;
             utilityColor = Color.darkGray;
         }
-        voice.stop();
-        voice.playShortText("Couleurs mises à jour.");
+        SoundPlayer.getInstance().say("CouleurMiseAJour.wav");
     }
 
     public static void changeVoice() {
-        if(currentVoice == 7)
+        if(currentVoice == 1)
             currentVoice = 0;
         else
             currentVoice++;
-        voice.setVoix(currentVoice);
-
-        voice.stop();
-        voice.playShortText("Voix changée.");
+        SoundPlayer.getInstance().say("VoixChangee.wav");
     }
 
     public static Color getBackgroundColor() {
@@ -107,10 +99,6 @@ public class Preferences {
         return utilityColor;
     }
 
-    public static SIVOXDevint getVoice() {
-        return voice;
-    }
-
     public static void setHandicap(int i) {
         handicap=i;
     }
@@ -119,8 +107,7 @@ public class Preferences {
         return handicap;
     }
 
-    public static void makeSivoxSay(String text){
-        System.out.println(text);
-        getVoice().playShortText(text);
+    public static int getCurrentVoice() {
+        return currentVoice;
     }
 }

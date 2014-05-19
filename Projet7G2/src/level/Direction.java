@@ -4,10 +4,10 @@ package level;
  * Created by tom on 09/04/14.
  */
 public enum Direction {
-    UP(0,-1,"en haut"),
-    DOWN(0,1,"en bas"),
-    RIGHT(1,0,"à droite"),
-    LEFT(-1,0,"à gauche");
+    UP(0,-1,"EnHaut"),
+    DOWN(0,1,"EnBas"),
+    RIGHT(1,0,"ADroite"),
+    LEFT(-1,0,"AGauche");
 
     private int moveX;
     private int moveY;

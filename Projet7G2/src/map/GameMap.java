@@ -163,7 +163,7 @@ public class GameMap {
             mapj--;
             String instru = objective.getNextInstruction(Direction.UP);
             if (!Preferences.retour)
-                Preferences.makeSivoxSay("Sortir "+instru+".");
+                SoundPlayer.getInstance().say("Sortir" + instru);
         }
         division = map[mapi][mapj];
         if (division.equals(Preferences.start)&&Preferences.retour)
@@ -178,7 +178,7 @@ public class GameMap {
             mapi--;
             String instru=objective.getNextInstruction(Direction.LEFT);
             if (!Preferences.retour)
-                Preferences.makeSivoxSay("Sortir "+instru+".");
+                SoundPlayer.getInstance().say("Sortir" + instru);
         }
         division = map[mapi][mapj];
         if (division.equals(Preferences.start)&&Preferences.retour)
@@ -194,7 +194,7 @@ public class GameMap {
             mapi++;
             String instru =objective.getNextInstruction(Direction.RIGHT);
             if (!Preferences.retour)
-                Preferences.makeSivoxSay("Sortir "+instru+".");
+                SoundPlayer.getInstance().say("Sortir" + instru);
         }
         division = map[mapi][mapj];
         if (division.equals(Preferences.start)&&Preferences.retour)
@@ -210,7 +210,7 @@ public class GameMap {
             mapj++;
             String instru=objective.getNextInstruction(Direction.DOWN);
             if (!Preferences.retour)
-                Preferences.makeSivoxSay("Sortir "+instru+".");
+                SoundPlayer.getInstance().say("Sortir" + instru);
         }
         division = map[mapi][mapj];
         if (division.equals(Preferences.start)&&Preferences.retour)
