@@ -30,6 +30,20 @@ public class MapDivision {
         this.instruction = instruction;
     }
 
+    public MapDivision(int[] intAccessMap){
+        objects = new ArrayList<GameObject>();
+        initAccessMap();
+        for (int i=0;i<intAccessMap.length;i++){
+
+            if (intAccessMap[i]==1) {
+                this.addObject(new Rock((i%Game.XTILEMAX)*Game.TILE,(i/Game.XTILEMAX)*Game.TILE,Game.TILE,Game.TILE, ObjectType.ROCK));
+                //System.out.printf("On ajoute un caillou sur la case %d, aux ccordonnée x=%d ; y=%d .\n",i,(i%Game.XTILEMAX),(i/Game.XTILEMAX));
+            }
+
+        }
+
+    }
+
     public void render(Graphics g) {
         g.setBackground(Preferences.getBackgroundColor());
         for(GameObject obj: objects) {
