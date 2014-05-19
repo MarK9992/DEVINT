@@ -57,7 +57,7 @@ public class GameMap {
         mapCreator.initialize(this);
 
         mapi = 1;
-        mapj = 2;
+        mapj = 1;
         division = map[mapi][mapj];
         Preferences.start=map[mapi][mapj];
         try {
