@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import util.Preferences;
+import util.SoundPlayer;
 
 import java.awt.Font;
 
@@ -130,8 +131,7 @@ public class PauseMenuState extends BasicGameState{
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         currentButton = 0;
-        Preferences.getVoice().stop();
-        Preferences.getVoice().playShortText("Choisissez ce que vous voulez faire. Retour au jeu.");
+        SoundPlayer.getInstance().say("ChoisissezCeQueVousVoulezFaire.wav");
     }
 
     @Override
@@ -165,7 +165,7 @@ public class PauseMenuState extends BasicGameState{
                 try {
                     leave(container, game);
                     game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-                    Preferences.makeSivoxSay(Preferences.stockedInstruction);
+                    SoundPlayer.getInstance().say(Preferences.stockedInstruction);
                 } catch (SlickException e) {
                     e.printStackTrace();
                 }
@@ -195,18 +195,15 @@ public class PauseMenuState extends BasicGameState{
         switch (currentButton) {
             case 0:
                 currentButton = 2;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Menu principal.");
+                SoundPlayer.getInstance().say("MenuPrincipal.wav");
                 break;
             case 1:
                 currentButton = 0;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Retour au jeu.");
+                SoundPlayer.getInstance().say("RetourAuJeu.wav");
                 break;
             case 2:
                 currentButton = 1;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Options.");
+                SoundPlayer.getInstance().say("Options.wav");
                 break;
             default:
                 System.err.println("bouton incorrect");
@@ -217,18 +214,15 @@ public class PauseMenuState extends BasicGameState{
         switch (currentButton) {
             case 0:
                 currentButton = 1;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Options.");
+                SoundPlayer.getInstance().say("Options.wav");
                 break;
             case 1:
                 currentButton = 2;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Menu principal.");
+                SoundPlayer.getInstance().say("MenuPrincipal.wav");
                 break;
             case 2:
                 currentButton = 0;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Retour au jeu.");
+                SoundPlayer.getInstance().say("RetourAuJeu.wav");
                 break;
             default:
                 System.err.println("bouton incorrect");

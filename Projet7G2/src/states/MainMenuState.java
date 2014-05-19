@@ -10,6 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import util.Preferences;
+import util.SoundPlayer;
 
 import java.awt.Font;
 
@@ -103,8 +104,7 @@ public class MainMenuState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         currentButton = 0;
-        Preferences.getVoice().stop();
-        Preferences.getVoice().playShortText("Choisissez ce que vous voulez faire. Jouer.");
+        SoundPlayer.getInstance().say("ChoisissezCeQueVousVoulezFaire.wav");
     }
 
     private void drawButtons(Graphics g) {
@@ -165,8 +165,7 @@ public class MainMenuState extends BasicGameState {
     private void onEnter() {
         switch (currentButton) {
             case 0:
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Jouer.");
+                SoundPlayer.getInstance().say("Jouer.wav");
                 try {
                     leave(container, game);
                     game.enterState(5, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
@@ -175,8 +174,7 @@ public class MainMenuState extends BasicGameState {
                 }
                 break;
             case 1:
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Options.");
+                SoundPlayer.getInstance().say("Options.wav");
                 try {
                     leave(container, game);
                     game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
@@ -185,8 +183,7 @@ public class MainMenuState extends BasicGameState {
                 }
                 break;
             case 2:
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Retour.");
+                SoundPlayer.getInstance().say("Retour.wav");
                 try {
                     leave(container, game);
                     game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
@@ -202,19 +199,16 @@ public class MainMenuState extends BasicGameState {
     private void onUp() {
         switch (currentButton) {
             case 0:
-                Preferences.getVoice().stop();
+                SoundPlayer.getInstance().say("Retour.wav");
                 currentButton = 2;
-                Preferences.getVoice().playShortText("Retour.");
                 break;
             case 1:
                 currentButton = 0;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Jouer.");
+                SoundPlayer.getInstance().say("Jouer.wav");
                 break;
             case 2:
                 currentButton = 1;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Options.");
+                SoundPlayer.getInstance().say("Options.wav");
                 break;
             default:
                 System.err.println("bouton incorrect");
@@ -225,18 +219,15 @@ public class MainMenuState extends BasicGameState {
         switch (currentButton) {
             case 0:
                 currentButton = 1;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Options.");
+                SoundPlayer.getInstance().say("Options.wav");
                 break;
             case 1:
                 currentButton = 2;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Retour.");
+                SoundPlayer.getInstance().say("Retour.wav");
                 break;
             case 2:
                 currentButton = 0;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Jouer.");
+                SoundPlayer.getInstance().say("Jouer.wav");
                 break;
             default:
                 System.err.println("bouton incorrect");
@@ -244,8 +235,7 @@ public class MainMenuState extends BasicGameState {
     }
 
     private void onEscape() {
-        Preferences.getVoice().stop();
-        Preferences.getVoice().playShortText("Retour.");
+        SoundPlayer.getInstance().say("Retour.wav");
         try {
             leave(container, game);
             game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));

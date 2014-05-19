@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import util.Preferences;
+import util.SoundPlayer;
 
 /**
  * Created by Marc KARASSEV on 27/03/14.
@@ -20,12 +21,10 @@ public class MainGameState extends BasicGameState {
     private main.Game game;
 
     private GameMap map;
-    private String instruction;
     private boolean goal1;
 
     public MainGameState() {
         map = new GameMap(this);
-        instruction = "Utilisez les flèches pour vous déplacer.";
         goal1 = false;
     }
 
@@ -66,15 +65,12 @@ public class MainGameState extends BasicGameState {
                 onDown();
             }
         }
-        //updateGoals();
     }
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         map.getHero().setSprite(CharacterSelectionState.getCharacter());
-        Preferences.getVoice().stop();
-        Preferences.makeSivoxSay("Sortir " + Preferences.stockedInstruction + ".");
-        //Preferences.getVoice().playShortText(instruction + map.getInstruction());
+        SoundPlayer.getInstance().say("Sortir" + Preferences.stockedInstruction + ".wav");
     }
 
     @Override
@@ -132,13 +128,11 @@ public class MainGameState extends BasicGameState {
     }
 
     private void onF1() {
-        Preferences.getVoice().stop();
-        Preferences.getVoice().playShortText(instruction);
+        SoundPlayer.getInstance().say("UtilisezLesFlechesPourVousDeplacer.wav");
     }
 
     private void onF2() {
-        Preferences.getVoice().stop();
-        Preferences.makeSivoxSay("Sortir " + map.getObjective().getCurrentInstruction() + ".");
+        SoundPlayer.getInstance().say("Sortir" + map.getObjective().getCurrentInstruction() + ".wav");
     }
 
     private void onUp() {
@@ -155,27 +149,6 @@ public class MainGameState extends BasicGameState {
 
     private void onDown() {
         map.moveHeroDown();
-    }
-
-    private void updateGoals() {
-        if(!goal1) {
-            if(map.getMapi() == 3 && map.getMapj() == 0) {
-                goal1 = true;
-                map.setInstruction("Retournez au point de départ.");
-            }
-        }
-        else {
-            if(map.getMapi() == 2 && map.getMapj() == 1) {
-                Preferences.getVoice().playShortText("Bravo !");
-                try {
-                    leave(container, game);
-                    game.enterState(1, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-                    reinitGame();
-                } catch (SlickException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 
     private void reinitGame() {

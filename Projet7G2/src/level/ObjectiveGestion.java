@@ -52,7 +52,7 @@ public class ObjectiveGestion {
                 return this.getNextStep().getAction();
 
             case 0:
-                SoundPlayer.getInstance().say("BravoVousAvezGagne");
+                SoundPlayer.getInstance().say("BravoVousAvezGagne.wav");
                 Preferences.game.win();
                 return "";
 

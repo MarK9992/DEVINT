@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import util.Preferences;
+import util.SoundPlayer;
 
 /**
  * Created by Marc KARASSEV on 10/05/2014.
@@ -106,8 +107,7 @@ public class CharacterSelectionState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         currentCharacter = DARKSLIME;
-        Preferences.getVoice().stop();
-        Preferences.getVoice().playShortText("Choisissez votre personnage.");
+        SoundPlayer.getInstance().say("ChoisissezVotrePersonnage.wav");
     }
 
     @Override

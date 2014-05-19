@@ -10,6 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import util.Preferences;
+import util.SoundPlayer;
 
 import java.awt.Font;
 
@@ -159,8 +160,7 @@ public class LoginState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         currentButton = 0;
-        Preferences.getVoice().stop();
-        Preferences.getVoice().playShortText("Choisissez le Mode de Jeu. Mal Voyants.");
+        SoundPlayer.getInstance().say("ChoisissezLeModeDeJeu.wav");
     }
 
     private void onEnter() {
@@ -203,18 +203,15 @@ public class LoginState extends BasicGameState {
         switch (currentButton) {
             case 0:
                 currentButton = 2;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Quitter.");
+                SoundPlayer.getInstance().say("Quitter.wav");
                 break;
             case 1:
                 currentButton = 0;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Mal voyants.");
+                SoundPlayer.getInstance().say("Malvoyants.wav");
                 break;
             case 2:
                 currentButton = 1;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Non voyants.");
+                SoundPlayer.getInstance().say("NonVoyants.wav");
                 break;
             default:
                 System.err.println("bouton incorrect");
@@ -225,18 +222,15 @@ public class LoginState extends BasicGameState {
         switch (currentButton) {
             case 0:
                 currentButton = 1;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Non voyants.");
+                SoundPlayer.getInstance().say("NonVoyants.wav");
                 break;
             case 1:
                 currentButton = 2;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Quitter.");
+                SoundPlayer.getInstance().say("Quitter.wav");
                 break;
             case 2:
                 currentButton = 0;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Mal voyants.");
+                SoundPlayer.getInstance().say("Malvoyants.wav");
                 break;
             default:
                 System.err.println("bouton incorrect");

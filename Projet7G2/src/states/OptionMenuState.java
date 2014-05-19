@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import util.Preferences;
+import util.SoundPlayer;
 
 
 import java.awt.Font;
@@ -157,8 +158,7 @@ public class OptionMenuState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         currentButton = 0;
-        Preferences.getVoice().stop();
-        Preferences.getVoice().playShortText("Choisissez l'option que vous voulez modifier. Choisir couleurs.");
+        SoundPlayer.getInstance().say("ChoisissezLOptionQueVousVoulezModifier.wav");
     }
 
     private void onEnter() {
@@ -186,18 +186,15 @@ public class OptionMenuState extends BasicGameState {
         switch (currentButton) {
             case 0:
                 currentButton = 2;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Retour.");
+                SoundPlayer.getInstance().say("Retour.wav");
                 break;
             case 1:
                 currentButton = 0;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Choisir couleurs.");
+                SoundPlayer.getInstance().say("ChoisirCouleur.wav");
                 break;
             case 2:
                 currentButton = 1;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Choisir voix.");
+                SoundPlayer.getInstance().say("ChoisirVoix.wav");
                 break;
             default:
                 System.err.println("bouton incorrect");
@@ -208,18 +205,15 @@ public class OptionMenuState extends BasicGameState {
         switch (currentButton) {
             case 0:
                 currentButton = 1;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Choisir voix.");
+                SoundPlayer.getInstance().say("ChoisirVoix.wav");
                 break;
             case 1:
                 currentButton = 2;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Retour.");
+                SoundPlayer.getInstance().say("Retour.wav");
                 break;
             case 2:
                 currentButton = 0;
-                Preferences.getVoice().stop();
-                Preferences.getVoice().playShortText("Choisir couleurs.");
+                SoundPlayer.getInstance().say("ChoisirCouleur.wav");
                 break;
             default:
                 System.err.println("bouton incorrect");

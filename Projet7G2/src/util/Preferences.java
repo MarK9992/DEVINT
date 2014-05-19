@@ -32,7 +32,7 @@ public class Preferences {
     public static MapDivision start;
 
     private Preferences() {
-        currentVoice = 1;
+        currentVoice = 0;
 
         currentSetOfColor = 0;
         backgroundColor = Color.lightGray;
