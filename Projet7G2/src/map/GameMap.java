@@ -384,4 +384,6 @@ public class GameMap {
     public ObjectiveGestion getObjective() {
         return objective;
     }
+
+    public Hero getHero() { return hero; }
 }
