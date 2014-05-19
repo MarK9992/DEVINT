@@ -200,6 +200,12 @@ public class Hero {
 
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
+        try {
+            sheet = new Image(sprite.getSheet(), Sprite.TRANSP);
+            reverseSheet = new Image(sprite.getReverseSheet(), Sprite.TRANSP);
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
         xSheet = sprite.getSouthCoords()[0];
         ySheet = sprite.getSouthCoords()[1];
         width = 2 * sprite.getSouthDims()[0];
