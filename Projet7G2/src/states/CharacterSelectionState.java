@@ -51,6 +51,28 @@ public class CharacterSelectionState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException {
+        short[] dims;
+
+        g.setColor(Preferences.getHighlightColor());
+        switch(currentCharacter) {
+            case DARKSLIME:
+                dims = Sprite.DARKSLIME.getSouthDims();
+                g.fillRect(COLUMNSPACING - 10, ROWSPACING - 10, 2 * dims[0] + 20, 2 * dims[1] + 20);
+                break;
+            case ANGELSLIME:
+                dims = Sprite.ANGELSLIME.getSouthDims();
+                g.fillRect(2 * COLUMNSPACING + 40, ROWSPACING - 10, 2 * dims[0] + 20, 2 * dims[1] + 20);
+                break;
+            case FANGSLIME:
+                dims = Sprite.FANGSLIME.getSouthDims();
+                g.fillRect(COLUMNSPACING - 10, 2 * ROWSPACING + 40, 2 * dims[0] + 20, 2 * dims[1] + 20);
+                break;
+            case SLIME:
+                dims = Sprite.SLIME.getSouthDims();
+                g.fillRect(2 * COLUMNSPACING + 55, 2 * ROWSPACING + 55, 2 * dims[0] + 20, 2 * dims[1] + 20);
+                break;
+            default:
+        }
         drawSprites(g);
     }
 
@@ -120,19 +142,6 @@ public class CharacterSelectionState extends BasicGameState {
     }
 
     private void onEnter() {
-        switch (currentCharacter) {
-            case DARKSLIME:
-
-                break;
-            case ANGELSLIME:
-                break;
-            case FANGSLIME:
-                break;
-            case SLIME:
-                break;
-            default:
-                System.err.println("personnage incorrect");
-        }
         try {
             leave(container, game);
             game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
