@@ -158,7 +158,7 @@ public class OptionMenuState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         currentButton = 0;
-        SoundPlayer.getInstance().say("ChoisissezLOptionQueVousVoulezModifier.wav");
+        SoundPlayer.getInstance().say("ChoisissezLOptionQueVousVoulezModifierChoisirCouleurs.wav");
     }
 
     private void onEnter() {

@@ -160,7 +160,7 @@ public class LoginState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         currentButton = 0;
-        SoundPlayer.getInstance().say("ChoisissezLeModeDeJeu.wav");
+        SoundPlayer.getInstance().say("ChoisissezLeModeDeJeuMalVoyant.wav");
     }
 
     private void onEnter() {

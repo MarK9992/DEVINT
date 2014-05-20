@@ -131,7 +131,7 @@ public class PauseMenuState extends BasicGameState{
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         currentButton = 0;
-        SoundPlayer.getInstance().say("ChoisissezCeQueVousVoulezFaire.wav");
+        SoundPlayer.getInstance().say("ChoisissezCeQueVousVoulezFaireRetourJeu.wav");
     }
 
     @Override

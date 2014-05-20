@@ -104,7 +104,7 @@ public class MainMenuState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         currentButton = 0;
-        SoundPlayer.getInstance().say("ChoisissezCeQueVousVoulezFaire.wav");
+        SoundPlayer.getInstance().say("ChoisissezCeQueVousVoulezFaireJouer.wav");
     }
 
     private void drawButtons(Graphics g) {
