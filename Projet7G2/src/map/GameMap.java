@@ -2,20 +2,13 @@ package map;
 
 import level.Direction;
 import level.ObjectiveGestion;
-import level.Way;
 import main.Game;
 import objects.Hero;
-import objects.ObjectType;
-import objects.Rock;
 import objects.Sprite;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 import states.MainGameState;
 import util.Preferences;
 import util.SoundPlayer;
-
-import java.util.ArrayList;
 
 /**
  * Created by Marc KARASSEV on 24/03/14.
@@ -155,8 +148,6 @@ public class GameMap {
                 SoundPlayer.getInstance().say("Sortir" + instru + ".wav");
         }
         division = map[mapi][mapj];
-        if (division.equals(Preferences.start)&&Preferences.retour)
-            Preferences.game.win();
         if(Preferences.getHandicap()==0)
             hero.setY(Game.FRAMEHEIGHT - hero.getHeight());
     }
@@ -170,8 +161,6 @@ public class GameMap {
                 SoundPlayer.getInstance().say("Sortir" + instru + ".wav");
         }
         division = map[mapi][mapj];
-        if (division.equals(Preferences.start)&&Preferences.retour)
-            Preferences.game.win();
         if(Preferences.getHandicap()==0)
             hero.setX(Game.FRAMEWIDTH - hero.getWidth());
 
@@ -186,8 +175,6 @@ public class GameMap {
                 SoundPlayer.getInstance().say("Sortir" + instru + ".wav");
         }
         division = map[mapi][mapj];
-        if (division.equals(Preferences.start)&&Preferences.retour)
-            Preferences.game.win();
         if(Preferences.getHandicap()==0)
             hero.setX(0);
 
@@ -202,8 +189,6 @@ public class GameMap {
                 SoundPlayer.getInstance().say("Sortir" + instru + ".wav");
         }
         division = map[mapi][mapj];
-        if (division.equals(Preferences.start)&&Preferences.retour)
-            Preferences.game.win();
         if(Preferences.getHandicap()==0)
             hero.setY(0);
     }
