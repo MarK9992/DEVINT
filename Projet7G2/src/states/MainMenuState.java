@@ -191,7 +191,7 @@ public class MainMenuState extends BasicGameState {
                 SoundPlayer.getInstance().say("Retour.wav");
                 try {
                     leave(container, game);
-                    game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                    game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 } catch (SlickException e) {
                     e.printStackTrace();
                 }
