@@ -44,19 +44,8 @@ public class GameMap {
         this.game = game;
         hero = new Hero(Sprite.DARKSLIME);
         mapCreator=new MapCreator();
-
-        ArrayList<Direction> list=new ArrayList<Direction>();
-        list.add(Direction.UP);
-        list.add(Direction.LEFT);
-        list.add(Direction.UP);
-        list.add(Direction.RIGHT);
-        list.add(Direction.DOWN);
-        this.objective=new ObjectiveGestion(list);
-
         mapCreator.initialize(this);
 
-        mapi = 1;
-        mapj = 1;
         division = map[mapi][mapj];
         Preferences.start=map[mapi][mapj];
         instruction = division.getInstruction();
@@ -249,5 +238,17 @@ public class GameMap {
 
     public void setMap(MapDivision[][] map) {
         this.map = map;
+    }
+
+    public void setMapi(int mapi) {
+        this.mapi = mapi;
+    }
+
+    public void setMapj(int mapj) {
+        this.mapj = mapj;
+    }
+
+    public void setObjective(ObjectiveGestion objective) {
+        this.objective = objective;
     }
 }

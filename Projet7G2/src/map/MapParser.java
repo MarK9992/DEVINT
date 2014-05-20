@@ -1,11 +1,13 @@
 package map;
 
+import level.Direction;
 import main.Game;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -18,6 +20,10 @@ public class MapParser {
     private int gameHeight;
     private int gameWidth;
 
+    private int firstX;
+    private int firstY;
+
+    private int[] objective;
 
     private char[] inputGlobalMap;
     private int[] globalMap;
@@ -25,13 +31,17 @@ public class MapParser {
 
     public MapParser(){
 
-        File inputFile = new File("../ressources/maps/Map_2_2_03.txt");
+        File inputFile = new File("../ressources/maps/Map_4_4_01.txt");
 
         try {
             FileReader reader = new FileReader(inputFile);
             BufferedReader in = new BufferedReader(reader);
 
             setSize(in.readLine());
+
+            setFirstPosition(in.readLine());
+
+            setObjective(in.readLine());
 
             createInputMaps(in);
 
@@ -42,6 +52,8 @@ public class MapParser {
             e.printStackTrace();
         }
 /*
+         ----- Version console -----
+
         Scanner reader = new Scanner(System.in);
 
         setSize(reader.nextLine());
@@ -51,6 +63,9 @@ public class MapParser {
         convertMap();
 
     }
+
+
+
 
     private void convertMap() {
         globalMap =new int[height*width];
@@ -104,6 +119,27 @@ public class MapParser {
         }else throw new IllegalArgumentException("Bad format");
     }
 
+    private void setFirstPosition(String firstPos) {
+        if (firstPos.matches("[0-9][0-9]* [0-9][0-9]*")){
+            String coor[]=firstPos.split(" ");
+            int x=Integer.parseInt(coor[0]);
+            int y=Integer.parseInt(coor[1]);
+            if (x>=0 && y>=0 && x<gameWidth && y<gameHeight) {
+                firstX=x;
+                firstY=y;
+            } else {
+                throw new IllegalArgumentException("Bad format");
+            }
+            map= new int[gameWidth*gameHeight][Game.XTILEMAX*Game.YTILEMAX];
+        }else throw new IllegalArgumentException("Bad format");
+    }
+
+    private void setObjective(String objectiveString) {
+        if (objectiveString.matches("[0-3]( [0-3])*")){
+            String obj[]= objectiveString.split(" ");
+        }else throw new IllegalArgumentException("Bad format");
+    }
+
     public void printGrid(){
         StringBuilder sb = new StringBuilder();
         for (int i=0 ; i <height*width; i++){
@@ -133,26 +169,27 @@ public class MapParser {
         System.out.println(sb.toString());
     }
 
-    public static void main( String[] a ){
-
-
-        int[][] tab =new int[10][5];
-        for (int[] t :tab )
-            System.out.println(t.length);
-
-        int n = 114;
-        int mapX=(n%10)/5;//Game.XTILEMAX;
-        int mapY=(n/(10*4));//Game.YTILEMAX;
-        int haut=n%(2*4*5)/10;
-        int larg=(n%5);
-        System.out.println(mapX+"  -  "+mapY);
-        System.out.println(mapY*2+mapX);
-        System.out.println(haut+"  -  "+larg);
-        System.out.println(haut*5+larg);
-        new MapParser();
-    }
-
     public int[][] getMap() {
         return map;
+    }
+
+    public int getGameHeight() {
+        return gameHeight;
+    }
+
+    public int getGameWidth() {
+        return gameWidth;
+    }
+
+    public int getFirstX() {
+        return firstX;
+    }
+
+    public int getFirstY() {
+        return firstY;
+    }
+
+    public int[] getObjective() {
+        return objective;
     }
 }

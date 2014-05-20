@@ -19,6 +19,20 @@ public enum Direction {
         this.action=action;
     }
 
+    public static Direction valueOf(int i){
+        switch (i){
+            case 0:
+                return UP;
+            case 1:
+                return RIGHT;
+            case 2:
+                return DOWN;
+            case 3:
+                return LEFT;
+        }
+        return null;
+    }
+
     public Direction getOppositeDirection(){
         if (this.equals(Direction.UP)){
             return Direction.DOWN;
