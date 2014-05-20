@@ -1,13 +1,11 @@
 package map;
 
-import level.Direction;
 import main.Game;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -137,6 +135,10 @@ public class MapParser {
     private void setObjective(String objectiveString) {
         if (objectiveString.matches("[0-3]( [0-3])*")){
             String obj[]= objectiveString.split(" ");
+            objective=new int[obj.length];
+            for (int i=0;i<obj.length;i++){
+                objective[i]=Integer.parseInt(obj[i]);
+            }
         }else throw new IllegalArgumentException("Bad format");
     }
 
