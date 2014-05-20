@@ -14,9 +14,11 @@ public final class SoundPlayer {
     private Sound bumpSound, switchSound;
     private final String MALEPATH = "../ressources/sound/homme/", FEMALEPATH = "../ressources/sound/femme/";
     private SIVOXDevint voix;
+    private boolean isSaying;
 
     private SoundPlayer() {
         voix = new SIVOXDevint();
+        isSaying = false;
         try {
             bumpSound = new Sound("../ressources/sound/smb_bump.wav");
             switchSound = new Sound("../ressources/sound/smb2_enter_door.wav");
@@ -47,6 +49,7 @@ public final class SoundPlayer {
     }
 
     public void say(String wav) {
+        //isSaying = true;
         voix.stop();
         //try {
             //Sound sound;
@@ -62,5 +65,15 @@ public final class SoundPlayer {
         /*} catch (SlickException e) {
             e.printStackTrace();
         }*/
+        //isSaying = false;
+    }
+
+    public void say(String wav, boolean wait) {
+        /*
+        if(wait) {
+            while(isSaying);
+        }
+        */
+        say(wav);
     }
 }

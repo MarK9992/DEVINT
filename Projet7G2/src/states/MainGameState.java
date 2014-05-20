@@ -70,7 +70,7 @@ public class MainGameState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) {
         map.getHero().setSprite(CharacterSelectionState.getCharacter());
-        SoundPlayer.getInstance().say("Sortir" + Preferences.stockedInstruction + ".wav");
+        SoundPlayer.getInstance().say("UtilisezLesFlechesPourVousDeplacer" + "Sortir" + Preferences.stockedInstruction + ".wav");
     }
 
     @Override
