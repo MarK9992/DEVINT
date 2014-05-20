@@ -148,6 +148,8 @@ public class GameMap {
                 SoundPlayer.getInstance().say("Sortir" + instru + ".wav");
         }
         division = map[mapi][mapj];
+        if (division.equals(Preferences.start)&&Preferences.retour&&Preferences.getHandicap()==0)
+            Preferences.game.win();
         if(Preferences.getHandicap()==0)
             hero.setY(Game.FRAMEHEIGHT - hero.getHeight());
     }
@@ -161,6 +163,8 @@ public class GameMap {
                 SoundPlayer.getInstance().say("Sortir" + instru + ".wav");
         }
         division = map[mapi][mapj];
+        if (division.equals(Preferences.start)&&Preferences.retour&&Preferences.getHandicap()==0)
+            Preferences.game.win();
         if(Preferences.getHandicap()==0)
             hero.setX(Game.FRAMEWIDTH - hero.getWidth());
 
@@ -175,6 +179,8 @@ public class GameMap {
                 SoundPlayer.getInstance().say("Sortir" + instru + ".wav");
         }
         division = map[mapi][mapj];
+        if (division.equals(Preferences.start)&&Preferences.retour&&Preferences.getHandicap()==0)
+            Preferences.game.win();
         if(Preferences.getHandicap()==0)
             hero.setX(0);
 
@@ -189,6 +195,8 @@ public class GameMap {
                 SoundPlayer.getInstance().say("Sortir" + instru + ".wav");
         }
         division = map[mapi][mapj];
+        if (division.equals(Preferences.start)&&Preferences.retour&&Preferences.getHandicap()==0)
+            Preferences.game.win();
         if(Preferences.getHandicap()==0)
             hero.setY(0);
     }

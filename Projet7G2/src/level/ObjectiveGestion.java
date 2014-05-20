@@ -96,7 +96,9 @@ public class ObjectiveGestion {
             }
             else return -1;
         }
-        else return (this.currentPosition==this.objectiveWay.size()-1 && dir.equals(this.objectiveWay.get(currentPosition))&&((wrongWay.isEmpty())||Preferences.getHandicap()==0))?0:-1;
+        else {
+           return (this.currentPosition==this.objectiveWay.size()-1 && dir.equals(this.objectiveWay.get(currentPosition))&&(wrongWay.isEmpty()))?0:-1;
+        }
     }
 
     private Direction getNextStep() {
