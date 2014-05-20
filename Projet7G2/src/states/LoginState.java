@@ -147,6 +147,9 @@ public class LoginState extends BasicGameState {
             case Input.KEY_ESCAPE:
                 onEscape();
                 break;
+            case Input.KEY_F1:
+                onF1();
+                break;
             case Input.KEY_F3:
                 onF3();
                 break;
@@ -244,6 +247,10 @@ public class LoginState extends BasicGameState {
         } catch (SlickException e) {
             e.printStackTrace();
         }
+    }
+
+    private void onF1() {
+        SoundPlayer.getInstance().say("ChoisissezLeModeDeJeu.wav");
     }
 
     private void onF3() {

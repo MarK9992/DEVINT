@@ -149,6 +149,9 @@ public class PauseMenuState extends BasicGameState{
             case Input.KEY_ESCAPE:
                 onEscape();
                 break;
+            case Input.KEY_F1:
+                onF1();
+                break;
             case Input.KEY_F3:
                 onF3();
                 break;
@@ -236,6 +239,10 @@ public class PauseMenuState extends BasicGameState{
         } catch (SlickException e) {
             e.printStackTrace();
         }
+    }
+
+    private void onF1() {
+        SoundPlayer.getInstance().say("ChoisissezCeQueVousVoulezFaire.wav");
     }
 
     private void onF3() {
