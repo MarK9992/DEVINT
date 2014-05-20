@@ -148,7 +148,7 @@ public class MapParser {
             if (i>0 && i%width==0){
                 sb.append("\n");
             }
-            sb.append(globalMap[i]==0?' ':'▮');
+            sb.append(globalMap[i]==0?' ':'I');
         }
         System.out.println(sb.toString());
     }
@@ -166,7 +166,7 @@ public class MapParser {
             divX=i%Game.XTILEMAX;
             divY=(i%(width*Game.YTILEMAX))/width;
             posDiv=divY*Game.XTILEMAX+divX;
-            sb.append(map[posMap][posDiv] == 0 ? ' ' : '▮');
+            sb.append(map[posMap][posDiv] == 0 ? ' ' : 'I');
         }
         System.out.println(sb.toString());
     }
