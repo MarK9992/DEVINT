@@ -168,7 +168,12 @@ public class MainMenuState extends BasicGameState {
                 SoundPlayer.getInstance().say("Jouer.wav");
                 try {
                     leave(container, game);
-                    game.enterState(5, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                    if(Preferences.getHandicap() == 0) {
+                        game.enterState(5, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                    }
+                    else {
+                        game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                    }
                 } catch (SlickException e) {
                     e.printStackTrace();
                 }
